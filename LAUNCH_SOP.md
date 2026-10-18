@@ -23,7 +23,7 @@
 | 4. 内容模型与首批数据 | ⬜ | — | Sanity 现状：3 items / 20 categories / 3 groups / 0 posts / 3 pages |
 | 5. SEO 配置与检查 | ⬜ | — | 依赖步骤 4 的博客与工具数据 |
 | 6. 支付、邮件与登录 | 🟡 | 2026-10-18 | 第一期裁剪 ✅：OAuth 按钮与 Pro/Sponsor 卡片已按环境变量隐藏；Free 套餐与 FAQ 文案已重写；Resend 代码已改为缺 Key 时显式报错，但真实 Key 仍缺 |
-| 7. 部署上线 | 🟡 | 2026-10-18 | 已部署生产：https://dirhuntai.vercel.app ；`dirhuntai.com` / `www` 已加入 Vercel 项目，DNS 仍指向 Spaceship，待改 A 记录；GitHub 自动部署未连接 |
+| 7. 部署上线 | 🟡 | 2026-10-18 | 生产已上线 https://dirhuntai.com ，`www` 308 跳主域；语言切换已修复并线上验证；GitHub 自动部署仍未连接，目前靠 CLI 部署 |
 | 8. 上线验收清单 | ⬜ | — | 依赖步骤 7 |
 | 9. 内容运营 SOP | ⬜ | — | 上线后启动 |
 | 10. 安全与备份 | ⬜ | — | 上线前至少完成 Sanity 备份与密钥轮换计划 |
@@ -32,17 +32,15 @@
 
 按优先级执行：
 
-1. **7.1 DNS**：在 Spaceship 把 `dirhuntai.com` / `www` 指向 Vercel（见下方记录）
-2. **6.2 配置 Resend**：当前 `RESEND_API_KEY` 未配置，开放注册前必须换成真实 Key 并验证域名
-3. **1/7 连接 GitHub**：Vercel 项目尚未连上 GitHub 仓库，目前靠 CLI 部署；连接后才能每次 push 自动构建
-4. **4 首批内容**：清理演示分类，补 50–100 个工具与 3 篇评测
+1. **6.2 配置 Resend**：当前 `RESEND_API_KEY` 未配置，开放注册前必须换成真实 Key 并验证域名
+2. **1/7 连接 GitHub**：Vercel 项目尚未连上 GitHub 仓库，目前靠 CLI 部署；连接后才能每次 push 自动构建
+3. **4 首批内容**：清理演示分类，补 50–100 个工具与 3 篇评测
 
 ### 已知阻塞项
 
 | 阻塞项 | 影响 | 解除条件 |
 |---|---|---|
 | Resend 未配置 | 注册、找回密码、订阅全部不可用 | 真实 API Key + 已验证发信域名（SPF / DKIM / DMARC） |
-| 域名 DNS 未指向 Vercel | `dirhuntai.com` 仍打开旧页面 | Spaceship 添加 `A @ 76.76.21.21` 与 `A www 76.76.21.21` |
 | Vercel 未连接 GitHub | push 后不会自动部署 | 在 Vercel 安装 GitHub App 并授权 `zx5bb285/mkdirs` |
 
 ---
@@ -385,8 +383,8 @@ https://dirhuntai.com/api/auth/callback/github
 ### 7.1 部署步骤
 
 > 2026-10-18 实际状态：代码已合并到 `main`；Vercel 项目
-> `zoubobs-projects/dirhuntai` 已创建并通过 CLI 部署；生产别名
-> https://dirhuntai.vercel.app 已验证。GitHub 自动部署尚未连接，域名 DNS 待改。
+> `zoubobs-projects/dirhuntai` 已创建并通过 CLI 部署；自定义域名
+> https://dirhuntai.com 已生效，`www` 以 308 跳回主域。GitHub 自动部署尚未连接。
 
 1. 推送到 GitHub ✅（PR #1 已 squash 合并到 `main`）
 2. Vercel 导入仓库 🟡（项目已建，GitHub App 未授权 `zx5bb285/mkdirs`）
@@ -399,22 +397,20 @@ pnpm typegen
 pnpm build
 ```
 
-5. 部署后绑定域名：
-   - `dirhuntai.com` → 主域名
-   - `www.dirhuntai.com` → 301 跳转到主域名
+5. 部署后绑定域名 ✅：
+   - `dirhuntai.com` → 主域名（已验证 200）
+   - `www.dirhuntai.com` → 308 跳转到主域名（已在 Vercel 项目域名设置中配置）
 6. 在 Sanity CORS 中添加生产域名 ✅（已加 `dirhuntai.com`、`www.dirhuntai.com`、`localhost:3000`、`dirhuntai.vercel.app`）
 7. 更新 Stripe / OAuth / Resend 中的生产回调地址（第二期再做）
 
-#### 当前待配置的 DNS（Spaceship）
-
-Vercel 对 `dirhuntai.com` 与 `www.dirhuntai.com` 给出的推荐记录：
+#### DNS 记录（Spaceship，已完成）
 
 | 类型 | 主机 | 值 |
 |---|---|---|
 | A | `@` | `76.76.21.21` |
 | A | `www` | `76.76.21.21` |
 
-改完后在 Vercel 项目 → Domains 等待状态变为 Valid；如使用 Cloudflare 代理，需把记录设为 DNS only。
+公网 DNS 已确认两条记录生效；本机如使用代理 / fake-ip DNS，可能需要刷新本地 DNS 缓存才能看到新地址。
 
 > Cloudflare Pages 需要额外的 OpenNext 适配，首站不建议。
 
@@ -634,6 +630,7 @@ pnpm batch:remove        # ⚠️ 删除全部目录数据
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-10-18 | 修复语言切换：`localePrefix: "never"` 下 URL 不变导致 `router.replace` 不触发服务端渲染；在 [locale-switcher.tsx](src/components/layout/locale-switcher.tsx) 中改为写入 `NEXT_LOCALE` 后调用 `router.refresh()`。用 headless Chrome 在 https://dirhuntai.com 实测中英双向切换，URL 保持不变、页面文案即时更新。DNS 已生效（A `@` / `www` → `76.76.21.21`）；Vercel 中将 `www` 设为 308 跳 `dirhuntai.com` |
 | 2026-10-18 | 推送并部署：260 个文件提交到 `feat/dirhuntai-launch-phase-1`，PR #1 squash 合并进 `main`；修复 `pnpm-lock.yaml` 与 `package.json` 不同步导致的 frozen-lockfile 失败；Vercel 项目 `dirhuntai` 创建并部署成功（https://dirhuntai.vercel.app），production 环境变量 18 项已配；Sanity CORS 补齐生产域名与 `localhost:3000`；`dirhuntai.com` / `www.dirhuntai.com` 已加入 Vercel 项目，DNS 待改；线上验证 `/`、`/about`、`/privacy`、`/terms`、`/pricing`、`/auth/login`、`/robots.txt`、`/sitemap.xml`、`/feed.xml`、`/studio` 均 200，定价页只渲染 Free、登录页无 OAuth 按钮 |
 | 2026-10-18 | 完成 3.5：Sanity 建 `page-about` / `page-privacy` / `page-terms` 并发布，三页均验证 200；完成步骤 6 第一期裁剪：`src/lib/auth-providers.ts` 按环境变量决定是否显示 OAuth，`src/config/price.ts` 的 `visiblePricePlans` 按 Price ID 过滤 Pro/Sponsor，定价页只渲染 Free；重写 Free 套餐与 FAQ 文案（中英）；`src/lib/mail.ts` 缺 Key 时显式抛错；`pnpm build` 通过，运行时验证 `/auth/login` 无 OAuth 按钮、`/pricing` 仅 Free |
 | 2026-10-18 | 完成 3.1 / 3.2：`NEXT_PUBLIC_APP_URL` 改为 `https://dirhuntai.com`，补齐 SITE_DESCRIPTION / KEYWORDS / AUTHOR；重做 `logo.png`、`logo-dark.png`、`og.png`（1200×630）、favicon 全套、android/apple 图标；启用 `logoDark`；`site.webmanifest` theme_color 改为 `#7C3AED`；删除模板遗留 `logo_mkdirs.png`；投稿页遗留的 `support@example.com` 改为 `siteConfig.mail`；`pnpm build` 通过 |
