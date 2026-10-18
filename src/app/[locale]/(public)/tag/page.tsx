@@ -1,5 +1,6 @@
 import ItemGrid from "@/components/item/item-grid";
 import EmptyGrid from "@/components/shared/empty-grid";
+import { HeaderSection } from "@/components/shared/header-section";
 import CustomPagination from "@/components/shared/pagination";
 import { siteConfig } from "@/config/site";
 import { getItems } from "@/data/item";
@@ -70,6 +71,14 @@ export default async function TagIndexPage({
 
   return (
     <div>
+      <HeaderSection
+        labelAs="h1"
+        label="Tag"
+        titleAs="h2"
+        title="Explore by tags"
+        className="mb-8"
+      />
+
       {/* when no items are found */}
       {items?.length === 0 && <EmptyGrid />}
 
