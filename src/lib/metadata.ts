@@ -136,29 +136,21 @@ export function constructMetadata({
     },
     metadataBase: new URL(BASE_URL),
     manifest: "/site.webmanifest",
-    robots: noIndex
-      ? {
+    // Only opt out explicitly. Emitting `index, follow` on every page would
+    // conflict with the `noindex` Next.js injects into not-found responses.
+    ...(noIndex && {
+      robots: {
+        index: false,
+        follow: true,
+        googleBot: {
           index: false,
           follow: true,
-          googleBot: {
-            index: false,
-            follow: true,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-            "max-video-preview": -1,
-          },
-        }
-      : {
-          index: true,
-          follow: true,
-          googleBot: {
-            index: true,
-            follow: true,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-            "max-video-preview": -1,
-          },
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
         },
+      },
+    }),
   };
 }
 
