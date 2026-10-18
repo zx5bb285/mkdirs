@@ -288,14 +288,16 @@ Item 字段尽量完整：
 - [x] 文章之间、文章与分类页之间有内链（评测文内链到工具页与其它文章）
 - [x] OG 图在社交平台预览正常（`/api/og` 返回 200 PNG，工具页与文章页按页生成）
 
-### 第一期 P1 内容与 SEO（2026-10-18 完成）
+### 第一期 P1 内容与 SEO（2026-10-18 完成，2026-10-19 收缩）
 
-- 目录：81 个 AI 工具、17 个分类、5 个分组、46 个标签；每个分类 4–6 个工具
-- 合集：5 个主题合集（写作 / 设计 / 开发 / 视频 / 效率），81 个工具全部挂载
+> 2026-10-19 调整：首轮一次性上线了 81 个工具、17 个分类、46 个标签和 6 篇文章。这些工具条目和文章由模型根据既有知识撰写，没有逐条核验，存在被搜索引擎判为批量生成内容的风险。已按「首批小样」策略收缩为 12 个工具、5 个分类、10 个标签、5 个合集、2 篇可索引文章（详见变更记录）。原始全量数据仍在 Sanity 中，仅 `forceHidden` 隐藏，`scripts/seed/shrink.mjs` 记录了收缩规则。
+
+- 目录（首轮）：81 个 AI 工具、17 个分类、5 个分组、46 个标签；每个分类 4–6 个工具
+- 合集：5 个主题合集（写作 / 设计 / 开发 / 视频 / 效率）
 - 博客：4 篇首发文章 + 评测方法页 + 编辑团队作者页 + 3 个博客分类
 - 页面：`/changelog` 已写入真实更新记录
 - 技术 SEO：sitemap 每小时从 CMS 重新生成（`revalidate = 3600`）；首页 title 用 tagline 避免重复品牌；工具页 JSON-LD 不再输出虚构 `offers`；文章页与工具页无封面时自动生成 OG 图
-- 验收：sitemap 181 条 URL（81 item / 17 category / 46 tag / 6 blog / 5 collection / 静态页），无模板 demo 残留；`/blog`、4 篇文章、作者页、分类页、5 个合集页、`/changelog` 全部 200 且正文渲染正常；全量爬取 181/181 返回 200
+- 验收：sitemap 由首轮 181 条收缩为 **46 条**（12 item / 5 category / 10 tag / 5 collection / 2 篇可索引文章 / 静态页），无模板 demo 残留；全量爬取首轮 181/181 返回 200
 
 ### 搜索平台
 
@@ -663,6 +665,7 @@ pnpm batch:remove        # ⚠️ 删除全部目录数据
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-10-19 | 内容收缩（避免批量生成风险）：首轮 81 个工具、17 分类、46 标签、6 篇文章均未逐条核验，一次性上线有被判为 scaled content 的风险。新增 [shrink.mjs](scripts/seed/shrink.mjs) / [shrink-finish.mjs](scripts/seed/shrink-finish.mjs)：保留 12 个工具、5 个分类（每个 2–3 个工具）、10 个标签（每个 ≥2 个工具）、5 个合集（每个 4–6 个工具），其余工具 `forceHidden`（69 个），4 篇文章 `noIndex`，删除未使用的 12 个分类、36 个标签、3 个博客分类和空的 `ai-productivity` 分组；`best-audiobook-apps-2026` / `best-free-video-editing-software-2026` 两篇旧文也一并 noindex。sitemap 由 181 条降为 46 条；生产已重新部署并验证 `/`、分类、标签、博客、合集、12 个工具页均正常，隐藏工具直接访问返回 noindex 空白页。收缩前的完整数据已备份到 `/tmp/dirhuntai-full-backup-*.json` |
 | 2026-10-19 | 收官 SEO 修复（PR #8 / #9，已部署）：分类页与标签页改为用分类名 / 标签名作为唯一 `h1`（原布局统一输出 `Category` / `Tag`，详情页名称只出现在 title），简介作为副标题；未知 slug 走 `notFound()`；`constructMetadata` 不再对每页输出 `index, follow`，避免与 Next 为 not-found 注入的 `noindex` 冲突。sitemap 现为 181 条 URL（含 5 个合集），全量爬取 181/181 返回 200；关键页 robots meta、h1 数量、中文页面均验证正常 |
 | 2026-10-18/19 | P1 内容与 SEO 上线：Sanity 重建目录（81 工具 / 17 分类 / 5 分组 / 46 标签）、5 个主题合集、4 篇首发评测 + 评测方法页 + 编辑团队作者页；新增 `scripts/seed/` 系列脚本（taxonomy / items / blog / collections / changelog，可重复执行）；`sitemap.ts` 改为每小时 revalidate；首页 title 去重品牌；工具页移除虚构 `offers`；文章页 / 工具页无封面时自动生成 OG 图；`/changelog` 写入真实内容。PR #6 squash 合并并部署到 production，线上验收 sitemap 171 条 URL、无 demo 残留、博客 / 合集 / changelog 全部正常。期间发现两篇文章因 Sanity CDN 边缘缓存返回旧数据结构导致渲染报错，缓存过期后自行恢复，非代码问题。待办：GSC DNS TXT 验证 + 提交 sitemap |
 | 2026-10-18 | Resend 配置完成：`dirhuntai.com` 状态 `verified`（DKIM TXT `resend._domainkey`、CNAME `send` / `rsend`）；新建 “DirHunt AI” audience（`d01e70ab-b423-4dd6-9c71-fde1f192cde0`）；`RESEND_API_KEY` / `RESEND_AUDIENCE_ID` 已写入 Vercel production 并重新部署；线上注册实测成功，Key `last_used_at` 更新；测试用户与 token 已清理。域名 `receiving: disabled`，`hello@` / `admin@` 收件箱仍未建 |
