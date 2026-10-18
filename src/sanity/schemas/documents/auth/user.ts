@@ -48,6 +48,18 @@ const user = {
       options: { source: "name", maxLength: 96 },
     }),
     defineField({
+      name: "authorType",
+      title: "Author Type",
+      type: "string",
+      description:
+        "Use Organization for editorial team bylines. Emitted in Article structured data.",
+      initialValue: "Person",
+      options: {
+        list: ["Person", "Organization"],
+        layout: "radio",
+      },
+    }),
+    defineField({
       name: "jobTitle",
       title: "Job Title",
       type: "string",

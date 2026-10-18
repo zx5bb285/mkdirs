@@ -34,7 +34,12 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "zh-CN" | "en";
+  const t = await getTranslations({ locale, namespace: "Site" });
   return constructMetadata({
+    // The helper appends the site name, so the tagline alone yields
+    // "<tagline> - DirHunt AI" instead of repeating the brand.
+    title: t("tagline"),
+    description: t("description"),
     canonicalUrl: `${siteConfig.url}/`,
     locale,
   });

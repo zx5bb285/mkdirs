@@ -30,6 +30,15 @@ import { notFound } from "next/navigation";
 
 const RELATED_COUNT = 3;
 
+/** Per-article social image when the post has no uploaded cover. */
+function ogImageFor(title: string, description: string, type: string) {
+  const url = new URL(`${siteConfig.url}/api/og`);
+  url.searchParams.append("title", title);
+  url.searchParams.append("description", description);
+  url.searchParams.append("type", type);
+  return url.toString();
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -45,12 +54,15 @@ export async function generateMetadata({
   }
 
   const imageProps = post?.image ? urlForImage(post?.image) : null;
+  const description = post.seoDescription || post.excerpt || post.title;
 
   return constructMetadata({
     title: post.seoTitle || post.title,
-    description: post.seoDescription || post.excerpt || post.title,
+    description,
     canonicalUrl: post.canonicalUrl || `${siteConfig.url}/blog/${params.slug}`,
-    image: imageProps?.src,
+    image:
+      imageProps?.src ||
+      ogImageFor(post.seoTitle || post.title, description, "Article"),
     noIndex: !!post.noIndex,
     locale: params.locale,
     type: "article",
@@ -79,6 +91,13 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const imageProps = post?.image ? urlForImage(post?.image) : null;
   const imageBlurDataURL = post?.image?.blurDataURL || null;
+  const socialImage =
+    imageProps?.src ||
+    ogImageFor(
+      post.seoTitle || post.title,
+      post.seoDescription || post.excerpt || post.title,
+      "Article",
+    );
   const publishDate = post.publishDate || post._createdAt;
   const date = getLocaleDate(publishDate);
   const modifiedDate = post.lastReviewedAt || post._updatedAt;
@@ -118,7 +137,7 @@ export default async function PostPage({ params }: PostPageProps) {
     "@type": "BlogPosting",
     headline: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
-    image: imageProps?.src ? [imageProps.src] : undefined,
+    image: [socialImage],
     datePublished: publishDate,
     dateModified: modifiedDate,
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
@@ -129,7 +148,7 @@ export default async function PostPage({ params }: PostPageProps) {
     }),
     author: post.author
       ? {
-          "@type": "Person",
+          "@type": post.author.authorType || "Person",
           name: post.author.name,
           ...(authorUrl && { url: authorUrl }),
           ...(post.author.jobTitle && { jobTitle: post.author.jobTitle }),

@@ -1,0 +1,153 @@
+[
+  {
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "domain": "midjourney.com",
+    "link": "https://www.midjourney.com",
+    "featured": true,
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "art", "design"],
+    "description": "Prompt-based image generator known for distinctive, high-quality artistic results.",
+    "introduction": "Midjourney generates images from text prompts and is widely used for concept art, illustration, and stylized visuals. It runs through a web app and Discord, with controls for aspect ratio, style references, and image variation. Recent versions improved realism and prompt adherence while keeping the recognizable Midjourney aesthetic.\n\n**Best for:** artists and marketers who want striking, stylized imagery rather than photorealistic precision."
+  },
+  {
+    "slug": "dall-e-3",
+    "name": "DALL·E 3",
+    "domain": "openai.com",
+    "link": "https://openai.com/index/dall-e-3/",
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "art"],
+    "description": "OpenAI's image model, integrated with ChatGPT for conversational editing.",
+    "introduction": "DALL·E 3 is OpenAI's image generation model, available inside ChatGPT and through the API. It is known for following detailed prompts and for rendering text more reliably than earlier models. Because it lives in ChatGPT, you can refine an image conversationally, asking for changes instead of rewriting the whole prompt.\n\n**Best for:** users who want an easy, conversational image workflow inside ChatGPT."
+  },
+  {
+    "slug": "stable-diffusion",
+    "name": "Stable Diffusion",
+    "domain": "stability.ai",
+    "link": "https://stability.ai",
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "open-source", "art"],
+    "description": "Open image model family for local generation, fine-tuning, and custom pipelines.",
+    "introduction": "Stable Diffusion is an open model family from Stability AI that can run locally or through hosted services. Its openness supports fine-tuning, custom checkpoints, ControlNet-style conditioning, and integration into custom pipelines. The trade-off is a steeper setup and more tuning than hosted, prompt-only tools.\n\n**Best for:** developers and artists who want control, customization, and local execution."
+  },
+  {
+    "slug": "adobe-firefly",
+    "name": "Adobe Firefly",
+    "domain": "firefly.adobe.com",
+    "link": "https://firefly.adobe.com",
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "design", "branding"],
+    "description": "Adobe's generative image model, integrated with Creative Cloud and licensed content.",
+    "introduction": "Adobe Firefly is Adobe's family of generative models for images, text effects, and design assets. It is integrated into Photoshop, Illustrator, Express, and the standalone Firefly web app. Adobe positions it as commercially safer because it is trained on licensed and public-domain content, which matters for brand work.\n\n**Best for:** creative teams already using Adobe apps who need commercially safer generation."
+  },
+  {
+    "slug": "ideogram",
+    "name": "Ideogram",
+    "domain": "ideogram.ai",
+    "link": "https://ideogram.ai",
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "design", "social-media"],
+    "description": "Image generator that renders legible text, logos, and typographic designs.",
+    "introduction": "Ideogram is a text-to-image platform that stands out for typography. It handles signs, posters, logos, and other designs where words must be readable, a task older image models often failed. It offers multiple styles, aspect ratios, and an editor for iterating on a design.\n\n**Best for:** posters, social graphics, and logo concepts that need readable text."
+  },
+  {
+    "slug": "leonardo-ai",
+    "name": "Leonardo AI",
+    "domain": "leonardo.ai",
+    "link": "https://leonardo.ai",
+    "categories": ["ai-image-generators"],
+    "tags": ["image-generation", "art", "design"],
+    "description": "Image generation platform with models, editing controls, and game-asset workflows.",
+    "introduction": "Leonardo AI provides image generation with a library of fine-tuned models, style presets, and editing tools. It includes features for consistent characters, upscaling, and asset generation, and has been popular with game developers and designers. A free tier with daily credits makes it accessible for experimentation.\n\n**Best for:** designers and game developers who want model variety and asset controls."
+  },
+  {
+    "slug": "photoroom",
+    "name": "Photoroom",
+    "domain": "photoroom.com",
+    "link": "https://www.photoroom.com",
+    "categories": ["ai-photo-editing"],
+    "tags": ["photo-editing", "background-removal", "ecommerce"],
+    "description": "AI product photo editor for backgrounds, shadows, and studio-quality scenes.",
+    "introduction": "Photoroom is built for product photography. It removes backgrounds, generates realistic scenes and shadows, and applies batch edits so an entire catalog can share a consistent look. Templates and text tools support marketplace listings and social posts, and the mobile app allows shooting and editing on a phone.\n\n**Best for:** ecommerce sellers who need clean product photos without a studio."
+  },
+  {
+    "slug": "remove-bg",
+    "name": "Remove.bg",
+    "domain": "remove.bg",
+    "link": "https://www.remove.bg",
+    "categories": ["ai-photo-editing"],
+    "tags": ["photo-editing", "background-removal", "ecommerce"],
+    "description": "One-click background removal for photos, with API and bulk processing.",
+    "introduction": "Remove.bg does one thing well: it detects the subject in a photo and removes the background automatically. It handles hair and complex edges better than manual selection in many cases, and supports bulk processing and an API for automated pipelines. Results can be refined with simple brush tools.\n\n**Best for:** quick background removal and high-volume image processing."
+  },
+  {
+    "slug": "pixlr",
+    "name": "Pixlr",
+    "domain": "pixlr.com",
+    "link": "https://pixlr.com",
+    "categories": ["ai-photo-editing"],
+    "tags": ["photo-editing", "design", "free"],
+    "description": "Browser photo editor with AI cutout, generative fill, and batch tools.",
+    "introduction": "Pixlr is a browser-based photo editor with a familiar layer-based workflow. AI features include background cutout, generative fill, object removal, and upscaling, while the core editor covers cropping, color, retouching, and text. Because it runs in the browser, it works on devices where installing desktop software is impractical.\n\n**Best for:** quick edits and AI-assisted retouching without desktop software."
+  },
+  {
+    "slug": "lets-enhance",
+    "name": "Let's Enhance",
+    "domain": "letsenhance.io",
+    "link": "https://letsenhance.io",
+    "categories": ["ai-photo-editing"],
+    "tags": ["photo-editing", "ecommerce"],
+    "description": "AI upscaling and enhancement for low-resolution or compressed images.",
+    "introduction": "Let's Enhance increases image resolution and improves clarity using AI upscaling. It can enlarge photos and artwork while reducing blur and compression artifacts, and offers adjustments for faces, colors, and lighting. The service is available through the web and an API for batch work.\n\n**Best for:** restoring small images, preparing print assets, and improving product photos."
+  },
+  {
+    "slug": "canva",
+    "name": "Canva",
+    "domain": "canva.com",
+    "link": "https://www.canva.com",
+    "categories": ["ai-design-tools"],
+    "tags": ["design", "social-media", "presentation", "free"],
+    "description": "Design platform with AI tools for text, images, layouts, and presentations.",
+    "introduction": "Canva is a template-driven design platform for social posts, presentations, documents, and video. Its Magic Studio features generate images, rewrite text, resize designs, and remove backgrounds. The combination of templates and AI makes it approachable for people without formal design training.\n\n**Best for:** non-designers and marketing teams producing everyday visual content."
+  },
+  {
+    "slug": "figma",
+    "name": "Figma",
+    "domain": "figma.com",
+    "link": "https://www.figma.com",
+    "categories": ["ai-design-tools"],
+    "tags": ["design", "prototyping", "productivity"],
+    "description": "Collaborative interface design tool with AI features for prototyping and assets.",
+    "introduction": "Figma is a collaborative design platform used for interfaces, prototypes, and design systems. AI features help generate first drafts, rename layers, search assets, and fill realistic content in prototypes. Because design and development share the same file, it fits teams that iterate quickly.\n\n**Best for:** product teams designing and prototyping digital interfaces."
+  },
+  {
+    "slug": "framer",
+    "name": "Framer",
+    "domain": "framer.com",
+    "link": "https://www.framer.com",
+    "categories": ["ai-design-tools"],
+    "tags": ["design", "no-code", "prototyping"],
+    "description": "Website builder with AI-generated layouts, responsive design, and publishing.",
+    "introduction": "Framer is a website builder that combines visual design with responsive layout and hosting. AI can generate a starting page from a prompt, suggest copy, and translate content, while the canvas gives precise control over breakpoints and interactions. Sites publish directly from Framer.\n\n**Best for:** designers who want to build and publish marketing sites without a separate developer."
+  },
+  {
+    "slug": "uizard",
+    "name": "Uizard",
+    "domain": "uizard.io",
+    "link": "https://uizard.io",
+    "categories": ["ai-design-tools"],
+    "tags": ["design", "prototyping", "no-code"],
+    "description": "AI UI prototyping from text prompts, screenshots, or hand-drawn sketches.",
+    "introduction": "Uizard turns text prompts, screenshots, and wireframe sketches into editable UI mockups. It is aimed at early-stage product exploration rather than production design systems, and its generated screens can be refined in a drag-and-drop editor. This makes it useful for workshops and quick concept validation.\n\n**Best for:** founders and product teams validating interface ideas quickly."
+  },
+  {
+    "slug": "looka",
+    "name": "Looka",
+    "domain": "looka.com",
+    "link": "https://looka.com",
+    "categories": ["ai-design-tools"],
+    "tags": ["design", "branding", "ecommerce"],
+    "description": "AI logo maker with brand kits, mockups, and editable design assets.",
+    "introduction": "Looka generates logo concepts from your company name, industry, and style preferences. After choosing a direction, you can customize fonts, colors, and layouts, then export a brand kit with social templates and mockups. It is a fast option for new businesses that need a professional-looking identity.\n\n**Best for:** small businesses and startups that need a logo and basic brand assets quickly."
+  }
+]
