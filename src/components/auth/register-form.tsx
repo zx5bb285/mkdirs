@@ -17,11 +17,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { RegisterSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import type * as z from "zod";
 
-export const RegisterForm = () => {
+interface RegisterFormProps {
+  showSocialLoginButton?: boolean;
+}
+
+export const RegisterForm = ({
+  showSocialLoginButton = false,
+}: RegisterFormProps) => {
+  const t = useTranslations();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -53,17 +61,17 @@ export const RegisterForm = () => {
         })
         .catch((error) => {
           console.log("register, error:", error);
-          setError("Something went wrong");
+          setError(t("Auth.somethingWentWrong"));
         });
     });
   };
 
   return (
     <AuthCard
-      headerLabel="Create an account"
-      bottomButtonLabel="Already have an account? Sign in"
+      headerLabel={t("Auth.registerTitle")}
+      bottomButtonLabel={t("Auth.haveAccount")}
       bottomButtonHref="/auth/login"
-      showSocialLoginButton
+      showSocialLoginButton={showSocialLoginButton}
       className="border-none"
     >
       <Form {...form}>
@@ -74,7 +82,7 @@ export const RegisterForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("Auth.name")}</FormLabel>
                   <FormControl>
                     <Input {...field} disabled={isPending} placeholder="name" />
                   </FormControl>
@@ -87,7 +95,7 @@ export const RegisterForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("Auth.email")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -105,7 +113,7 @@ export const RegisterForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("Auth.password")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -132,7 +140,7 @@ export const RegisterForm = () => {
             ) : (
               ""
             )}
-            <span>Create an account</span>
+            <span>{t("Auth.createAccount")}</span>
           </Button>
         </form>
       </Form>

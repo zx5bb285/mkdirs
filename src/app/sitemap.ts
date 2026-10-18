@@ -1,3 +1,4 @@
+import { localePath } from "@/i18n/routing";
 import { COLLECTIONS_PER_PAGE, ITEMS_PER_PAGE } from "@/lib/constants";
 import type {
   BlogCategoryListQueryForSitemapResult,
@@ -18,10 +19,11 @@ import {
   pageListQueryForSitemap,
   tagListQueryForSitemap,
 } from "@/sanity/lib/queries";
-import collection from "@/sanity/schemas/documents/directory/collection";
 import type { MetadataRoute } from "next";
 
-const site_url = process.env.NEXT_PUBLIC_APP_URL;
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+).replace(/\/$/, "");
 
 /**
  * Google's limit is 50,000 URLs per sitemap
@@ -30,66 +32,48 @@ const site_url = process.env.NEXT_PUBLIC_APP_URL;
  * https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  console.log("sitemap start");
+  const sitemapList: MetadataRoute.Sitemap = [];
+  const seen = new Set<string>();
 
-  const sitemapList: MetadataRoute.Sitemap = []; // final result
+  // Both languages share one unprefixed URL (localePrefix: "never"), so each
+  // route is listed exactly once and no hreflang alternates are emitted.
+  const pushLocalized = (
+    routeUrl: string,
+    lastModified: string | Date,
+    options: {
+      changeFrequency?: MetadataRoute.Sitemap[number]["changeFrequency"];
+      priority?: number;
+    } = {},
+  ) => {
+    const url = `${SITE_URL}${localePath("", routeUrl)}`;
+    if (seen.has(url)) return;
+    seen.add(url);
+    sitemapList.push({ url, lastModified, ...options });
+  };
 
-  const sitemapRoutes: MetadataRoute.Sitemap = [
-    {
-      url: "", // home
-      lastModified: new Date(),
-    },
-    {
-      url: "search",
-      lastModified: new Date(),
-    },
-    {
-      url: "category",
-      lastModified: new Date(),
-    },
-    {
-      url: "tag",
-      lastModified: new Date(),
-    },
-    {
-      url: "collection",
-      lastModified: new Date(),
-    },
-    {
-      url: "blog",
-      lastModified: new Date(),
-    },
-    {
-      url: "pricing",
-      lastModified: new Date(),
-    },
-    {
-      url: "auth/login",
-      lastModified: new Date(),
-    },
-    {
-      url: "auth/register",
-      lastModified: new Date(),
-    },
-    {
-      url: "about",
-      lastModified: new Date(),
-    },
-    {
-      url: "privacy",
-      lastModified: new Date(),
-    },
-    {
-      url: "terms",
-      lastModified: new Date(),
-    },
+  // Only indexable public pages. Auth, search and dashboard routes are
+  // intentionally excluded (they are noindex / auth-gated).
+  const staticRoutes: Array<{
+    path: string;
+    priority: number;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  }> = [
+    { path: "", priority: 1, changeFrequency: "daily" },
+    { path: "/category", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/tag", priority: 0.7, changeFrequency: "weekly" },
+    { path: "/collection", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/blog", priority: 0.9, changeFrequency: "daily" },
+    { path: "/pricing", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/about", priority: 0.4, changeFrequency: "yearly" },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/changelog", priority: 0.3, changeFrequency: "monthly" },
   ];
 
-  for (const route of sitemapRoutes) {
-    // console.log(`sitemap, url:${site_url}/${route.url}`);
-    sitemapList.push({
-      url: `${site_url}/${route.url}`,
-      lastModified: new Date(route.lastModified).toISOString(),
+  for (const route of staticRoutes) {
+    pushLocalized(route.path, new Date(), {
+      priority: route.priority,
+      changeFrequency: route.changeFrequency,
     });
   }
 
@@ -125,162 +109,114 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   ]);
 
-  console.log("sitemap, itemListQueryResult size:", itemListQueryResult.length);
-  console.log(
-    "sitemap, categoryListQueryResult size:",
-    categoryListQueryResult.length,
-  );
-  console.log("sitemap, tagListQueryResult size:", tagListQueryResult.length);
-  console.log("sitemap, blogListQueryResult size:", blogListQueryResult.length);
-  console.log(
-    "sitemap, blogCategoryListQueryResult size:",
-    blogCategoryListQueryResult.length,
-  );
-  console.log("sitemap, pageListQueryResult size:", pageListQueryResult.length);
-
   for (const item of itemListQueryResult) {
     if (item.slug) {
-      const routeUrl = `/item/${item.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(item._updatedAt).toISOString(),
+      pushLocalized(`/item/${item.slug}`, new Date(item._updatedAt), {
+        priority: 0.6,
+        changeFrequency: "weekly",
       });
-    } else {
-      console.warn(`sitemap, item slug invalid, id:${item._id}`);
     }
   }
 
   const pageCount = Math.ceil(itemListQueryResult.length / ITEMS_PER_PAGE);
-  console.log(`sitemap, item count:${itemListQueryResult.length}, pageCount:${pageCount}`);
   for (let i = 2; i <= pageCount; i++) {
-    const routeUrl = `/?page=${i}`;
-    sitemapList.push({
-      url: `${site_url}${routeUrl}`,
-      lastModified: new Date().toISOString(),
+    pushLocalized(`/?page=${i}`, new Date(), {
+      priority: 0.5,
+      changeFrequency: "daily",
     });
   }
 
   for (const category of categoryListQueryResult) {
-    if (category.slug) {
-      const routeUrl = `/category/${category.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(category._updatedAt).toISOString(),
-      });
+    if (!category.slug) continue;
+    pushLocalized(`/category/${category.slug}`, new Date(category._updatedAt), {
+      priority: 0.7,
+      changeFrequency: "weekly",
+    });
 
-      const pageCount = Math.ceil(category.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, category:${category.slug}, count:${category.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/category/${category.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(category._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, category slug invalid, id:${category._id}`);
-    }
-  }
-
-  for (const tag of tagListQueryResult) {
-    if (tag.slug) {
-      const routeUrl = `/tag/${tag.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(tag._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(tag.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, tag:${tag.slug}, count:${tag.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/tag/${tag.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(tag._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, tag slug invalid, id:${tag._id}`);
-    }
-  }
-
-  for (const collection of collectionListQueryResult) {
-    if (collection.slug) {
-      const routeUrl = `/collection/${collection.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(collection._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(collection.count / COLLECTIONS_PER_PAGE);
-      console.log(`sitemap, collection:${collection.slug}, count:${collection.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/collection/${collection.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(collection._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(`sitemap, collection slug invalid, id:${collection._id}`);
-    }
-  }
-
-  for (const blog of blogListQueryResult) {
-    if (blog.slug) {
-      const routeUrl = `/blog/${blog.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(blog._updatedAt).toISOString(),
-      });
-    } else {
-      console.warn(`sitemap, blog post slug invalid, id:${blog._id}`);
-    }
-  }
-
-  for (const blogCategory of blogCategoryListQueryResult) {
-    if (blogCategory.slug) {
-      const routeUrl = `/blog/category/${blogCategory.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(blogCategory._updatedAt).toISOString(),
-      });
-
-      const pageCount = Math.ceil(blogCategory.count / ITEMS_PER_PAGE);
-      console.log(`sitemap, blog category:${blogCategory.slug}, count:${blogCategory.count}, pageCount:${pageCount}`);
-      for (let i = 2; i <= pageCount; i++) {
-        const routeUrl = `/blog/category/${blogCategory.slug}?page=${i}`;
-        sitemapList.push({
-          url: `${site_url}${routeUrl}`,
-          lastModified: new Date(blogCategory._updatedAt).toISOString(),
-        });
-      }
-    } else {
-      console.warn(
-        `sitemap, blog category slug invalid, id:${blogCategory._id}`,
+    const pages = Math.ceil(category.count / ITEMS_PER_PAGE);
+    for (let i = 2; i <= pages; i++) {
+      pushLocalized(
+        `/category/${category.slug}?page=${i}`,
+        new Date(category._updatedAt),
+        {
+          priority: 0.5,
+          changeFrequency: "weekly",
+        },
       );
     }
   }
 
-  for (const page of pageListQueryResult) {
-    if (page.slug) {
-      const routeUrl = `/page/${page.slug}`;
-      // console.log(`sitemap, url:${site_url}${routeUrl}`);
-      sitemapList.push({
-        url: `${site_url}${routeUrl}`,
-        lastModified: new Date(page._updatedAt).toISOString(),
+  for (const tag of tagListQueryResult) {
+    if (!tag.slug) continue;
+    pushLocalized(`/tag/${tag.slug}`, new Date(tag._updatedAt), {
+      priority: 0.6,
+      changeFrequency: "weekly",
+    });
+
+    const pages = Math.ceil(tag.count / ITEMS_PER_PAGE);
+    for (let i = 2; i <= pages; i++) {
+      pushLocalized(`/tag/${tag.slug}?page=${i}`, new Date(tag._updatedAt), {
+        priority: 0.4,
+        changeFrequency: "weekly",
       });
-    } else {
-      console.warn(`sitemap, page slug invalid, id:${page._id}`);
     }
   }
 
-  console.log("sitemap end, size:", sitemapList.length);
+  for (const collection of collectionListQueryResult) {
+    if (!collection.slug) continue;
+    pushLocalized(
+      `/collection/${collection.slug}`,
+      new Date(collection._updatedAt),
+      {
+        priority: 0.7,
+        changeFrequency: "weekly",
+      },
+    );
+
+    const pages = Math.ceil(collection.count / COLLECTIONS_PER_PAGE);
+    for (let i = 2; i <= pages; i++) {
+      pushLocalized(
+        `/collection/${collection.slug}?page=${i}`,
+        new Date(collection._updatedAt),
+        { priority: 0.5, changeFrequency: "weekly" },
+      );
+    }
+  }
+
+  for (const blog of blogListQueryResult) {
+    if (!blog.slug) continue;
+    pushLocalized(`/blog/${blog.slug}`, new Date(blog._updatedAt), {
+      priority: 0.8,
+      changeFrequency: "monthly",
+    });
+  }
+
+  for (const blogCategory of blogCategoryListQueryResult) {
+    if (!blogCategory.slug) continue;
+    pushLocalized(
+      `/blog/category/${blogCategory.slug}`,
+      new Date(blogCategory._updatedAt),
+      { priority: 0.6, changeFrequency: "weekly" },
+    );
+
+    const pages = Math.ceil(blogCategory.count / ITEMS_PER_PAGE);
+    for (let i = 2; i <= pages; i++) {
+      pushLocalized(
+        `/blog/category/${blogCategory.slug}?page=${i}`,
+        new Date(blogCategory._updatedAt),
+        { priority: 0.4, changeFrequency: "weekly" },
+      );
+    }
+  }
+
+  // Custom pages live at /[locale]/[slug] — not /page/[slug].
+  for (const page of pageListQueryResult) {
+    if (!page.slug) continue;
+    pushLocalized(`/${page.slug}`, new Date(page._updatedAt), {
+      priority: 0.4,
+      changeFrequency: "yearly",
+    });
+  }
+
   return sitemapList;
 }

@@ -3,11 +3,12 @@
 import { FreePlanButton } from "@/components/payment/free-plan-button";
 import { ProPlanButton } from "@/components/payment/pro-plan-button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { priceConfig } from "@/config/price";
+import { visiblePricePlans } from "@/config/price";
 import { PricePlans } from "@/lib/submission";
 import { cn } from "@/lib/utils";
 import type { ItemInfo, PricePlan } from "@/types/index";
 import { CheckIcon, XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { SponsorPlanButton } from "../payment/sponsor-plan-button";
 
 interface PricingPlansProps {
@@ -16,10 +17,19 @@ interface PricingPlansProps {
 
 export function PricingPlans({ item }: PricingPlansProps) {
   // console.log('PricingPlans, item:', item);
+  const plans = visiblePricePlans;
+
   return (
     <section className="flex flex-col items-center text-center w-full mx-auto">
-      <div className="grid gap-8 w-full sm:grid-cols-1 lg:grid-cols-3 items-center">
-        {priceConfig.plans.map((pricePlan) => (
+      <div
+        className={cn(
+          "grid gap-8 w-full items-stretch",
+          plans.length === 1 && "max-w-md mx-auto",
+          plans.length === 2 && "max-w-3xl mx-auto sm:grid-cols-2",
+          plans.length >= 3 && "sm:grid-cols-1 lg:grid-cols-3",
+        )}
+      >
+        {plans.map((pricePlan) => (
           <PricingPlanCard
             item={item}
             key={pricePlan.title}
@@ -37,6 +47,7 @@ interface PricingPlanCardProps {
 }
 
 const PricingPlanCard = ({ item, pricePlan }: PricingPlanCardProps) => {
+  const t = useTranslations();
   return (
     <div className="relative pt-4">
       {isProPlan(pricePlan) && (
@@ -62,7 +73,7 @@ const PricingPlanCard = ({ item, pricePlan }: PricingPlanCardProps) => {
               ${pricePlan.price}
             </div>
             <div className="text-sm font-semibold font-workSans leading-relaxed text-muted-foreground">
-              {pricePlan.priceSuffix}
+              {t(pricePlan.priceSuffix)}
             </div>
           </div>
         </div>
@@ -74,14 +85,14 @@ const PricingPlanCard = ({ item, pricePlan }: PricingPlanCardProps) => {
               {pricePlan.benefits.map((feature) => (
                 <div key={feature} className="flex items-start gap-x-4">
                   <CheckIcon className="text-primary size-4 shrink-0 text-primary-500 mt-0.5" />
-                  <p>{feature}</p>
+                  <p>{t(feature)}</p>
                 </div>
               ))}
 
               {pricePlan.limitations.map((feature) => (
                 <div key={feature} className="flex items-start gap-x-4">
                   <XIcon className="size-4 shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">{feature}</p>
+                  <p className="text-muted-foreground">{t(feature)}</p>
                 </div>
               ))}
             </div>
@@ -91,11 +102,13 @@ const PricingPlanCard = ({ item, pricePlan }: PricingPlanCardProps) => {
           <div className="mt-12 px-6">
             {pricePlan.title.toUpperCase() === PricePlans.FREE.toUpperCase() ? (
               <FreePlanButton item={item} className="w-full" />
-            ) : pricePlan.title.toUpperCase() === PricePlans.SPONSOR.toUpperCase() ? (
-              <SponsorPlanButton 
+            ) : pricePlan.title.toUpperCase() ===
+              PricePlans.SPONSOR.toUpperCase() ? (
+              <SponsorPlanButton
                 item={item}
                 pricePlan={pricePlan}
-                className="w-full" />
+                className="w-full"
+              />
             ) : (
               <ProPlanButton
                 item={item}
@@ -115,9 +128,17 @@ function isProPlan(pricePlan: PricePlan) {
 }
 
 export function PricingPlansSkeleton() {
+  const count = Math.max(visiblePricePlans.length, 1);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {[...Array(2)].map((_, index) => (
+    <div
+      className={cn(
+        "grid grid-cols-1 gap-8 mx-auto w-full",
+        count === 1 && "max-w-md",
+        count >= 2 && "max-w-3xl md:grid-cols-2",
+      )}
+    >
+      {[...Array(count)].map((_, index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <PricingPlanCardSkeleton key={index} />
       ))}

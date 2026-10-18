@@ -1,3 +1,9 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+// next-intl plugin, reads from src/i18n/request.ts by default
+// https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
@@ -48,4 +54,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

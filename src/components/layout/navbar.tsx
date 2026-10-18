@@ -3,6 +3,7 @@
 import { LoginWrapper } from "@/components/auth/login-button";
 import Container from "@/components/container";
 import { Icons } from "@/components/icons/icons";
+import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { ModeToggle } from "@/components/layout/mode-toggle";
 import { UserButton } from "@/components/layout/user-button";
 import { Button } from "@/components/ui/button";
@@ -17,11 +18,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useScroll } from "@/hooks/use-scroll";
+import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import type { DashboardConfig, MarketingConfig } from "@/types";
 import { ArrowRightIcon, MenuIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import React from "react";
 import { Logo } from "../logo";
@@ -39,6 +40,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
   const pathname = usePathname();
   // console.log(`Navbar, pathname: ${pathname}`);
   const links = config.menus;
+  const t = useTranslations();
   // console.log(`Navbar, links: ${links.map((link) => link.title)}`);
 
   const isLinkActive = (href: string) => {
@@ -83,10 +85,9 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
               <NavigationMenu>
                 <NavigationMenuList>
                   {links.map((item) => (
-                    <NavigationMenuItem key={item.title}>
+                    <NavigationMenuItem key={t(item.title)}>
                       <NavigationMenuLink
-                        href={item.disabled ? "#" : item.href}
-                        target={item.external ? "_blank" : ""}
+                        asChild
                         className={cn(
                           navigationMenuTriggerStyle(),
                           "px-2 bg-transparent focus:bg-transparent text-base",
@@ -96,7 +97,12 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
                           item.disabled && "cursor-not-allowed opacity-80",
                         )}
                       >
-                        {item.title}
+                        <Link
+                          href={item.disabled ? "#" : item.href}
+                          target={item.external ? "_blank" : ""}
+                        >
+                          {t(item.title)}
+                        </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
                   ))}
@@ -107,6 +113,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
 
           {/* navbar right show sign in or account */}
           <div className="flex items-center gap-x-4">
+            <LocaleSwitcher />
             {user ? (
               <div className="flex items-center">
                 <UserButton />
@@ -118,7 +125,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
                   variant="default"
                   size="default"
                 >
-                  <span>Sign In</span>
+                  <span>{t("Common.signIn")}</span>
                   <ArrowRightIcon className="size-4" />
                 </Button>
               </LoginWrapper>
@@ -163,7 +170,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
                       const Icon = Icons[item.icon || "arrowRight"];
                       return (
                         <Link
-                          key={item.title}
+                          key={t(item.title)}
                           href={item.disabled ? "#" : item.href}
                           target={item.external ? "_blank" : ""}
                           onClick={() => {
@@ -179,7 +186,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
                           )}
                         >
                           <Icon className="size-5" />
-                          {item.title}
+                          {t(item.title)}
                         </Link>
                       );
                     })}
@@ -202,6 +209,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
 
           {/* mobile navbar right show sign in or account */}
           <div className="flex items-center gap-x-4">
+            <LocaleSwitcher />
             {user ? (
               <div className="flex items-center">
                 <UserButton />
@@ -213,7 +221,7 @@ export function Navbar({ scroll = false, config }: NavBarProps) {
                   variant="default"
                   size="default"
                 >
-                  <span>Sign In</span>
+                  <span>{t("Common.signIn")}</span>
                   <ArrowRightIcon className="size-4" />
                 </Button>
               </LoginWrapper>

@@ -11,6 +11,24 @@ export const resend = new Resend(process.env.RESEND_API_KEY);
 
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL;
 
+// Fail loudly instead of silently dropping verification / reset emails.
+const isResendConfigured = Boolean(
+  process.env.RESEND_API_KEY &&
+    !process.env.RESEND_API_KEY.startsWith("re_placeholder"),
+);
+
+async function sendEmail(
+  payload: Parameters<typeof resend.emails.send>[0],
+): Promise<void> {
+  if (!isResendConfigured) {
+    throw new Error("RESEND_API_KEY is not configured");
+  }
+  const { error } = await resend.emails.send(payload);
+  if (error) {
+    throw new Error(`Resend failed: ${error.message}`);
+  }
+}
+
 export const sendPasswordResetEmail = async (
   userName: string,
   email: string,
@@ -18,7 +36,7 @@ export const sendPasswordResetEmail = async (
 ) => {
   const resetLink = `${SITE_URL}/auth/new-password?token=${token}`;
 
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: email,
     subject: "Reset your password",
@@ -29,7 +47,7 @@ export const sendPasswordResetEmail = async (
 export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${SITE_URL}/auth/new-verification?token=${token}`;
 
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: email,
     subject: "Confirm your email",
@@ -51,7 +69,7 @@ export const sendNotifySubmissionEmail = async (
   //   reviewLink: ${reviewLink},
   //   statusLink: ${statusLink}`);
 
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: userEmail,
     subject: "Thank you for your submission",
@@ -62,7 +80,7 @@ export const sendNotifySubmissionEmail = async (
     }),
   });
 
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: process.env.RESEND_EMAIL_ADMIN,
     subject: "New submission",
@@ -80,7 +98,7 @@ export const sendPaymentSuccessEmail = async (
   //   userName: ${userName},
   //   itemLink: ${itemLink}`);
 
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: email,
     subject: "Thank your for your submission",
@@ -93,7 +111,7 @@ export const sendApprovalEmail = async (
   email: string,
   itemLink: string,
 ) => {
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: email,
     subject: "Your submission has been approved",
@@ -106,7 +124,7 @@ export const sendRejectionEmail = async (
   email: string,
   dashboardLink: string,
 ) => {
-  await resend.emails.send({
+  await sendEmail({
     from: process.env.RESEND_EMAIL_FROM,
     to: email,
     subject: "Please check your submission",

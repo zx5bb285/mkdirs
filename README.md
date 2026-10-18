@@ -1,16 +1,17 @@
-# Mkdirs
+# DirHunt AI
 
-Launch AI-powered directory websites in minutes
+AI tool directory and independent software reviews.
 
-[![License](https://img.shields.io/github/license/MkThingsHQ/mkdirs)](LICENSE)
+Built on the open-source [Mkdirs](https://mkdirs.com) template
+(Apache-2.0), with listings, submissions, CMS, blog, newsletter, SEO,
+authentication and a protected blog publishing API.
 
-Mkdirs helps you launch a directory website with listings, AI-assisted
-submissions, payments, authentication, CMS, blog, newsletter, SEO, themes,
-and more.
+- Site: <https://dirhuntai.com>
+- Studio: `/studio`
+- Launch SOP: [LAUNCH_SOP.md](LAUNCH_SOP.md)
+- Blog bot API: [docs/blog-bot.md](docs/blog-bot.md)
 
-[Live Demo](https://demo.mkdirs.com) · [Documentation](https://docs.mkdirs.com) · [Installation Guide](https://docs.mkdirs.com/installation) · [Video Tutorials](https://www.youtube.com/@MkdirsHQ) · [Showcase](https://mkdirs.com/showcase)
-
-![Mkdirs directory website template](public/og.png)
+![DirHunt AI](public/og.png)
 
 ## Features
 

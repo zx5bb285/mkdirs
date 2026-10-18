@@ -4,8 +4,8 @@ import { urlForIcon } from "@/lib/image";
 import { cn, getItemTargetLinkInWebsite } from "@/lib/utils";
 import type { ItemInfo } from "@/types";
 import { ArrowUpRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "../ui/button";
 
 type SponsorItemCardProps = {
@@ -16,19 +16,21 @@ type SponsorItemCardProps = {
  * SponsorItemCard shows item icon
  */
 export default function SponsorItemCard({ item }: SponsorItemCardProps) {
+  const t = useTranslations();
   const iconProps = item?.icon ? urlForIcon(item.icon) : null;
   const iconBlurDataURL = item?.icon?.blurDataURL || null;
   // console.log(`SponsorItemCard, iconBlurDataURL:${iconBlurDataURL}`);
   const itemLink = getItemTargetLinkInWebsite(item);
 
   return (
-    <Link
+    <a
       href={itemLink}
       target="_blank"
+      rel="noopener noreferrer"
       className={cn(
         "border rounded-lg flex flex-col justify-between p-6",
         "duration-300 shadow-sm hover:shadow-md transition-shadow",
-        "border-sky-300 border-spacing-1.5 bg-sky-50/50 dark:bg-sky-950/10 hover:bg-sky-50 dark:hover:bg-accent/60"
+        "border-sky-300 border-spacing-1.5 bg-sky-50/50 dark:bg-sky-950/10 hover:bg-sky-50 dark:hover:bg-accent/60",
       )}
     >
       {/* top */}
@@ -86,11 +88,13 @@ export default function SponsorItemCard({ item }: SponsorItemCardProps) {
           )}
         >
           <div className="flex items-center justify-center gap-2">
-            <span className="text-white font-semibold">Visit Website</span>
+            <span className="text-white font-semibold">
+              {t("Common.visitWebsite")}
+            </span>
             <ArrowUpRightIcon className="text-white font-semibold size-4 transition-transform group-hover:translate-x-1" />
           </div>
         </Button>
       </div>
-    </Link>
+    </a>
   );
 }

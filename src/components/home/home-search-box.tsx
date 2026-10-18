@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { createUrl } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
@@ -17,6 +18,7 @@ interface SearchBoxProps {
 
 export default function HomeSearchBox({ urlPrefix }: SearchBoxProps) {
   const router = useRouter();
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams?.get("q") || "");
   const [debouncedQuery] = useDebounce(searchQuery, 300); // 300ms debounce
@@ -52,7 +54,7 @@ export default function HomeSearchBox({ urlPrefix }: SearchBoxProps) {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     isUserTypingRef.current = true;
     setSearchQuery(e.target.value);
-    
+
     // Reset the flag to allow updates after URL changes (but give enough time to complete the current input)
     setTimeout(() => {
       isUserTypingRef.current = false;
@@ -63,7 +65,7 @@ export default function HomeSearchBox({ urlPrefix }: SearchBoxProps) {
     <div className="flex items-center justify-center">
       <Input
         type="text"
-        placeholder="Search any products you need"
+        placeholder={t("Hero.searchPlaceholder")}
         autoComplete="off"
         value={searchQuery}
         onChange={handleSearch}
@@ -74,7 +76,7 @@ export default function HomeSearchBox({ urlPrefix }: SearchBoxProps) {
       />
       <Button type="submit" className="rounded-l-none size-12">
         <SearchIcon className="size-6" aria-hidden="true" />
-        <span className="sr-only">Search</span>
+        <span className="sr-only">{t("Nav.search")}</span>
       </Button>
     </div>
   );

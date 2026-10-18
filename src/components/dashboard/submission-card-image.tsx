@@ -1,10 +1,10 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { urlForImage } from "@/lib/image";
 import type { ItemInfo } from "@/types";
 import { HashIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 type SubmissionCardImageProps = {
   item: ItemInfo;

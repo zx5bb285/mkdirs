@@ -89,15 +89,12 @@ export async function createCheckoutSession(
       }
 
       // 4. create stripe checkout session
-      console.log(
-        "Creating Stripe checkout session:",
-        {
-          customerId: stripeCustomerId,
-          priceId,
-          userId: user.id,
-          itemId,
-        }
-      );
+      console.log("Creating Stripe checkout session:", {
+        customerId: stripeCustomerId,
+        priceId,
+        userId: user.id,
+        itemId,
+      });
       // TODO: optimize the success and cancel urls with sessionId!!!
       const successUrl = absoluteUrl(`/publish/${itemId}?pay=success`);
       const cancelUrl = absoluteUrl(`/payment/${itemId}?pay=failed`);

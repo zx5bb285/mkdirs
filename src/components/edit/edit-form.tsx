@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "@/i18n/navigation";
 import { SUPPORT_ITEM_ICON } from "@/lib/constants";
 import { urlForImage } from "@/lib/image";
 import { EditSchema } from "@/lib/schemas";
@@ -30,7 +31,7 @@ import type {
 import type { ItemFullInfo } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BellRingIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -50,6 +51,7 @@ interface EditFormProps {
  */
 export function EditForm({ item, tagList, categoryList }: EditFormProps) {
   const router = useRouter();
+  const t = useTranslations();
   const [isPending, startTransition] = useTransition();
   const [isUploading, setIsUploading] = useState(false);
 
@@ -62,9 +64,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
       link: item.link,
       description: item.description,
       introduction: item.introduction,
-      ...(SUPPORT_ITEM_ICON
-        ? { iconId: item.icon?.asset?._ref ?? "" }
-        : {}),
+      ...(SUPPORT_ITEM_ICON ? { iconId: item.icon?.asset?._ref ?? "" } : {}),
       imageId: item.image?.asset?._ref,
       tags: item.tags.map((tag) => tag._id),
       categories: item.categories.map((category) => category._id),
@@ -95,7 +95,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
         })
         .catch((error) => {
           console.error("EditForm, error:", error);
-          toast.error("Something went wrong");
+          toast.error(t("Auth.somethingWentWrong"));
         });
     });
   });
@@ -134,7 +134,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                     <FormLabel>Link</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter the link to your product"
+                        placeholder={t("Submit.linkPlaceholder")}
                         {...field}
                       />
                     </FormControl>
@@ -150,7 +150,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter the name of your product"
+                        placeholder={t("Submit.namePlaceholder")}
                         {...field}
                       />
                     </FormControl>
@@ -176,7 +176,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                         }))}
                         onValueChange={(selected) => field.onChange(selected)}
                         value={field.value}
-                        placeholder="Select categories"
+                        placeholder={t("Submit.selectCategories")}
                         variant="default"
                         maxCount={3}
                       />
@@ -200,7 +200,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                         }))}
                         onValueChange={(selected) => field.onChange(selected)}
                         value={field.value}
-                        placeholder="Select tags"
+                        placeholder={t("Submit.selectTags")}
                         variant="default"
                         maxCount={3}
                       />
@@ -219,7 +219,7 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Enter a brief description of your product"
+                      placeholder={t("Submit.descriptionPlaceholder")}
                       {...field}
                       className="resize-none"
                     />
@@ -269,7 +269,9 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
                         <div className="mt-4 w-full h-[370px]">
                           <ImageUpload
                             onUploadChange={handleUploadIconChange}
-                            currentImageUrl={item.icon ? urlForImage(item.icon).src : ""}
+                            currentImageUrl={
+                              item.icon ? urlForImage(item.icon).src : ""
+                            }
                             type="icon"
                           />
                         </div>
@@ -324,10 +326,10 @@ export function EditForm({ item, tagList, categoryList }: EditFormProps) {
               )}
               <span>
                 {isPending
-                  ? "Updating..."
+                  ? t("Submit.updating")
                   : isUploading
-                    ? "Uploading image..."
-                    : "Update"}
+                    ? t("Submit.uploadingImage")
+                    : t("Common.update")}
               </span>
             </Button>
 

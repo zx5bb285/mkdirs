@@ -5,6 +5,14 @@ export default defineType({
   name: "blogCategory",
   title: "Blog Category",
   type: "document",
+  // localized (zh-CN) fields fall back to the english field via GROQ coalesce
+  fieldsets: [
+    {
+      name: "zh",
+      title: "简体中文 (zh-CN)",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: "name",
@@ -12,6 +20,13 @@ export default defineType({
       type: "string",
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "nameZh",
+      title: "Name (简体中文)",
+      type: "string",
+      fieldset: "zh",
+    }),
+
     defineField({
       name: "slug",
       title: "Slug",

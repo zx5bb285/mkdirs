@@ -1,24 +1,25 @@
 import type { DashboardConfig } from "@/types";
 
+// title values are message keys ("Nav.home" etc.), resolved with next-intl
 export const dashboardConfig: DashboardConfig = {
   menus: [
     {
-      title: "Homepage",
+      title: "Nav.home",
       href: "/",
       icon: "home",
     },
     {
-      title: "Dashboard",
+      title: "Nav.dashboard",
       href: "/dashboard",
       icon: "dashboard",
     },
     {
-      title: "Settings",
+      title: "Nav.settings",
       href: "/settings",
       icon: "settings",
     },
     {
-      title: "Submit",
+      title: "Nav.submit",
       href: "/submit",
       icon: "submit",
     },

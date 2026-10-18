@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Mkdirs is a Next.js 14 directory website template with Sanity CMS, enabling AI-powered directory sites with listings, payments, authentication, blog, and newsletter features.
+DirHunt AI (dirhuntai.com) is a Next.js 14 directory and review site built on the Mkdirs template, using Sanity CMS with listings, payments, authentication, blog, and newsletter features.
 
 ## Commands
 

@@ -27,6 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "@/i18n/navigation";
 import { SUPPORT_AI_SUBMIT, SUPPORT_ITEM_ICON } from "@/lib/constants";
 import { SubmitSchema } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
@@ -36,7 +37,7 @@ import type {
 } from "@/sanity.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SmileIcon, Wand2Icon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -55,6 +56,7 @@ interface SubmitFormProps {
  */
 export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
   const router = useRouter();
+  const t = useTranslations();
   const [isPending, startTransition] = useTransition();
   const [isUploading, setIsUploading] = useState(false);
   const [isAIProcessing, setIsAIProcessing] = useState(false);
@@ -154,8 +156,8 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
       if (data.categories) {
         form.setValue(
           "categories",
-          data.categories.map((category) =>
-            categoryList.find((c) => c.name === category)?._id,
+          data.categories.map(
+            (category) => categoryList.find((c) => c.name === category)?._id,
           ),
         );
       }
@@ -199,11 +201,11 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                 name="link"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Link</FormLabel>
+                    <FormLabel>{t("Submit.link")}</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Input
-                          placeholder="Enter the link to your product"
+                          placeholder={t("Submit.linkPlaceholder")}
                           className={cn(SUPPORT_AI_SUBMIT && "pr-[100px]")}
                           {...field}
                         />
@@ -229,21 +231,29 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                             <DialogHeader>
                               <DialogTitle>AI Autofill</DialogTitle>
                               <DialogDescription>
-                                Would you like AI to automatically fill in the form by the URL? It may take some time, so please wait patiently.
+                                Would you like AI to automatically fill in the
+                                form by the URL? It may take some time, so
+                                please wait patiently.
                               </DialogDescription>
                             </DialogHeader>
                             <div className="flex justify-end gap-2">
-                              <Button variant="outline" onClick={() => setDialogOpen(false)}>
+                              <Button
+                                variant="outline"
+                                onClick={() => setDialogOpen(false)}
+                              >
                                 Cancel
                               </Button>
-                              <Button onClick={handleAIFetch} disabled={isAIProcessing}>
+                              <Button
+                                onClick={handleAIFetch}
+                                disabled={isAIProcessing}
+                              >
                                 {isAIProcessing ? (
                                   <>
                                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                                     Analyzing...
                                   </>
                                 ) : (
-                                  "Analyze"
+                                  t("Submit.analyze")
                                 )}
                               </Button>
                             </div>
@@ -260,10 +270,10 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>{t("Submit.name")}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter the name of your product"
+                        placeholder={t("Submit.namePlaceholder")}
                         {...field}
                       />
                     </FormControl>
@@ -279,7 +289,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                 name="categories"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Categories</FormLabel>
+                    <FormLabel>{t("Submit.categories")}</FormLabel>
                     <FormControl>
                       <MultiSelect
                         className="shadow-none"
@@ -289,7 +299,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                         }))}
                         onValueChange={(selected) => field.onChange(selected)}
                         value={field.value}
-                        placeholder="Select categories"
+                        placeholder={t("Submit.selectCategories")}
                         variant="default"
                         maxCount={3}
                       />
@@ -303,7 +313,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                 name="tags"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Tags</FormLabel>
+                    <FormLabel>{t("Submit.tags")}</FormLabel>
                     <FormControl>
                       <MultiSelect
                         className="shadow-none"
@@ -313,7 +323,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                         }))}
                         onValueChange={(selected) => field.onChange(selected)}
                         value={field.value}
-                        placeholder="Select tags"
+                        placeholder={t("Submit.selectTags")}
                         variant="default"
                         maxCount={3}
                       />
@@ -329,10 +339,10 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t("Submit.description")}</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Enter a brief description of your product"
+                      placeholder={t("Submit.descriptionPlaceholder")}
                       {...field}
                       className="resize-none"
                     />
@@ -349,7 +359,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                 <FormItem>
                   <FormLabel>
                     <div className="flex items-center justify-between gap-4">
-                      <span>Introduction</span>
+                      <span>{t("Submit.introduction")}</span>
                       <span className="text-xs text-muted-foreground">
                         (Markdown supported)
                       </span>
@@ -372,7 +382,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                     <FormItem className="flex-1">
                       <FormLabel>
                         <div className="flex items-center justify-between gap-4">
-                          <span>Icon</span>
+                          <span>{t("Submit.icon")}</span>
                           <span className="text-xs text-muted-foreground">
                             (1:1, PNG or JPEG, max 1MB)
                           </span>
@@ -399,7 +409,7 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
                   <FormItem className="flex-1">
                     <FormLabel>
                       <div className="flex items-center justify-between gap-4">
-                        <span>Image</span>
+                        <span>{t("Submit.image")}</span>
                         <span className="text-xs text-muted-foreground">
                           (16:9, PNG or JPEG, max 1MB)
                         </span>
@@ -437,15 +447,15 @@ export function SubmitForm({ tagList, categoryList }: SubmitFormProps) {
               )}
               <span>
                 {isPending
-                  ? "Submitting..."
+                  ? t("Submit.submitting")
                   : isUploading
-                    ? "Uploading image..."
-                    : "Submit"}
+                    ? t("Submit.uploadingImage")
+                    : t("Common.submit")}
               </span>
             </Button>
             <div className="text-sm text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
               <SmileIcon className="h-6 w-4" />
-              <span>No worries, you can change these information later.</span>
+              <span>{t("Submit.noWorriesHint")}</span>
             </div>
           </CardFooter>
         </Card>

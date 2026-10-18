@@ -1,9 +1,9 @@
 "use client";
 
 import { useCurrentRole } from "@/hooks/use-current-role";
+import { Link } from "@/i18n/navigation";
 import { UserRole } from "@/types/user-role";
 import { LayoutDashboardIcon } from "lucide-react";
-import Link from "next/link";
 import { Button } from "../ui/button";
 
 export const DashboardButton = () => {

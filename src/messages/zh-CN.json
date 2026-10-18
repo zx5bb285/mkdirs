@@ -1,0 +1,269 @@
+{
+  "Site": {
+    "name": "DirHunt AI",
+    "tagline": "精选 AI 工具与独立软件评测",
+    "description": "DirHunt AI 是一个独立的 AI 工具目录与软件评测站点，帮助你对比功能与价格、发现免费替代方案，更快选对工具。"
+  },
+  "Common": {
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "settings": "设置",
+    "dashboard": "控制台",
+    "submit": "提交收录",
+    "viewMore": "查看更多",
+    "viewAll": "查看全部",
+    "allCategories": "全部分类",
+    "noResults": "没有找到结果",
+    "update": "更新",
+    "loading": "加载中...",
+    "saving": "保存中...",
+    "back": "返回",
+    "visitWebsite": "访问网站",
+    "tryIt": "试试看"
+  },
+  "Nav": {
+    "home": "首页",
+    "search": "搜索",
+    "collection": "合集",
+    "category": "分类",
+    "tag": "标签",
+    "blog": "博客",
+    "pricing": "定价",
+    "submit": "提交收录",
+    "studio": "后台",
+    "dashboard": "控制台",
+    "settings": "设置"
+  },
+  "Hero": {
+    "titleFirst": "发现最好的",
+    "titleSecond": "优质工具导航",
+    "subtitle": "精选优秀 AI 工具与软件，提供真实评测与免费替代方案",
+    "labelText": "在 X 上关注 DirHunt AI",
+    "searchPlaceholder": "搜索工具、分类或标签...",
+    "statsTools": "{count, plural, =0 {暂无工具} other {# 个工具}}",
+    "statsCategories": "{count, plural, =0 {暂无分类} other {# 个分类}}",
+    "statsDailyUpdates": "每日更新"
+  },
+  "Footer": {
+    "product": "产品",
+    "resources": "资源",
+    "pages": "页面",
+    "company": "关于",
+    "search": "搜索",
+    "collection": "合集",
+    "category": "分类",
+    "tag": "标签",
+    "blog": "博客",
+    "pricing": "定价",
+    "submit": "提交收录",
+    "studio": "后台",
+    "about": "关于我们",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "sitemap": "站点地图",
+    "copyright": "版权所有 © {year} {name}"
+  },
+  "LocaleSwitcher": {
+    "label": "语言",
+    "zh-CN": "简体中文",
+    "en": "English"
+  },
+  "Search": {
+    "title": "搜索",
+    "placeholder": "搜索工具、分类或标签...",
+    "searching": "正在搜索",
+    "noResults": "没有找到相关内容",
+    "noResultsHint": "试试其他关键词，或按分类浏览",
+    "filter": "筛选",
+    "sortBy": "排序",
+    "clearAll": "清除筛选"
+  },
+  "Sort": {
+    "dateDesc": "最新",
+    "dateAsc": "最早",
+    "nameAsc": "名称 A-Z",
+    "nameDesc": "名称 Z-A"
+  },
+  "Filter": {
+    "none": "不限",
+    "featured": "精选"
+  },
+  "Scenarios": {
+    "aiChat": "AI 对话助手",
+    "imageGen": "图像与设计",
+    "writing": "写作与文本",
+    "video": "视频生成",
+    "coding": "编程与开发",
+    "productivity": "效率办公",
+    "audio": "音频与音乐",
+    "search": "AI 搜索引擎"
+  },
+  "Home": {
+    "featuredTools": "精选工具",
+    "featuredToolsDesc": "由编辑精心挑选推荐的优质工具",
+    "newTools": "新上线",
+    "newToolsDesc": "最近提交并上架的工具",
+    "allTools": "全部工具",
+    "browseByScenario": "按场景查找工具",
+    "categoriesTitle": "按分类浏览",
+    "faqTitle": "常见问题"
+  },
+  "Item": {
+    "visitWebsite": "访问网站",
+    "featured": "精选",
+    "ad": "广告",
+    "free": "免费",
+    "pro": "专业版",
+    "sponsor": "赞助位"
+  },
+  "Price": {
+    "title": "定价",
+    "subtitle": "把你的产品提交到我们的目录",
+    "free": {
+      "description": "适合所有开发者",
+      "benefit1": "在目录中获得永久展示",
+      "benefit2": "72 小时内审核并发布",
+      "benefit3": "随时编辑你的条目",
+      "benefit4": "条目中包含官网链接",
+      "limitation1": "标准审核队列",
+      "limitation2": "仅提供邮件支持"
+    },
+    "pro": {
+      "description": "适合专业用户",
+      "benefit1": "获得至少 3 个 dofollow 外链，提升 SEO",
+      "benefit2": "立即上架，随时发布",
+      "benefit3": "永久链接，无需回链",
+      "benefit4": "在列表顶部精选展示",
+      "benefit5": "通过社交媒体和新闻邮件推广",
+      "benefit6": "优质客户支持"
+    },
+    "sponsor": {
+      "description": "适合赞助商",
+      "benefit1": "包含 Pro 计划所有权益",
+      "benefit2": "在几乎每个页面推广你的产品",
+      "benefit3": "适用于各类产品",
+      "benefit4": "每个时段仅展示一个广告",
+      "benefit5": "可预约广告时段",
+      "benefit6": "优质客户支持",
+      "priceSuffix": "/ 周"
+    }
+  },
+  "Faq": {
+    "item1": {
+      "question": "提交产品是免费的吗？",
+      "answer": "是的。上线推广期间提交工具完全免费。<br/>大多数提交会在 72 小时内完成审核并发布。<br/>你可以随时在 Dashboard 中编辑条目。"
+    },
+    "item2": {
+      "question": "提交后会发生什么？",
+      "answer": "我们会检查信息的准确性和与目录的匹配度。<br/>审核通过或需要补充信息时，你会收到邮件通知。<br/>通过后条目会发布，并出现在搜索和分类页面中。"
+    },
+    "item3": {
+      "question": "可以编辑或删除我的条目吗？",
+      "answer": "可以。你可以随时在 Dashboard 中更新条目信息。<br/>如需删除，请发送邮件至 hello@dirhuntai.com。"
+    },
+    "item4": {
+      "question": "上架需要添加回链吗？",
+      "answer": "不需要。提交和保留条目都不要求添加回链。<br/>如果你愿意链接到 DirHunt AI，我们非常感谢，但这不会影响审核或展示位置。"
+    }
+  },
+  "Auth": {
+    "loginTitle": "登录",
+    "loginWithGoogle": "使用 Google 登录",
+    "loginWithGitHub": "使用 GitHub 登录",
+    "orContinueWith": "或者",
+    "email": "邮箱",
+    "password": "密码",
+    "name": "昵称",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "noAccount": "还没有账号？",
+    "signUp": "注册",
+    "haveAccount": "已有账号？",
+    "login": "登录",
+    "register": "注册",
+    "createAccount": "创建账号",
+    "registerTitle": "注册",
+    "resetTitle": "忘记密码？",
+    "resetDesc": "输入你的邮箱，我们将发送重置链接",
+    "sendResetEmail": "发送重置邮件",
+    "resetPasswordTitle": "重置密码",
+    "resetPasswordDesc": "在下方输入你的新密码",
+    "newPassword": "新密码",
+    "confirmNewPassword": "确认新密码",
+    "resetPassword": "重置密码",
+    "updatePassword": "更新密码",
+    "currentPassword": "当前密码",
+    "loggingIn": "登录中...",
+    "oauthError": "该邮箱已使用其他登录方式注册！",
+    "somethingWentWrong": "出错了，请稍后再试",
+    "missingToken": "缺少令牌！",
+    "confirmingVerification": "正在确认你的邮箱验证",
+    "backToLogin": "返回登录",
+    "pleaseTryAgain": "请重试。"
+  },
+  "Submit": {
+    "stepDetails": "填写详情",
+    "stepPayment": "支付",
+    "stepPublish": "发布",
+    "link": "链接",
+    "linkPlaceholder": "输入你的产品链接",
+    "name": "名称",
+    "namePlaceholder": "输入你的产品名称",
+    "selectCategories": "选择分类",
+    "selectTags": "选择标签",
+    "descriptionPlaceholder": "输入产品简介",
+    "analyze": "分析",
+    "uploadingImage": "图片上传中...",
+    "noWorriesHint": "别担心，这些信息之后都可以修改。",
+    "maxChars": "最多 {count} 个字符",
+    "description": "描述",
+    "category": "分类",
+    "categories": "分类",
+    "tags": "标签",
+    "icon": "图标",
+    "image": "封面图",
+    "introduction": "详细介绍",
+    "aiAutofill": "AI 自动填充",
+    "submitToReview": "提交审核",
+    "submitting": "提交中...",
+    "submittedToReview": "已成功提交审核",
+    "submitFailed": "提交审核失败",
+    "checkoutFailed": "创建支付会话失败",
+    "payPublish": "支付并立即发布",
+    "goPublish": "去发布",
+    "goDashboard": "前往控制台",
+    "goDashboardAndWait": "前往控制台等待审核",
+    "goEdit": "去编辑",
+    "publish": "发布",
+    "publishing": "发布中...",
+    "unpublish": "下架",
+    "published": "已发布",
+    "notPublished": "未发布",
+    "updating": "更新中..."
+  },
+  "Dashboard": {
+    "title": "控制台",
+    "welcome": "欢迎来到你的控制台",
+    "noSubmissions": "暂无提交记录",
+    "plan": "计划"
+  },
+  "Settings": {
+    "title": "设置",
+    "description": "管理账号设置",
+    "name": "昵称",
+    "email": "邮箱",
+    "password": "密码",
+    "link": "链接",
+    "yourName": "你的昵称",
+    "yourEmail": "你的邮箱",
+    "links": "你的链接",
+    "linkDescription": "请输入你的主页链接",
+    "linkPlaceholder": "输入链接，最多 128 个字符",
+    "nameDescription": "请输入你的显示昵称",
+    "namePlaceholder": "输入昵称，最多 32 个字符",
+    "passwordDescription": "请输入你的新密码",
+    "currentPasswordPlaceholder": "输入当前密码",
+    "newPasswordPlaceholder": "输入新密码",
+    "confirmPasswordPlaceholder": "再次输入新密码"
+  }
+}

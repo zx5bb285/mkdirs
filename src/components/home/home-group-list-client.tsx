@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/collapsible";
 import type { GroupListQueryResult } from "@/sanity.types";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DEFAULT_FILTER_VALUE } from "../shared/combobox";
@@ -21,6 +22,7 @@ export function HomeGroupListClient({
   groupList,
   urlPrefix,
 }: HomeGroupListClientProps) {
+  const t = useTranslations();
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category") || DEFAULT_FILTER_VALUE;
@@ -32,8 +34,10 @@ export function HomeGroupListClient({
       return;
     }
 
-    const parentCategory = groupList.find(group => 
-      group.categories.some(category => category.slug?.current === selectedCategory)
+    const parentCategory = groupList.find((group) =>
+      group.categories.some(
+        (category) => category.slug?.current === selectedCategory,
+      ),
     );
 
     if (parentCategory) {
@@ -42,26 +46,32 @@ export function HomeGroupListClient({
   }, [selectedCategory, groupList]);
 
   const categoryFilterItemList = [
-    { value: DEFAULT_FILTER_VALUE, 
-      label: "All Categories",
-      subCategories: []
+    {
+      value: DEFAULT_FILTER_VALUE,
+      label: t("Common.allCategories"),
+      subCategories: [],
     },
     ...groupList.map((item) => ({
       value: item.slug.current,
       label: item.name,
-      subCategories: item.categories.map(category => ({
-        _id: category._id,
-        title: category.name || '',
-        slug: category.slug?.current || ''
-      })) || [],
+      subCategories:
+        item.categories.map((category) => ({
+          _id: category._id,
+          title: category.name || "",
+          slug: category.slug?.current || "",
+        })) || [],
     })),
   ];
 
-  const handleFilterChange = (type: string, value: string, isSubCategory = false) => {
+  const handleFilterChange = (
+    type: string,
+    value: string,
+    isSubCategory = false,
+  ) => {
     if (!isSubCategory && value !== DEFAULT_FILTER_VALUE) {
       return;
     }
-    
+
     const newParams = new URLSearchParams(window.location.search);
     if (value === null || value === DEFAULT_FILTER_VALUE) {
       newParams.delete(type);
@@ -96,7 +106,11 @@ export function HomeGroupListClient({
             >
               <CollapsibleTrigger asChild>
                 <Button
-                  variant={isAllCategories && item.value === selectedCategory ? "default" : "ghost"}
+                  variant={
+                    isAllCategories && item.value === selectedCategory
+                      ? "default"
+                      : "ghost"
+                  }
                   size="sm"
                   className="w-full px-3 py-3 justify-between"
                   onClick={(e) => {
@@ -121,10 +135,16 @@ export function HomeGroupListClient({
                   {item.subCategories.map((subCategory) => (
                     <Button
                       key={subCategory._id}
-                      variant={subCategory.slug === selectedCategory ? "default" : "ghost"}
+                      variant={
+                        subCategory.slug === selectedCategory
+                          ? "default"
+                          : "ghost"
+                      }
                       size="sm"
                       className="w-full px-6 py-2 justify-start"
-                      onClick={() => handleFilterChange("category", subCategory.slug, true)}
+                      onClick={() =>
+                        handleFilterChange("category", subCategory.slug, true)
+                      }
                     >
                       {subCategory.title}
                     </Button>

@@ -2,9 +2,9 @@ import "@/styles/mdx.css";
 
 import { Callout } from "@/components/shared/callout";
 import { CopyButton } from "@/components/shared/copy-button";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { MDXRemote, type MDXRemoteOptions } from "next-mdx-remote-client/rsc";
-import Link from "next/link";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -182,12 +182,17 @@ const markdownComponents = {
       {...props}
     />
   ),
-  a: ({ className, ...props }) => (
-    <a
-      className={cn("font-medium underline underline-offset-4", className)}
-      {...props}
-    />
-  ),
+  a: ({ className, href, ...props }) => {
+    const isExternal = href?.startsWith("http");
+    return (
+      <a
+        href={href}
+        className={cn("font-medium underline underline-offset-4", className)}
+        {...(isExternal && { rel: "noopener noreferrer" })}
+        {...props}
+      />
+    );
+  },
   p: ({ className, ...props }) => (
     <p
       className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
@@ -215,13 +220,19 @@ const markdownComponents = {
   img: ({
     className,
     alt,
+    width,
+    height,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // biome-ignore lint/a11y/useAltText: <explanation>
+    // biome-ignore lint/a11y/useAltText: alt is always provided (empty for decorative images)
     <img
-      className={cn("rounded-md border my-2", className)}
-      alt={alt || "Image"}
-      title={alt || "Image"}
+      className={cn("rounded-md border my-2 h-auto w-full", className)}
+      alt={alt || ""}
+      title={alt || undefined}
+      loading="lazy"
+      decoding="async"
+      {...(width ? { width } : {})}
+      {...(height ? { height } : {})}
       {...props}
     />
   ),
@@ -295,12 +306,13 @@ const markdownComponents = {
  */
 const customComponents = {
   Callout,
-  Image: ({ className, ...props }: React.ComponentProps<"img">) => (
-    // biome-ignore lint/a11y/useAltText: use alt="image" as default
+  Image: ({ className, alt, ...props }: React.ComponentProps<"img">) => (
+    // biome-ignore lint/a11y/useAltText: callers supply alt; empty means decorative
     <img
-      className={cn("rounded-md border my-2", className)}
-      // biome-ignore lint/a11y/noRedundantAlt: use image as default alt
-      alt="image"
+      className={cn("rounded-md border my-2 h-auto w-full", className)}
+      alt={alt || ""}
+      loading="lazy"
+      decoding="async"
       {...props}
     />
   ),

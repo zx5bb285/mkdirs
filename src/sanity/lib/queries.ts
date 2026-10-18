@@ -12,22 +12,32 @@ import groq, { defineQuery } from "groq";
  */
 const tagFields = /* groq */ `
   ...,
+  "name": coalesce(nameZh, name),
+  "description": coalesce(descriptionZh, description),
 `;
 
 const categoryFields = /* groq */ `
   ...,
+  "name": coalesce(nameZh, name),
+  "description": coalesce(descriptionZh, description),
 `;
 
 export const groupFields = /* groq */ `
   ...,
+  "name": coalesce(nameZh, name),
+  "description": coalesce(descriptionZh, description),
   "categories": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc)
   { 
     ..., 
+    "name": coalesce(nameZh, name),
+    "description": coalesce(descriptionZh, description),
   }
 `;
 
 export const collectionFields = /* groq */ `
   ...,
+  "name": coalesce(nameZh, name),
+  "description": coalesce(descriptionZh, description),
   icon {
     ...,
     "blurDataURL": asset->metadata.lqip,
@@ -39,9 +49,10 @@ export const collectionFields = /* groq */ `
 export const itemSimpleFields = /* groq */ `
   _id,
   _createdAt,
-  name,
+  _updatedAt,
+  "name": coalesce(nameZh, name),
   slug,
-  description,
+  "description": coalesce(descriptionZh, description),
   link,
   affiliateLink,
   sponsor,
@@ -68,14 +79,26 @@ export const itemSimpleFields = /* groq */ `
   sponsorPlanStatus,
   rejectionReason,
   submitter->,
-  collections[]->,
-  categories[]->,
-  tags[]->,
+  collections[]-> {
+    ...,
+    "name": coalesce(nameZh, name),
+    "description": coalesce(descriptionZh, description),
+  },
+  categories[]-> {
+    ...,
+    "name": coalesce(nameZh, name),
+    "description": coalesce(descriptionZh, description),
+  },
+  tags[]-> {
+    ...,
+    "name": coalesce(nameZh, name),
+    "description": coalesce(descriptionZh, description),
+  },
 `;
 
 const itemFields = /* groq */ `
   ${itemSimpleFields}
-  introduction,
+  "introduction": coalesce(introductionZh, introduction),
 `;
 
 // auto generate related items
@@ -163,6 +186,34 @@ export const groupListQuery = groq`*[_type=="group"] | order(priority desc, _cre
   ${groupFields}
 }`;
 
+// site-wide stats for the home hero badges
+export const siteStatsQuery = defineQuery(`{
+  "toolCount": count(*[_type=="item" && defined(publishDate) && forceHidden != true]),
+  "categoryCount": count(*[_type=="category" && defined(slug.current)]),
+}`);
+
+// top-N items of one category (featured first, then newest)
+export const itemTopOfCategoryQuery = defineQuery(`*[_type=="item"
+  && defined(slug.current)
+  && defined(publishDate)
+  && forceHidden != true
+  && sponsor != true
+  && references(*[_type=="category" && slug.current == $categorySlug]._id)]
+  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {
+    ${itemSimpleFields}
+}`);
+
+// category groups with nested categories and public item counts
+export const groupListWithCountQuery = defineQuery(`*[_type=="group"] | order(priority desc, _createdAt asc) {
+  ...,
+  "name": coalesce(nameZh, name),
+  "categories": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc) {
+    ...,
+    "name": coalesce(nameZh, name),
+    "count": count(*[_type=="item" && defined(publishDate) && forceHidden != true && references(^._id)]),
+  }
+}`);
+
 export const categoryListQuery = defineQuery(`*[_type == "category" && defined(slug.current)] 
   | order(priority desc) {
     ${categoryFields}
@@ -221,12 +272,15 @@ export const pageQuery = defineQuery(`
  */
 
 // also used in file data/blog.ts
+// `$locale` is optional: when omitted the Chinese fields are NOT preferred,
+// which keeps sitemap/author queries deterministic.
 export const blogPostSimpleFields = /* groq */ `
   _id,
   _createdAt,
-  title,
+  _updatedAt,
   slug,
-  excerpt,
+  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),
+  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),
   featured,
   image {
     ...,
@@ -234,8 +288,30 @@ export const blogPostSimpleFields = /* groq */ `
     "imageColor": asset->metadata.palette.dominant.background,
   },
   publishDate,
+  lastReviewedAt,
+  seoTitle,
+  seoDescription,
+  canonicalUrl,
+  noIndex,
+  externalId,
   author->,
-  categories[]->,
+  categories[]-> {
+    ...,
+    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),
+    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),
+  },
+`;
+
+// Portable Text body projection with internal-link references dereferenced.
+const blockContentFields = /* groq */ `
+  ...,
+  markDefs[]{
+    ...,
+    _type == "internalLink" => {
+      "type": @.reference->_type,
+      "slug": @.reference->slug
+    }
+  }
 `;
 
 const blogPostFields = /* groq */ `
@@ -243,31 +319,18 @@ const blogPostFields = /* groq */ `
     ${blogPostSimpleFields}
   },
   body[]{
-    ...,
-    markDefs[]{
-      ...,
-      _type == "internalLink" => {
-        "slug": @.reference->slug
-      }
-    }
+    ${blockContentFields}
+  },
+  bodyZh[]{
+    ${blockContentFields}
   },
   ${blogPostSimpleFields}
-  
-  // "estReadingTime": round(length(pt::text(body)) / 5 / 180 ),
-  // "related": *[_type == "blogPost" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 ] | order(publishedDate desc, _createdAt desc) [0...2] {
-  //   slug,
-  //   title,
-  //   excerpt,
-  //   publishDate,
-  //   "date": coalesce(publishedDate, _createdAt),
-  //   "image": image
-  // },
 `;
 
 const blogCategoryFields = /* groq */ `
-  name,
+  "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),
   slug,
-  description,
+  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),
   priority,
 `;
 
@@ -284,14 +347,59 @@ export const blogCategoryMetadateQuery = defineQuery(`
 `);
 
 export const blogPostQuery = defineQuery(`
-  *[_type == "blogPost" && slug.current == $slug][0] {
+  *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {
     ${blogPostFields}
 }`);
 
 export const blogPostMetadataQuery = defineQuery(`
-  *[_type == "blogPost" && slug.current == $slug][0] {
+  *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {
     ${blogPostSimpleFields}
 }`);
+
+/**
+ * Automatically related posts: same category, newest first. Used when the
+ * editor did not hand-pick `relatedPosts`.
+ */
+export const blogRelatedPostsQuery = defineQuery(`
+  *[
+    _type == "blogPost"
+    && slug.current != $slug
+    && defined(slug.current)
+    && defined(publishDate)
+    && publishDate <= now()
+    && count(categories[@._ref in $categoryIds]) > 0
+  ] | order(publishDate desc) [0...$count] {
+    ${blogPostSimpleFields}
+  }
+`);
+
+export const authorBySlugQuery = defineQuery(`
+  *[_type == "user" && (slug.current == $slug || _id == $slug)][0] {
+    _id,
+    name,
+    image,
+    link,
+    slug,
+    jobTitle,
+    bio,
+    expertise,
+    twitter,
+    linkedin,
+    website
+  }
+`);
+
+export const blogPostsByAuthorQuery = defineQuery(`
+  *[
+    _type == "blogPost"
+    && defined(slug.current)
+    && defined(publishDate)
+    && publishDate <= now()
+    && author._ref == $authorId
+  ] | order(publishDate desc) {
+    ${blogPostSimpleFields}
+  }
+`);
 
 /**
  * NOTICE: this query is not directly used in the app,
@@ -299,13 +407,13 @@ export const blogPostMetadataQuery = defineQuery(`
  * if you want to change this query, please update data/blog.ts
  */
 export const blogPostListQuery = defineQuery(`
-  *[_type == "blogPost" && defined(slug.current) && defined(publishDate)] 
+  *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]
   | order(publishDate desc) {
     ${blogPostSimpleFields}
 }`);
 
 export const blogPostListOfLatestQuery = defineQuery(`
-  *[_type == "blogPost" && defined(slug.current) && defined(publishDate)] 
+  *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]
   | order(publishDate desc) [0...$count] {
     ${blogPostSimpleFields}
 }`);
@@ -345,7 +453,7 @@ export const userWithAccountsQuery = defineQuery(`
  * Sitemap Queries
  */
 
-export const itemListQueryForSitemap = groq`*[_type == "item" && defined(slug.current) && defined(publishDate)] | order(_createdAt asc) {
+export const itemListQueryForSitemap = groq`*[_type == "item" && defined(slug.current) && defined(publishDate) && forceHidden != true && sponsor != true] | order(_createdAt asc) {
   _id,
   _updatedAt,
   "slug": slug.current,
@@ -372,7 +480,7 @@ export const collectionListQueryForSitemap = groq`*[_type == "collection" && def
   "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && references(^._id)])
 }`;
 
-export const blogListQueryForSitemap = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishDate)] | order(publishDate desc, _createdAt asc) {
+export const blogListQueryForSitemap = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now() && noIndex != true] | order(publishDate desc, _createdAt asc) {
   _id,  
   _updatedAt,
   "slug": slug.current,
@@ -382,7 +490,7 @@ export const blogCategoryListQueryForSitemap = groq`*[_type == "blogCategory" &&
   _id,  
   _updatedAt,
   "slug": slug.current,
-  "count": count(*[_type == "blogPost" && defined(publishDate) && references(^._id)])
+  "count": count(*[_type == "blogPost" && defined(publishDate) && publishDate <= now() && noIndex != true && references(^._id)])
 }`;
 
 export const pageListQueryForSitemap = groq`*[_type == "page" && defined(slug.current)] | order(_createdAt asc) {

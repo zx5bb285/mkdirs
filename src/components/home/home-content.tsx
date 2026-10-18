@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation";
 import type {
   BlogPostListQueryResult,
   ItemListQueryResult,
@@ -14,7 +15,6 @@ import {
   SparklesIcon,
   StarIcon,
 } from "lucide-react";
-import Link from "next/link";
 import BlogGrid from "../blog/blog-grid";
 import ItemGrid from "../item/item-grid";
 import { Button } from "../ui/button";
@@ -85,7 +85,11 @@ export async function HomeContent() {
             </Link> */}
           </div>
 
-          <ItemGrid items={featuredItems} sponsorItems={[]} showSponsor={false} />
+          <ItemGrid
+            items={featuredItems}
+            sponsorItems={[]}
+            showSponsor={false}
+          />
 
           <Button asChild variant="default" size="lg" className="mx-auto">
             <Link

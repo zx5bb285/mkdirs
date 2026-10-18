@@ -40,8 +40,10 @@ export async function sanityFetch<QueryResponse>({
   }
   return sanityClient.fetch<QueryResponse>(query, params, {
     perspective: "published",
-    // The `published` perspective is available on the API CDN
-    useCdn: !disableCache,
+    // The `published` perspective is available on the API CDN.
+    // Set SANITY_API_READ_CDN=false to always hit the live API instead
+    // (e.g. when the CDN host is unreachable from your network).
+    useCdn: process.env.SANITY_API_READ_CDN !== "false" && !disableCache,
     // When using the `published` perspective we use time-based revalidation
     // to match the time-to-live on Sanity's API CDN (60 seconds)
     next: { revalidate: disableCache ? 0 : 60 },

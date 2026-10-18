@@ -9,12 +9,14 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { type UserPasswordData, UserPasswordSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Icons } from "../icons/icons";
 
 export function UserPasswordForm() {
+  const t = useTranslations();
   const user = useCurrentUser();
   if (!user || user.isOAuth) {
     console.log("UserPasswordForm, oauth user has no password");
@@ -57,16 +59,16 @@ export function UserPasswordForm() {
   return (
     <form onSubmit={onSubmit}>
       <SectionColumns
-        title="Change Password"
-        description="Please enter your new password"
+        title={t("Auth.updatePassword")}
+        description={t("Settings.passwordDescription")}
       >
         <div className="flex flex-col gap-4 w-full rounded-lg border p-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="password">Current Password</Label>
+            <Label htmlFor="password">{t("Auth.currentPassword")}</Label>
             <Input
               id="password"
               type="password"
-              placeholder="Enter your current password"
+              placeholder={t("Settings.currentPasswordPlaceholder")}
               {...form.register("password")}
             />
             <div className="flex flex-col justify-between p-1">
@@ -78,12 +80,12 @@ export function UserPasswordForm() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="newPassword">New Password</Label>
+            <Label htmlFor="newPassword">{t("Auth.newPassword")}</Label>
             <Input
               id="newPassword"
               type="password"
               {...form.register("newPassword")}
-              placeholder="Enter your new password"
+              placeholder={t("Settings.newPasswordPlaceholder")}
             />
             <div className="flex flex-col justify-between p-1">
               {form.formState.errors?.newPassword && (
@@ -94,12 +96,14 @@ export function UserPasswordForm() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="confirmPassword">Confirm New Password</Label>
+            <Label htmlFor="confirmPassword">
+              {t("Auth.confirmNewPassword")}
+            </Label>
             <Input
               id="confirmPassword"
               type="password"
               {...form.register("confirmPassword")}
-              placeholder="Confirm your new password"
+              placeholder={t("Settings.confirmPasswordPlaceholder")}
             />
             <div className="flex flex-col justify-between p-1">
               {form.formState.errors?.confirmPassword && (
@@ -110,18 +114,14 @@ export function UserPasswordForm() {
             </div>
           </div>
           <div className="flex justify-start">
-            <Button
-              type="submit"
-              disabled={isPending}
-              className=""
-            >
+            <Button type="submit" disabled={isPending} className="">
               {isPending ? (
                 <div className="flex items-center gap-2">
                   <Icons.spinner className="size-4 animate-spin" />
                   <p>Updating...</p>
                 </div>
               ) : (
-                <p>Update Password</p>
+                <p>{t("Auth.updatePassword")}</p>
               )}
             </Button>
           </div>

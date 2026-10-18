@@ -1,13 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useRouter } from "@/i18n/navigation";
 import {
   DEFAULT_QUERY,
   DEFAULT_SORT,
   type QueryFilterItem,
   type SortFilterItem,
 } from "@/lib/constants";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { DEFAULT_FILTER_VALUE, ResponsiveComboBox } from "../shared/combobox";
 import { MultiSelect } from "../shared/multi-select";
 
@@ -52,6 +54,7 @@ export function HomeSearchFilterClient({
   urlPrefix,
 }: SearchFilterProps) {
   const router = useRouter();
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category");
   const selectedTag = searchParams.get("tag");
@@ -75,7 +78,7 @@ export function HomeSearchFilterClient({
   };
 
   const categoryFilterItemList = [
-    { value: DEFAULT_FILTER_VALUE, label: "All Categories" },
+    { value: DEFAULT_FILTER_VALUE, label: t("Common.allCategories") },
     ...categoryList.map((item) => ({
       value: item.slug,
       label: item.name,
@@ -99,12 +102,12 @@ export function HomeSearchFilterClient({
   // change default sort value to default filter value
   const sortFilterItemList = sortList.map((item) => ({
     value: item.slug ?? DEFAULT_FILTER_VALUE,
-    label: item.label,
+    label: t(item.label),
   }));
   // change default filter value to default filter value
   const queryFilterItemList = filterList.map((item) => ({
     value: item.slug ?? DEFAULT_FILTER_VALUE,
-    label: item.label,
+    label: t(item.label),
   }));
 
   return (
@@ -112,8 +115,8 @@ export function HomeSearchFilterClient({
       <div className="flex md:hidden">
         <ResponsiveComboBox
           filterItemList={categoryFilterItemList}
-          placeholder="All Categories"
-          labelPrefix="Category: "
+          placeholder={t("Common.allCategories")}
+          labelPrefix={`${t("Submit.category")}: `}
           selectedValue={selectedCategory || DEFAULT_FILTER_VALUE}
           onValueChange={(value) => handleFilterChange("category", value)}
         />
@@ -142,27 +145,27 @@ export function HomeSearchFilterClient({
           )
         }
         value={selectedTag ? selectedTag.split(",") : []}
-        placeholder="Select tags"
+        placeholder={t("Submit.tags")}
         variant="default"
         maxCount={1}
       />
 
       <ResponsiveComboBox
         filterItemList={queryFilterItemList}
-        placeholder={DEFAULT_QUERY.label}
+        placeholder={t(DEFAULT_QUERY.label)}
         selectedValue={selectedFilter || DEFAULT_FILTER_VALUE}
         onValueChange={(value) => handleFilterChange("f", value)}
       />
 
       <ResponsiveComboBox
         filterItemList={sortFilterItemList}
-        placeholder={DEFAULT_SORT.label}
+        placeholder={t(DEFAULT_SORT.label)}
         selectedValue={selectedSort || DEFAULT_FILTER_VALUE}
         onValueChange={(value) => handleFilterChange("sort", value)}
       />
 
       <Button variant="outline" onClick={handleResetFilters}>
-        Reset
+        {t("Search.clearAll")}
       </Button>
     </div>
   );

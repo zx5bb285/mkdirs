@@ -125,7 +125,9 @@ const buildQuery = (
   const queryPattern = query ? `*${query}*` : "";
   const queryKeywords = query
     ? `&& (name match "${queryPattern}" 
+    || nameZh match "${queryPattern}"
     || description match "${queryPattern}"
+    || descriptionZh match "${queryPattern}"
     || introduction match "${queryPattern}")`
     : "";
   const filterCondition = filter ? `&& ${filter}` : "";

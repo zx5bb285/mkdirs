@@ -3,6 +3,7 @@
 import { submitToReview } from "@/actions/submit-to-review";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "@/i18n/navigation";
 import { FreePlanStatus } from "@/lib/submission";
 import { cn } from "@/lib/utils";
 import type { ItemInfo } from "@/types";
@@ -13,7 +14,7 @@ import {
   EditIcon,
   SendIcon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { toast } from "sonner";
 
@@ -23,6 +24,7 @@ interface FreePlanButtonProps {
 }
 
 export function FreePlanButton({ item, className }: FreePlanButtonProps) {
+  const t = useTranslations();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   // console.log('FreePlanButton, item:', item);
@@ -34,7 +36,7 @@ export function FreePlanButton({ item, className }: FreePlanButtonProps) {
           if (data.status === "success") {
             console.log("submitToReviewAction, success:", data.message);
             router.refresh();
-            toast.success("Successfully submitted to review");
+            toast.success(t("Submit.submittedToReview"));
           }
           if (data.status === "error") {
             console.error("submitToReviewAction, error:", data.message);
@@ -43,7 +45,7 @@ export function FreePlanButton({ item, className }: FreePlanButtonProps) {
         })
         .catch((error) => {
           console.error("submitToReviewAction, error:", error);
-          toast.error("Failed to submit to review");
+          toast.error(t("Submit.submitFailed"));
         });
     });
   };

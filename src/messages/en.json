@@ -1,0 +1,269 @@
+{
+  "Site": {
+    "name": "DirHunt AI",
+    "tagline": "Hand-picked AI tools and honest software reviews",
+    "description": "DirHunt AI is an independent directory and review site for AI tools and software. Compare features and pricing, find free alternatives, and choose the right tool faster."
+  },
+  "Common": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "settings": "Settings",
+    "dashboard": "Dashboard",
+    "submit": "Submit",
+    "viewMore": "View more",
+    "viewAll": "View all",
+    "allCategories": "All Categories",
+    "noResults": "No results found",
+    "update": "Update",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "back": "Back",
+    "visitWebsite": "Visit Website",
+    "tryIt": "Try it"
+  },
+  "Nav": {
+    "home": "Home",
+    "search": "Search",
+    "collection": "Collection",
+    "category": "Category",
+    "tag": "Tag",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "submit": "Submit",
+    "studio": "Studio",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "Hero": {
+    "titleFirst": "Find the Best",
+    "titleSecond": "AI Tools & Software",
+    "subtitle": "Discover and compare the best AI tools, with honest reviews and free alternatives",
+    "labelText": "Follow DirHunt AI on",
+    "searchPlaceholder": "Search tools, categories or tags...",
+    "statsTools": "{count, plural, =0 {No tools} one {# tool} other {# tools}}",
+    "statsCategories": "{count, plural, =0 {No categories} one {# category} other {# categories}}",
+    "statsDailyUpdates": "Daily updates"
+  },
+  "Footer": {
+    "product": "Product",
+    "resources": "Resources",
+    "pages": "Pages",
+    "company": "Company",
+    "search": "Search",
+    "collection": "Collection",
+    "category": "Category",
+    "tag": "Tag",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "submit": "Submit",
+    "studio": "Studio",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "sitemap": "Sitemap",
+    "copyright": "Copyright © {year} {name}. All Rights Reserved."
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "zh-CN": "简体中文",
+    "en": "English"
+  },
+  "Search": {
+    "title": "Search",
+    "placeholder": "Search tools, categories or tags...",
+    "searching": "Searching for",
+    "noResults": "Nothing found.",
+    "noResultsHint": "Try different keywords or browse by category.",
+    "filter": "Filter",
+    "sortBy": "Sort by",
+    "clearAll": "Clear all"
+  },
+  "Sort": {
+    "dateDesc": "Latest",
+    "dateAsc": "Oldest",
+    "nameAsc": "Name A-Z",
+    "nameDesc": "Name Z-A"
+  },
+  "Filter": {
+    "none": "No Filter",
+    "featured": "Featured"
+  },
+  "Scenarios": {
+    "aiChat": "AI Chat & Assistants",
+    "imageGen": "Image & Design",
+    "writing": "Writing & Text",
+    "video": "Video Generation",
+    "coding": "Coding & Development",
+    "productivity": "Productivity",
+    "audio": "Audio & Music",
+    "search": "AI Search Engines"
+  },
+  "Home": {
+    "featuredTools": "Featured Tools",
+    "featuredToolsDesc": "Hand-picked tools recommended by our editors",
+    "newTools": "New Tools",
+    "newToolsDesc": "Recently submitted and listed tools",
+    "allTools": "All Tools",
+    "browseByScenario": "Find Tools by Scenario",
+    "categoriesTitle": "Browse by Category",
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "Item": {
+    "visitWebsite": "Visit Website",
+    "featured": "Featured",
+    "ad": "AD",
+    "free": "FREE",
+    "pro": "PRO",
+    "sponsor": "SPONSOR"
+  },
+  "Price": {
+    "title": "Pricing",
+    "subtitle": "Submit your product to our directory",
+    "free": {
+      "description": "For every maker",
+      "benefit1": "A permanent listing in the directory",
+      "benefit2": "Reviewed and published within 72 hours",
+      "benefit3": "Edit your listing anytime",
+      "benefit4": "A direct link to your website",
+      "limitation1": "Standard review queue",
+      "limitation2": "Email support only"
+    },
+    "pro": {
+      "description": "For Pro Users",
+      "benefit1": "Get at least 3 dofollow links to boost your SEO",
+      "benefit2": "List right now, publish whenever you want",
+      "benefit3": "Permanent link, no backlink required",
+      "benefit4": "Featured placement at the top of listings",
+      "benefit5": "Share through social media and newsletters",
+      "benefit6": "Premium customer support"
+    },
+    "sponsor": {
+      "description": "For Sponsors",
+      "benefit1": "Everything in Pro plan",
+      "benefit2": "Promote your product on almost every page",
+      "benefit3": "Available for all kinds of product",
+      "benefit4": "Only one advertisement per period",
+      "benefit5": "Schedule your advertising period",
+      "benefit6": "Premium customer support",
+      "priceSuffix": "/ week"
+    }
+  },
+  "Faq": {
+    "item1": {
+      "question": "Is it free to submit my product?",
+      "answer": "Yes. Submitting a tool is free during our launch period.<br/>Most submissions are reviewed and published within 72 hours.<br/>You can edit your listing from the dashboard at any time."
+    },
+    "item2": {
+      "question": "What happens after I submit?",
+      "answer": "We review the submission for accuracy and fit with the directory.<br/>You will receive an email when it is approved or if we need more information.<br/>Once approved, your listing is published and appears in search and category pages."
+    },
+    "item3": {
+      "question": "Can I edit or remove my listing?",
+      "answer": "Yes. You can update your listing from the dashboard whenever details change.<br/>If you need it removed, contact us at hello@dirhuntai.com."
+    },
+    "item4": {
+      "question": "Do I need to add a backlink?",
+      "answer": "No. A backlink is not required to submit or keep a listing.<br/>If you link to DirHunt AI, we appreciate it, but it does not affect review or placement."
+    }
+  },
+  "Auth": {
+    "loginTitle": "Login",
+    "loginWithGoogle": "Login with Google",
+    "loginWithGitHub": "Login with GitHub",
+    "orContinueWith": "Or continue with",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "haveAccount": "Already have an account?",
+    "login": "Login",
+    "register": "Register",
+    "createAccount": "Create an account",
+    "registerTitle": "Sign Up",
+    "resetTitle": "Forgot Your Password?",
+    "resetDesc": "Enter your email and we will send you a reset link",
+    "sendResetEmail": "Send reset email",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordDesc": "Enter your new password below",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "resetPassword": "Reset password",
+    "updatePassword": "Update Password",
+    "currentPassword": "Current Password",
+    "loggingIn": "Logging in...",
+    "oauthError": "Email already in use with different provider!",
+    "somethingWentWrong": "Something went wrong",
+    "missingToken": "Missing token!",
+    "confirmingVerification": "Confirming your verification",
+    "backToLogin": "Back to login",
+    "pleaseTryAgain": "Please try again."
+  },
+  "Submit": {
+    "stepDetails": "Details",
+    "stepPayment": "Payment",
+    "stepPublish": "Publish",
+    "link": "Link",
+    "linkPlaceholder": "Enter the link to your product",
+    "name": "Name",
+    "namePlaceholder": "Enter the name of your product",
+    "selectCategories": "Select categories",
+    "selectTags": "Select tags",
+    "descriptionPlaceholder": "Enter a brief description of your product",
+    "analyze": "Analyze",
+    "uploadingImage": "Uploading image...",
+    "noWorriesHint": "No worries, you can change these information later.",
+    "maxChars": "Max {count} characters",
+    "description": "Description",
+    "category": "Category",
+    "categories": "Categories",
+    "tags": "Tags",
+    "icon": "Icon",
+    "image": "Image",
+    "introduction": "Introduction",
+    "aiAutofill": "AI Autofill",
+    "submitToReview": "Submit to review",
+    "submitting": "Submitting...",
+    "submittedToReview": "Successfully submitted to review",
+    "submitFailed": "Failed to submit to review",
+    "checkoutFailed": "Failed to create checkout session",
+    "payPublish": "Pay & Publish Right Now",
+    "goPublish": "Go Publish",
+    "goDashboard": "Go Dashboard",
+    "goDashboardAndWait": "Go dashboard and Wait",
+    "goEdit": "Go Edit",
+    "publish": "Publish",
+    "publishing": "Publishing...",
+    "unpublish": "Unpublish",
+    "published": "Published",
+    "notPublished": "Not published",
+    "updating": "Updating..."
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to your dashboard",
+    "noSubmissions": "No submissions",
+    "plan": "Plan"
+  },
+  "Settings": {
+    "title": "Settings",
+    "description": "Manage account settings",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "link": "Link",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "links": "Your Links",
+    "linkDescription": "Please enter your portfolio link",
+    "linkPlaceholder": "Enter your link, max 128 characters",
+    "nameDescription": "Please enter your display name",
+    "namePlaceholder": "Enter your name, max 32 characters",
+    "passwordDescription": "Please enter your new password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmPasswordPlaceholder": "Confirm your new password"
+  }
+}
