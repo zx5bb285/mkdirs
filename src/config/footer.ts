@@ -1,41 +1,42 @@
 import type { FooterConfig } from "@/types";
 
+// title values are message keys ("Footer.product" etc.), resolved with next-intl
 export const footerConfig: FooterConfig = {
   links: [
     {
-      title: "Product",
+      title: "Footer.product",
       items: [
-        { title: "Search", href: "/search" },
-        { title: "Collection", href: "/collection" },
-        { title: "Category", href: "/category" },
-        { title: "Tag", href: "/tag" },
+        { title: "Footer.search", href: "/search" },
+        { title: "Footer.collection", href: "/collection" },
+        { title: "Footer.category", href: "/category" },
+        { title: "Footer.tag", href: "/tag" },
       ],
     },
     {
-      title: "Resources",
+      title: "Footer.resources",
       items: [
-        { title: "Blog", href: "/blog" },
-        { title: "Pricing", href: "/pricing" },
-        { title: "Submit", href: "/submit" },
-        { title: "Studio", href: "/studio", external: true },
+        { title: "Footer.blog", href: "/blog" },
+        { title: "Footer.pricing", href: "/pricing" },
+        { title: "Footer.submit", href: "/submit" },
+        { title: "Footer.studio", href: "/studio", external: true },
       ],
     },
     {
-      title: "Pages",
+      title: "Footer.pages",
       items: [
-        { title: "Home 2", href: "/home2" },
-        { title: "Home 3", href: "/home3" },
-        { title: "Collection 1", href: "/collection/the-best-google-analytics-alternatives-in-2024" },
-        { title: "Collection 2", href: "/collection/the-best-alternatives-to-semrush-in-2024" },
+        { title: "Footer.collection", href: "/collection" },
+        { title: "Footer.category", href: "/category" },
+        { title: "Footer.tag", href: "/tag" },
+        { title: "Footer.blog", href: "/blog" },
       ],
     },
     {
-      title: "Company",
+      title: "Footer.company",
       items: [
-        { title: "About Us", href: "/about" },
-        { title: "Privacy Policy", href: "/privacy" },
-        { title: "Terms of Service", href: "/terms" },
-        { title: "Sitemap", href: "/sitemap.xml" },
+        { title: "Footer.about", href: "/about" },
+        { title: "Footer.privacy", href: "/privacy" },
+        { title: "Footer.terms", href: "/terms" },
+        { title: "Footer.sitemap", href: "/sitemap.xml" },
       ],
     },
   ],

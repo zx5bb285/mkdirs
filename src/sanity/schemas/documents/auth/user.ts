@@ -38,6 +38,51 @@ const user = {
       title: "User Link",
       type: "string",
     }),
+    // ------------------------------------------------- author / E-E-A-T
+    defineField({
+      name: "slug",
+      title: "Author Slug",
+      type: "slug",
+      description:
+        "Used for the public author page, e.g. /blog/author/jane-doe",
+      options: { source: "name", maxLength: 96 },
+    }),
+    defineField({
+      name: "jobTitle",
+      title: "Job Title",
+      type: "string",
+      description: "e.g. Senior Editor, Video Production Specialist",
+    }),
+    defineField({
+      name: "bio",
+      title: "Author Bio",
+      type: "text",
+      rows: 4,
+      description:
+        "Short biography shown below articles and on the author page. Credentials and experience build E-E-A-T.",
+    }),
+    defineField({
+      name: "expertise",
+      title: "Areas of Expertise",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { layout: "tags" },
+    }),
+    defineField({
+      name: "twitter",
+      title: "X / Twitter",
+      type: "url",
+    }),
+    defineField({
+      name: "linkedin",
+      title: "LinkedIn",
+      type: "url",
+    }),
+    defineField({
+      name: "website",
+      title: "Personal Website",
+      type: "url",
+    }),
     defineField({
       name: "password",
       title: "User Password",

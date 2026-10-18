@@ -49,11 +49,11 @@ export default defineType({
                 type: "reference",
                 title: "Reference",
                 to: [
-                  // NOTICE: support internal links
-                  // { type: "blogPost" },
-                  // { type: "item" },
-                  // { type: "page" }
-                  // other types you may want to link to
+                  // NOTICE: add other types you want to link to here
+                  { type: "blogPost" },
+                  { type: "blogCategory" },
+                  { type: "item" },
+                  { type: "page" },
                 ],
               },
             ],
@@ -93,6 +93,52 @@ export default defineType({
     },
     {
       type: "code",
+    },
+    {
+      name: "table",
+      title: "Table",
+      type: "object",
+      fields: [
+        {
+          name: "caption",
+          title: "Caption",
+          type: "string",
+        },
+        {
+          name: "rows",
+          title: "Rows",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "tableRow",
+              fields: [
+                {
+                  name: "cells",
+                  title: "Cells",
+                  type: "array",
+                  of: [{ type: "string" }],
+                },
+              ],
+              preview: {
+                select: { cells: "cells" },
+                prepare({ cells }: { cells?: string[] }) {
+                  return { title: (cells || []).join(" | ") };
+                },
+              },
+            },
+          ],
+        },
+      ],
+      preview: {
+        select: { rows: "rows" },
+        prepare({ rows }: { rows?: Array<{ cells?: string[] }> }) {
+          return {
+            title: "Table",
+            subtitle: rows?.[0]?.cells?.join(" | "),
+          };
+        },
+      },
     },
   ],
 });

@@ -1,7 +1,7 @@
 import { EmptyPlaceholder } from "@/components/shared/empty-placeholder";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 import { UploadIcon } from "lucide-react";
-import Link from "next/link";
 
 export default function EmptySubmission() {
   return (

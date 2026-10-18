@@ -1,5 +1,6 @@
 "use client";
 
+import { LoginForm } from "@/components/auth/login-form";
 import {
   Dialog,
   DialogContent,
@@ -7,10 +8,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { LoginForm } from "@/components/auth/login-form";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { authRoutes } from "@/routes";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { authRoutes, stripLocale } from "@/routes";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface LoginWrapperProps {
@@ -36,13 +37,13 @@ export const LoginWrapper = ({
 
   // Close the modal on route change
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-    useEffect(() => {
+  useEffect(() => {
     setIsModalOpen(false);
   }, [pathname, searchParams]);
 
   // don't open the modal if the user is already in the auth pages
   // keep isTablet or isDesktop open, if user resizes the window
-  const isAuthRoute = authRoutes.includes(pathname);
+  const isAuthRoute = authRoutes.includes(stripLocale(pathname));
   if (mode === "modal" && !isAuthRoute && (isTablet || isDesktop)) {
     return (
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>

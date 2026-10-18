@@ -3,11 +3,17 @@
 import { createCheckoutSession } from "@/actions/create-checkout-session";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
+import { useRouter } from "@/i18n/navigation";
 import { PricePlans, ProPlanStatus, SponsorPlanStatus } from "@/lib/submission";
 import { cn } from "@/lib/utils";
 import type { ItemInfo, PricePlan } from "@/types";
-import { ArrowRightIcon, ArrowUpLeftIcon, CheckCircleIcon, RocketIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {
+  ArrowRightIcon,
+  ArrowUpLeftIcon,
+  CheckCircleIcon,
+  RocketIcon,
+} from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { Icons } from "../icons/icons";
@@ -23,6 +29,7 @@ export function SponsorPlanButton({
   pricePlan,
   className,
 }: SponsorPlanButtonProps) {
+  const t = useTranslations();
   // console.log('SponsorPlanButton, item:', item);
   const router = useRouter();
 
@@ -30,14 +37,18 @@ export function SponsorPlanButton({
 
   const handleCreateCheckoutSession = () => {
     startTransition(async () => {
-      createCheckoutSession(item._id, pricePlan.stripePriceId, PricePlans.SPONSOR)
+      createCheckoutSession(
+        item._id,
+        pricePlan.stripePriceId,
+        PricePlans.SPONSOR,
+      )
         .then((data) => {
           console.log("createCheckoutSession, data:", data);
           // already redirected to stripe checkout page in server action
         })
         .catch((error) => {
           console.error("createCheckoutSession, error:", error);
-          toast.error("Failed to create checkout session");
+          toast.error(t("Submit.checkoutFailed"));
         });
     });
   };

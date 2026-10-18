@@ -1,11 +1,12 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { urlForImage } from "@/lib/image";
 import { cn, getItemTargetLinkInWebsite } from "@/lib/utils";
 import type { ItemInfo } from "@/types";
 import { ArrowRightIcon, AwardIcon, HashIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
 
 type ItemCardProps = {
@@ -16,6 +17,7 @@ type ItemCardProps = {
  * ItemCard shows item cover image
  */
 export default function ItemCard({ item }: ItemCardProps) {
+  const t = useTranslations();
   const imageProps = item?.image ? urlForImage(item.image) : null;
   const imageBlurDataURL = item?.image?.blurDataURL || null;
   // console.log(`ItemCard, imageBlurDataURL:${imageBlurDataURL}`);
@@ -67,10 +69,10 @@ export default function ItemCard({ item }: ItemCardProps) {
           )}
 
           {item.link ? (
-            <Link
+            <a
               href={itemLink}
-              prefetch={false}
               target="_blank"
+              rel="noopener noreferrer"
               className="absolute inset-0 flex items-center justify-center bg-black 
                     bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300"
             >
@@ -78,12 +80,11 @@ export default function ItemCard({ item }: ItemCardProps) {
                 className="text-white text-lg font-semibold 
                       opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
-                Visit Website
+                {t("Common.visitWebsite")}
               </span>
-            </Link>
+            </a>
           ) : null}
         </div>
-
 
         {/* center */}
         <Link

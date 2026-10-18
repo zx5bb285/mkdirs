@@ -31,7 +31,7 @@ export const NewsletterWelcomeEmail = ({ email }: { email: string }) => {
   return (
     <Html>
       <Head />
-      <Preview>Welcome to Mkdirs!</Preview>
+      <Preview>Welcome to DirHunt AI!</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={box}>
@@ -94,5 +94,5 @@ export const NewsletterWelcomeEmail = ({ email }: { email: string }) => {
 export default NewsletterWelcomeEmail;
 
 NewsletterWelcomeEmail.PreviewProps = {
-  email: "support@mkdirs.com",
+  email: "hello@dirhuntai.com",
 };

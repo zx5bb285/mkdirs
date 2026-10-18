@@ -1,9 +1,9 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "@/i18n/navigation";
 import { urlForImage } from "@/lib/image";
 import { getLocaleDate } from "@/lib/utils";
 import type { BlogPostInfo } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 import { UserAvatar } from "../shared/user-avatar";
 
 type BlogCardProps = {
@@ -30,6 +30,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                 title={post.image.alt || "image for blog post"}
                 className="object-cover image-scale"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 {...(imageBlurDataURL && {
                   placeholder: "blur",
                   blurDataURL: imageBlurDataURL,
@@ -75,17 +76,16 @@ export default function BlogCard({ post }: BlogCardProps) {
             </Link>
           </h3>
 
-          {/* Post excerpt, hidden for now */}
-          {/* <div className="hidden">
-            {post.excerpt && (
-              <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-                <Link
-                  href={`${postUrlPrefix}/${post.slug.current}`}>
+          {/* Post excerpt helps CTR and gives crawlers contextual text */}
+          {post.excerpt && (
+            <div className="mt-2">
+              <p className="line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
+                <Link href={`${postUrlPrefix}/${post.slug.current}`}>
                   {post.excerpt}
                 </Link>
               </p>
-            )}
-          </div> */}
+            </div>
+          )}
         </div>
 
         {/* Author and date */}
@@ -99,7 +99,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             <span className="truncate text-sm">{post?.author?.name}</span>
           </div>
 
-          <time className="truncate text-sm" dateTime={date}>
+          <time className="truncate text-sm" dateTime={publishDate}>
             {date}
           </time>
         </div>

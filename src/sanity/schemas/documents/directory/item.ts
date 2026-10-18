@@ -17,12 +17,29 @@ export default defineType({
       title: "Sponsor",
     },
   ],
+  // localized (zh-CN) fields are grouped into a collapsible fieldset;
+  // GROQ queries fall back to the english field via coalesce(nameZh, name)
+  fieldsets: [
+    {
+      name: "zh",
+      title: "简体中文 (zh-CN)",
+      description:
+        "Optional Chinese translations, english fields are used as fallback",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: "name",
       title: "Name",
       type: "string",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "nameZh",
+      title: "Name (简体中文)",
+      type: "string",
+      fieldset: "zh",
     }),
     defineField({
       name: "slug",
@@ -53,13 +70,21 @@ export default defineType({
       name: "affiliateLink",
       title: "Affiliate Link",
       type: "string",
-      description: "The affiliate link, not shown on the website, leave it blank if you don't have one",
+      description:
+        "The affiliate link, not shown on the website, leave it blank if you don't have one",
     }),
     defineField({
       name: "description",
       title: "Description",
       type: "text",
       rows: 3,
+    }),
+    defineField({
+      name: "descriptionZh",
+      title: "Description (简体中文)",
+      type: "text",
+      rows: 3,
+      fieldset: "zh",
     }),
     defineField({
       name: "collections",
@@ -113,6 +138,18 @@ export default defineType({
       // https://github.com/sanity-io/sanity-plugin-markdown?tab=readme-ov-file#custom-image-urls
       // The function will be invoked whenever an image is pasted
       // or dragged into the markdown editor, after upload completes.
+      options: {
+        imageUrl: (imageAsset: SanityImageAssetDocument) => {
+          return `${imageAsset.url}?w=400&h=400`;
+        },
+      },
+    }),
+    defineField({
+      name: "introductionZh",
+      title: "Introduction (简体中文)",
+      description: "The chinese introduction of the item, in markdown format",
+      type: "markdown",
+      fieldset: "zh",
       options: {
         imageUrl: (imageAsset: SanityImageAssetDocument) => {
           return `${imageAsset.url}?w=400&h=400`;
@@ -279,7 +316,8 @@ export default defineType({
     defineField({
       name: "forceHidden",
       title: "Force Hidden",
-      description: "If the item is force hidden, it will not be displayed regardless of the status. It's helpful when you want to hide an item temporarily.",
+      description:
+        "If the item is force hidden, it will not be displayed regardless of the status. It's helpful when you want to hide an item temporarily.",
       type: "boolean",
       group: "status",
       initialValue: false,
@@ -343,10 +381,18 @@ export default defineType({
       proPlanStatus,
       sponsorPlanStatus,
     }) {
-      const error = freePlanStatus === "rejected" || proPlanStatus === "failed" || sponsorPlanStatus === "failed";
+      const error =
+        freePlanStatus === "rejected" ||
+        proPlanStatus === "failed" ||
+        sponsorPlanStatus === "failed";
       const title = date ? `✅ ${name}` : error ? `❌ ${name}` : `⏳ ${name}`;
       const feature = featured ? "⭐" : "";
-      const status = pricePlan.toUpperCase() === PricePlans.FREE.toUpperCase() ? freePlanStatus : pricePlan.toUpperCase() === PricePlans.PRO.toUpperCase() ? proPlanStatus : sponsorPlanStatus;
+      const status =
+        pricePlan.toUpperCase() === PricePlans.FREE.toUpperCase()
+          ? freePlanStatus
+          : pricePlan.toUpperCase() === PricePlans.PRO.toUpperCase()
+            ? proPlanStatus
+            : sponsorPlanStatus;
       const time = date
         ? `date: ${format(parseISO(date), "yyyy/MM/dd")}`
         : "not published";

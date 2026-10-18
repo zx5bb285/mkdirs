@@ -1,43 +1,42 @@
 import type { SiteConfig } from "@/types";
 
-const SITE_URL = process.env.NEXT_PUBLIC_APP_URL;
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+).replace(/\/$/, "");
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "DirHunt AI";
 
+// human copy lives in src/messages/{locale}.json and is resolved with
+// next-intl: tagline/description are message keys ("Site.tagline" etc.)
 export const siteConfig: SiteConfig = {
-  name: "Directory",
-  tagline:
-    "This is a demo site for Mkdirs, the best directory website template",
+  name: SITE_NAME,
+  tagline: "Site.tagline",
   description:
-    "This is a demo site for Mkdirs template. Mkdirs is the ultimate directory website template. With Mkdirs, you can build any trending and profitable directory website in minutes, packed with Listings, Newsletter, Payment, CMS, Blog, Authentication, SEO, Themes and more",
-  keywords: [
-    "Directory",
-    "Template",
-    "Boilerplate",
-    "Next.js",
-    "Auth.js",
-    "Tailwindcss",
-    "Shadcn/ui",
-    "Resend",
-    "Sanity",
-    "Stripe",
-    "Vercel",
-  ],
-  author: "Mkdirs",
+    process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
+    "Discover and compare the best AI tools, software and resources. Curated reviews, free alternatives and practical guides, updated every week.",
+  keywords: (
+    process.env.NEXT_PUBLIC_SITE_KEYWORDS ||
+    "AI tools,software directory,AI tools directory,tool reviews,free alternatives,best software,productivity tools"
+  )
+    .split(",")
+    .map((keyword) => keyword.trim())
+    .filter(Boolean),
+  author: process.env.NEXT_PUBLIC_SITE_AUTHOR || SITE_NAME,
   url: SITE_URL,
   logo: "/logo.png",
-  // set the logoDark if you have put the logo-dark.png in the public folder
-  // logoDark: "/logo-dark.png",
+  // dark-mode variant (inverse mark) so the logo stays legible on dark headers
+  logoDark: "/logo-dark.png",
   // please increase the version number when you update the image
-  image: `${SITE_URL}/og.png?v=1`,
-  mail: "support@mkdirs.com",
+  image: `${SITE_URL}/og.png?v=2`,
+  mail: process.env.NEXT_PUBLIC_SITE_MAIL || "hello@dirhuntai.com",
   utm: {
-    source: "mkdirs.com",
+    source: new URL(SITE_URL).hostname,
     medium: "referral",
     campaign: "navigation",
   },
   links: {
     // leave it blank if you don't want to show the link (don't delete)
-    twitter: "https://x.com/MkdirsHQ",
-    github: "https://github.com/MkdirsHQ",
-    youtube: "https://www.youtube.com/@MkdirsHQ",
+    twitter: process.env.NEXT_PUBLIC_SITE_TWITTER || "",
+    github: process.env.NEXT_PUBLIC_SITE_GITHUB || "",
+    youtube: process.env.NEXT_PUBLIC_SITE_YOUTUBE || "",
   },
 };

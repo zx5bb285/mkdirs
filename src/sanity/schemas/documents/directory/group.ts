@@ -8,12 +8,27 @@ export default defineType({
   name: "group",
   title: "Group",
   type: "document",
+  // localized (zh-CN) fields fall back to the english field via GROQ coalesce
+  fieldsets: [
+    {
+      name: "zh",
+      title: "简体中文 (zh-CN)",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: "name",
       title: "Name",
       type: "string",
       validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "nameZh",
+      title: "Name (简体中文)",
+      type: "string",
+      fieldset: "zh",
     }),
     defineField({
       name: "slug",
@@ -31,6 +46,14 @@ export default defineType({
       title: "Description",
       type: "text",
       rows: 3,
+    }),
+
+    defineField({
+      name: "descriptionZh",
+      title: "Description (简体中文)",
+      type: "text",
+      rows: 3,
+      fieldset: "zh",
     }),
     defineField({
       name: "priority",

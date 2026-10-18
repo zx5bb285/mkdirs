@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 import { ArrowLeftIcon } from "lucide-react";
-import Link from "next/link";
 
 export default function AllPostsButton() {
   return (

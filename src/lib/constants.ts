@@ -29,7 +29,7 @@ export type SortFilterItem = {
 };
 
 export const DEFAULT_SORT: SortFilterItem = {
-  label: "Sort by Time (dsc)",
+  label: "Sort.dateDesc",
   slug: null,
   sortKey: "publishDate",
   reverse: true,
@@ -38,19 +38,19 @@ export const DEFAULT_SORT: SortFilterItem = {
 export const SORT_FILTER_LIST: SortFilterItem[] = [
   DEFAULT_SORT,
   {
-    label: "Sort by Time (asc)",
+    label: "Sort.dateAsc",
     slug: "date-asc",
     sortKey: "publishDate",
     reverse: false,
   },
   {
-    label: "Sort by Name (dsc)",
+    label: "Sort.nameDesc",
     slug: "name-desc",
     sortKey: "name",
     reverse: true,
   },
   {
-    label: "Sort by Name (asc)",
+    label: "Sort.nameAsc",
     slug: "name-asc",
     sortKey: "name",
     reverse: false,
@@ -63,14 +63,14 @@ export type QueryFilterItem = {
 };
 
 export const DEFAULT_QUERY: QueryFilterItem = {
-  label: "No Filter",
+  label: "Filter.none",
   slug: null,
 };
 
 export const QUERY_FILTER_LIST: QueryFilterItem[] = [
   DEFAULT_QUERY,
   {
-    label: "Featured",
+    label: "Filter.featured",
     slug: "featured==true",
   },
 ];

@@ -1,19 +1,20 @@
 import type { UserButtonConfig } from "@/types";
 
+// title values are message keys ("Nav.dashboard" etc.), resolved with next-intl
 export const userButtonConfig: UserButtonConfig = {
   menus: [
     {
-      title: "Dashboard",
+      title: "Nav.dashboard",
       href: "/dashboard",
       icon: "dashboard",
     },
     {
-      title: "Settings",
+      title: "Nav.settings",
       href: "/settings",
       icon: "settings",
     },
     {
-      title: "Submit",
+      title: "Nav.submit",
       href: "/submit",
       icon: "submit",
     },

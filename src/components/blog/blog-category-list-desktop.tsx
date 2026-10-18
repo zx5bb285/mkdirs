@@ -1,9 +1,9 @@
 "use client";
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import type { BlogCategoryListQueryResult } from "@/sanity.types";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 
 export type BlogCategoryListDesktopProps = {

@@ -5,11 +5,11 @@ import { UnpublishButton } from "@/components/dashboard/unpublish-button";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "@/i18n/navigation";
 import { getPublishable } from "@/lib/submission";
 import { getLocaleDate } from "@/lib/utils";
 import type { ItemInfo } from "@/types";
 import { EditIcon } from "lucide-react";
-import Link from "next/link";
 import SubmissionCardImage from "./submission-card-image";
 import SubmissionStatus from "./submission-status";
 

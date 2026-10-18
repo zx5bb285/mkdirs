@@ -1,11 +1,11 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { urlForIcon } from "@/lib/image";
 import { cn } from "@/lib/utils";
 import type { ItemInfo } from "@/types";
 import { HashIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
@@ -47,7 +47,10 @@ export default function ItemCard2({ item }: ItemCard2Props) {
             />
           )}
 
-          <Link href={`${itemUrlPrefix}/${item.slug.current}`} className="min-w-0 flex-1">
+          <Link
+            href={`${itemUrlPrefix}/${item.slug.current}`}
+            className="min-w-0 flex-1"
+          >
             <h3
               className={cn(
                 "text-xl font-medium truncate overflow-hidden text-ellipsis",
@@ -64,7 +67,7 @@ export default function ItemCard2({ item }: ItemCard2Props) {
           {item.categories && item.categories.length > 0 && (
             <div className="flex flex-wrap gap-2 items-center">
               {item.categories.map((category, index) => (
-                <a
+                <Link
                   key={category._id}
                   href={`/category/${category.slug.current}`}
                   className={cn(
@@ -75,7 +78,7 @@ export default function ItemCard2({ item }: ItemCard2Props) {
                   <span className="text-sm text-muted-foreground">
                     {category.name}
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           )}

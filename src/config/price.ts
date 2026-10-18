@@ -1,35 +1,34 @@
 import { PricePlans } from "@/lib/submission";
 import type { PriceConfig } from "@/types";
 
+// description/benefits/limitations/priceSuffix are message keys
+// ("Price.free.description" etc.), resolved with next-intl
 export const priceConfig: PriceConfig = {
   plans: [
     {
       title: PricePlans.FREE,
-      description: "For Beginners",
+      description: "Price.free.description",
       benefits: [
-        "Get 3 dofollow links to boost your SEO",
-        "Permanent link with backlink maintenance",
-        "Reviewed and listed within 72 hours",
-        "Publish your product the day you want",
+        "Price.free.benefit1",
+        "Price.free.benefit2",
+        "Price.free.benefit3",
+        "Price.free.benefit4",
       ],
-      limitations: [
-        "Backlink to our site is required",
-        "No customer support",
-      ],
+      limitations: ["Price.free.limitation1", "Price.free.limitation2"],
       price: 0,
       priceSuffix: "",
       stripePriceId: null,
     },
     {
       title: PricePlans.PRO,
-      description: "For Pro Users",
+      description: "Price.pro.description",
       benefits: [
-        "Get >= 3 dofollow links to boost your SEO",
-        "List right now, publish whenever you want",
-        "Permanent link, no backlink required",
-        "Featured placement at the top of listings",
-        "Share through social media and newsletters",
-        "Premium customer support",
+        "Price.pro.benefit1",
+        "Price.pro.benefit2",
+        "Price.pro.benefit3",
+        "Price.pro.benefit4",
+        "Price.pro.benefit5",
+        "Price.pro.benefit6",
       ],
       limitations: [],
       price: 9.9,
@@ -38,19 +37,36 @@ export const priceConfig: PriceConfig = {
     },
     {
       title: PricePlans.SPONSOR,
-      description: "For Sponsors",
+      description: "Price.sponsor.description",
       benefits: [
-        "Everything in Pro plan",
-        "Promote your product on almost every page",
-        "Available for all kinds of product",
-        "Only one advertisement per period",
-        "Schedule your advertising period",
-        "Premium customer support",
+        "Price.sponsor.benefit1",
+        "Price.sponsor.benefit2",
+        "Price.sponsor.benefit3",
+        "Price.sponsor.benefit4",
+        "Price.sponsor.benefit5",
+        "Price.sponsor.benefit6",
       ],
       limitations: [],
       price: 19.9,
-      priceSuffix: "/ week",
+      priceSuffix: "Price.sponsor.priceSuffix",
       stripePriceId: process.env.NEXT_PUBLIC_STRIPE_SPONSOR_PRICE_ID,
     },
   ],
 };
+
+// Phase 1 ships without Stripe. A paid plan is only rendered when its price
+// id is configured, so the UI never links to a checkout that would fail.
+export const isProPlanEnabled = Boolean(
+  process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID,
+);
+
+export const isSponsorPlanEnabled = Boolean(
+  process.env.NEXT_PUBLIC_STRIPE_SPONSOR_PRICE_ID,
+);
+
+export const visiblePricePlans = priceConfig.plans.filter((plan) => {
+  const title = plan.title.toLowerCase();
+  if (title === PricePlans.PRO.toLowerCase()) return isProPlanEnabled;
+  if (title === PricePlans.SPONSOR.toLowerCase()) return isSponsorPlanEnabled;
+  return true;
+});

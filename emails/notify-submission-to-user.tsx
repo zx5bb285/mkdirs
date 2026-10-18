@@ -112,8 +112,8 @@ export const NotifySubmissionToUserEmail = ({
 
 NotifySubmissionToUserEmail.PreviewProps = {
   userName: "Javayhu",
-  itemName: "Mkdirs",
-  statusLink: "https://demo.mkdirs.com",
+  itemName: "DirHunt AI",
+  statusLink: "https://dirhuntai.com",
 } as NotifySubmissionToUserEmailProps;
 
 export default NotifySubmissionToUserEmail;

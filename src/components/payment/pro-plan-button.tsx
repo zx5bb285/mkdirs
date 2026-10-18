@@ -3,6 +3,7 @@
 import { createCheckoutSession } from "@/actions/create-checkout-session";
 import { Icons } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "@/i18n/navigation";
 import { PricePlans, ProPlanStatus } from "@/lib/submission";
 import { cn } from "@/lib/utils";
 import type { ItemInfo, PricePlan } from "@/types";
@@ -12,7 +13,7 @@ import {
   CheckCircleIcon,
   RocketIcon,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { toast } from "sonner";
 
@@ -27,6 +28,7 @@ export function ProPlanButton({
   pricePlan,
   className,
 }: ProPlanButtonProps) {
+  const t = useTranslations();
   // console.log("ProPlanButton, item:", item);
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -40,7 +42,7 @@ export function ProPlanButton({
         })
         .catch((error) => {
           console.error("createCheckoutSession, error:", error);
-          toast.error("Failed to create checkout session");
+          toast.error(t("Submit.checkoutFailed"));
         });
     });
   };

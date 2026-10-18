@@ -9,12 +9,14 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { type UserNameData, UserNameSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Icons } from "../icons/icons";
 
 export function UserNameForm() {
+  const t = useTranslations();
   const user = useCurrentUser();
   // console.log('UserNameForm, user:', user);
   const { update } = useSession();
@@ -57,8 +59,8 @@ export function UserNameForm() {
   return (
     <form onSubmit={onSubmit}>
       <SectionColumns
-        title="Your Name"
-        description="Please enter your display name"
+        title={t("Settings.yourName")}
+        description={t("Settings.nameDescription")}
       >
         <div className="flex w-full items-center gap-2">
           <Label className="sr-only" htmlFor="name">
@@ -69,14 +71,10 @@ export function UserNameForm() {
             className="flex-1"
             size={32}
             {...form.register("name")}
-            placeholder="Enter your name, max 32 characters"
+            placeholder={t("Settings.namePlaceholder")}
             onChange={(e) => checkUpdate(e.target.value)}
           />
-          <Button
-            type="submit"
-            disabled={isPending || !updated}
-            className=""
-          >
+          <Button type="submit" disabled={isPending || !updated} className="">
             {isPending ? (
               <div className="flex items-center gap-2">
                 <Icons.spinner className="size-4 animate-spin" />

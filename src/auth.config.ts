@@ -18,7 +18,9 @@ export default {
   // This is necessary when running Auth.js behind a proxy.
   // When set to true we will trust the X-Forwarded-Host and X-Forwarded-Proto headers
   // passed to the app by the proxy to auto-detect the host URL (AUTH_URL)
-  // trustHost: true,
+  // trustHost must be enabled in production (dev auto-trusts), otherwise
+  // auth() in the middleware throws UntrustedHost and auth checks silently stop working
+  trustHost: true,
   providers: [
     // https://authjs.dev/getting-started/authentication/oauth
     GitHub,
@@ -67,7 +69,7 @@ export default {
           }
           return userWithRole;
         }
-        console.error("authorize error: passwords do not match");        
+        console.error("authorize error: passwords do not match");
         // Return `null` to indicate that the credentials are invalid
         return null;
       },

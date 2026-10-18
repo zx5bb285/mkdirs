@@ -1,5 +1,5 @@
+import { Link } from "@/i18n/navigation";
 import { CheckIcon } from "lucide-react";
-import Link from "next/link";
 
 export interface FilterItemMobileProps {
   title: string;

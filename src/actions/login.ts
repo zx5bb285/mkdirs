@@ -5,8 +5,9 @@ import { getUserByEmail } from "@/data/user";
 import { sendVerificationEmail } from "@/lib/mail";
 import { LoginSchema } from "@/lib/schemas";
 import { generateVerificationToken } from "@/lib/tokens";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { defaultLoginRedirect } from "@/routes";
 import { AuthError } from "next-auth";
+import { getLocale } from "next-intl/server";
 import type * as z from "zod";
 
 export type ServerActionResponse = {
@@ -46,18 +47,20 @@ export async function login(
 
   try {
     console.log("login, start signIn");
+    const locale = await getLocale();
+    const fallbackRedirectUrl = defaultLoginRedirect(locale);
     // https://youtu.be/1MTyCvS05V4?t=9828
     await signIn("credentials", {
       email,
       password,
       redirect: false,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirectTo: callbackUrl || fallbackRedirectUrl,
     });
 
     return {
       status: "success",
       message: "Login success",
-      redirectUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirectUrl: callbackUrl || fallbackRedirectUrl,
     };
   } catch (error) {
     // console.error("login, error:", error);

@@ -68,42 +68,73 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-  listItem?: "bullet" | "number";
-  markDefs?: Array<{
-    reference?: never;
-    _type: "internalLink";
-    _key: string;
-  } | {
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-} | {
-  _key: string;
-} & Code>;
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<
+        | {
+            reference?:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "blogPost";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "blogCategory";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "item";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
+            _type: "internalLink";
+            _key: string;
+          }
+        | {
+            href?: string;
+            _type: "link";
+            _key: string;
+          }
+      >;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & Code)
+>;
 
 export type Settings = {
   _id: string;
@@ -136,40 +167,18 @@ export type VerificationToken = {
   expires?: string;
 };
 
-export type Page = {
-  _id: string;
-  _type: "page";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  excerpt?: string;
-  body?: BlockContent;
-  publishDate?: string;
-};
-
-export type BlogCategory = {
-  _id: string;
-  _type: "blogCategory";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  description?: string;
-  priority?: number;
-};
-
 export type BlogPost = {
   _id: string;
   _type: "blogPost";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  externalId?: string;
   title?: string;
+  titleZh?: string;
   slug?: Slug;
   excerpt?: string;
+  excerptZh?: string;
   featured?: boolean;
   categories?: Array<{
     _ref: string;
@@ -185,6 +194,7 @@ export type BlogPost = {
     [internalGroqTypeReferenceTo]?: "user";
   };
   body?: BlockContent;
+  bodyZh?: BlockContent;
   image?: {
     asset?: {
       _ref: string;
@@ -205,6 +215,37 @@ export type BlogPost = {
     [internalGroqTypeReferenceTo]?: "blogPost";
   }>;
   publishDate?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+  lastReviewedAt?: string;
+};
+
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  excerpt?: string;
+  body?: BlockContent;
+  publishDate?: string;
+};
+
+export type BlogCategory = {
+  _id: string;
+  _type: "blogCategory";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  nameZh?: string;
+  slug?: Slug;
+  description?: string;
+  priority?: number;
 };
 
 export type Collection = {
@@ -214,8 +255,10 @@ export type Collection = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  nameZh?: string;
   slug?: Slug;
   description?: string;
+  descriptionZh?: string;
   icon?: {
     asset?: {
       _ref: string;
@@ -238,8 +281,10 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  nameZh?: string;
   slug?: Slug;
   description?: string;
+  descriptionZh?: string;
   group?: {
     _ref: string;
     _type: "reference";
@@ -256,8 +301,10 @@ export type Group = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  nameZh?: string;
   slug?: Slug;
   description?: string;
+  descriptionZh?: string;
   priority?: number;
 };
 
@@ -268,8 +315,10 @@ export type Tag = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  nameZh?: string;
   slug?: Slug;
   description?: string;
+  descriptionZh?: string;
 };
 
 export type Item = {
@@ -279,11 +328,13 @@ export type Item = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  nameZh?: string;
   slug?: Slug;
   featured?: boolean;
   link?: string;
   affiliateLink?: string;
   description?: string;
+  descriptionZh?: string;
   collections?: Array<{
     _ref: string;
     _type: "reference";
@@ -312,6 +363,7 @@ export type Item = {
     [internalGroqTypeReferenceTo]?: "user";
   };
   introduction?: string;
+  introductionZh?: string;
   icon?: {
     asset?: {
       _ref: string;
@@ -340,7 +392,13 @@ export type Item = {
   pricePlan?: "free" | "pro" | "sponsor";
   freePlanStatus?: "submitting" | "pending" | "approved" | "rejected";
   proPlanStatus?: "submitting" | "pending" | "success" | "failed";
-  rejectionReason?: "The item is not good fit for our directory" | "The image of the item is not in good quality" | "The icon of the item is not in good quality" | "The information of the item is not clear" | "The backlink to our site is not provided" | "Other reasons";
+  rejectionReason?:
+    | "The item is not good fit for our directory"
+    | "The image of the item is not in good quality"
+    | "The icon of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The backlink to our site is not provided"
+    | "Other reasons";
   sponsorPlanStatus?: "submitting" | "pending" | "success" | "failed";
   paid?: boolean;
   order?: {
@@ -446,6 +504,13 @@ export type User = {
   emailVerified?: string;
   image?: string;
   link?: string;
+  slug?: Slug;
+  jobTitle?: string;
+  bio?: string;
+  expertise?: Array<string>;
+  twitter?: string;
+  linkedin?: string;
+  website?: string;
   password?: string;
   role?: "ADMIN" | "USER";
   accounts?: {
@@ -507,14 +572,44 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Settings | PasswordResetToken | VerificationToken | Page | BlogCategory | BlogPost | Collection | Category | Group | Tag | Item | Order | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | User | Account | Code | Markdown | MediaTag | Slug;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | BlockContent
+  | Settings
+  | PasswordResetToken
+  | VerificationToken
+  | BlogPost
+  | Page
+  | BlogCategory
+  | Collection
+  | Category
+  | Group
+  | Tag
+  | Item
+  | Order
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | User
+  | Account
+  | Code
+  | Markdown
+  | MediaTag
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: src/sanity/lib/queries.ts
 // Variable: itemByIdQuery
-// Query: *[_type == "item" && _id == $id][0] {    _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && _id == $id][0] {    _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemByIdQueryResult = {
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -565,7 +660,14 @@ export type ItemByIdQueryResult = {
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -577,6 +679,13 @@ export type ItemByIdQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -593,9 +702,11 @@ export type ItemByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -616,9 +727,11 @@ export type ItemByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -633,16 +746,19 @@ export type ItemByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 } | null;
 // Variable: itemInfoBySlugQuery
-// Query: *[_type == "item" && slug.current == $slug][0] {    _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && slug.current == $slug][0] {    _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemInfoBySlugQueryResult = {
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -693,7 +809,14 @@ export type ItemInfoBySlugQueryResult = {
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -705,6 +828,13 @@ export type ItemInfoBySlugQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -721,9 +851,11 @@ export type ItemInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -744,9 +876,11 @@ export type ItemInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -761,16 +895,19 @@ export type ItemInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 } | null;
 // Variable: itemFullInfoByIdQuery
-// Query: *[_type == "item" && _id == $id][0] {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,  introduction,}
+// Query: *[_type == "item" && _id == $id][0] {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  "introduction": coalesce(introductionZh, introduction),}
 export type ItemFullInfoByIdQueryResult = {
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -821,7 +958,14 @@ export type ItemFullInfoByIdQueryResult = {
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -833,6 +977,13 @@ export type ItemFullInfoByIdQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -849,9 +1000,11 @@ export type ItemFullInfoByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -872,9 +1025,11 @@ export type ItemFullInfoByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -889,19 +1044,22 @@ export type ItemFullInfoByIdQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
   introduction: string | null;
 } | null;
 // Variable: itemFullInfoBySlugQuery
-// Query: *[_type == "item" && slug.current == $slug && forceHidden != true] [0] {    introduction,  "related": *[_type == "item" && defined(slug.current)     && defined(publishDate)     && forceHidden != true    && sponsor != true    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id]     | order(publishedDate desc, _createdAt desc) [0...3] {        _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,  },    _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && slug.current == $slug && forceHidden != true] [0] {    introduction,  "related": *[_type == "item" && defined(slug.current)     && defined(publishDate)     && forceHidden != true    && sponsor != true    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id]     | order(publishedDate desc, _createdAt desc) [0...3] {        _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  },    _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemFullInfoBySlugQueryResult = {
   introduction: string | null;
   related: Array<{
     _id: string;
     _createdAt: string;
+    _updatedAt: string;
     name: string | null;
     slug: Slug | null;
     description: string | null;
@@ -952,7 +1110,14 @@ export type ItemFullInfoBySlugQueryResult = {
     freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
     proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
     sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-    rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+    rejectionReason:
+      | "Other reasons"
+      | "The backlink to our site is not provided"
+      | "The icon of the item is not in good quality"
+      | "The image of the item is not in good quality"
+      | "The information of the item is not clear"
+      | "The item is not good fit for our directory"
+      | null;
     submitter: {
       _id: string;
       _type: "user";
@@ -964,6 +1129,13 @@ export type ItemFullInfoBySlugQueryResult = {
       emailVerified?: string;
       image?: string;
       link?: string;
+      slug?: Slug;
+      jobTitle?: string;
+      bio?: string;
+      expertise?: Array<string>;
+      twitter?: string;
+      linkedin?: string;
+      website?: string;
       password?: string;
       role?: "ADMIN" | "USER";
       accounts?: {
@@ -980,9 +1152,11 @@ export type ItemFullInfoBySlugQueryResult = {
       _createdAt: string;
       _updatedAt: string;
       _rev: string;
-      name?: string;
+      name: string | null;
+      nameZh?: string;
       slug?: Slug;
-      description?: string;
+      description: string | null;
+      descriptionZh?: string;
       icon?: {
         asset?: {
           _ref: string;
@@ -1003,9 +1177,11 @@ export type ItemFullInfoBySlugQueryResult = {
       _createdAt: string;
       _updatedAt: string;
       _rev: string;
-      name?: string;
+      name: string | null;
+      nameZh?: string;
       slug?: Slug;
-      description?: string;
+      description: string | null;
+      descriptionZh?: string;
       group?: {
         _ref: string;
         _type: "reference";
@@ -1020,13 +1196,16 @@ export type ItemFullInfoBySlugQueryResult = {
       _createdAt: string;
       _updatedAt: string;
       _rev: string;
-      name?: string;
+      name: string | null;
+      nameZh?: string;
       slug?: Slug;
-      description?: string;
+      description: string | null;
+      descriptionZh?: string;
     }> | null;
   }>;
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1077,7 +1256,14 @@ export type ItemFullInfoBySlugQueryResult = {
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1089,6 +1275,13 @@ export type ItemFullInfoBySlugQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1105,9 +1298,11 @@ export type ItemFullInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1128,9 +1323,11 @@ export type ItemFullInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1145,16 +1342,19 @@ export type ItemFullInfoBySlugQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 } | null;
 // Variable: itemListQuery
-// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)  && forceHidden != true  && sponsor != true]  | order(coalesce(featured, false) desc, publishDate desc) {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)  && forceHidden != true  && sponsor != true]  | order(coalesce(featured, false) desc, publishDate desc) {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemListQueryResult = Array<{
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1205,7 +1405,14 @@ export type ItemListQueryResult = Array<{
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1217,6 +1424,13 @@ export type ItemListQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1233,9 +1447,11 @@ export type ItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1256,9 +1472,11 @@ export type ItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1273,16 +1491,19 @@ export type ItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 }>;
 // Variable: sponsorItemListQuery
-// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)  && forceHidden != true  && sponsor == true  && sponsorStartDate <= now()  && sponsorEndDate >= now()]   | order(coalesce(featured, false) desc, publishDate desc) {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)  && forceHidden != true  && sponsor == true  && sponsorStartDate <= now()  && sponsorEndDate >= now()]   | order(coalesce(featured, false) desc, publishDate desc) {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type SponsorItemListQueryResult = Array<{
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1333,7 +1554,14 @@ export type SponsorItemListQueryResult = Array<{
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1345,6 +1573,13 @@ export type SponsorItemListQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1361,9 +1596,11 @@ export type SponsorItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1384,9 +1621,11 @@ export type SponsorItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1401,16 +1640,19 @@ export type SponsorItemListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 }>;
 // Variable: itemListOfFeaturedQuery
-// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)   && forceHidden != true   && sponsor != true  && featured == true]   | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)   && forceHidden != true   && sponsor != true  && featured == true]   | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemListOfFeaturedQueryResult = Array<{
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1461,7 +1703,14 @@ export type ItemListOfFeaturedQueryResult = Array<{
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1473,6 +1722,13 @@ export type ItemListOfFeaturedQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1489,9 +1745,11 @@ export type ItemListOfFeaturedQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1512,9 +1770,11 @@ export type ItemListOfFeaturedQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1529,16 +1789,19 @@ export type ItemListOfFeaturedQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 }>;
 // Variable: itemListOfLatestQuery
-// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)   && forceHidden != true  && sponsor != true]   | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
+// Query: *[_type == "item" && defined(slug.current)   && defined(publishDate)   && forceHidden != true  && sponsor != true]   | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
 export type ItemListOfLatestQueryResult = Array<{
   _id: string;
   _createdAt: string;
+  _updatedAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1589,7 +1852,14 @@ export type ItemListOfLatestQueryResult = Array<{
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1601,6 +1871,13 @@ export type ItemListOfLatestQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1617,9 +1894,11 @@ export type ItemListOfLatestQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1640,9 +1919,11 @@ export type ItemListOfLatestQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1657,22 +1938,26 @@ export type ItemListOfLatestQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 }>;
 // Variable: collectionListQuery
-// Query: *[_type == "collection" && defined(slug.current)]   | order(priority desc) {      ...,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },}
+// Query: *[_type == "collection" && defined(slug.current)]   | order(priority desc) {      ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },}
 export type CollectionListQueryResult = Array<{
   _id: string;
   _type: "collection";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string | null;
+  nameZh?: string;
   slug?: Slug;
-  description?: string;
+  description: string | null;
+  descriptionZh?: string;
   icon: {
     asset?: {
       _ref: string;
@@ -1690,16 +1975,18 @@ export type CollectionListQueryResult = Array<{
   priority?: number;
 }>;
 // Variable: collectionQuery
-// Query: *[_type == "collection" && slug.current == $slug][0] {    ...,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },}
+// Query: *[_type == "collection" && slug.current == $slug][0] {    ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },}
 export type CollectionQueryResult = {
   _id: string;
   _type: "collection";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string | null;
+  nameZh?: string;
   slug?: Slug;
-  description?: string;
+  description: string | null;
+  descriptionZh?: string;
   icon: {
     asset?: {
       _ref: string;
@@ -1717,16 +2004,18 @@ export type CollectionQueryResult = {
   priority?: number;
 } | null;
 // Variable: groupListQuery
-// Query: *[_type=="group"] | order(priority desc, _createdAt asc) {    ...,  "categories": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc)  {     ...,   }}
+// Query: *[_type=="group"] | order(priority desc, _createdAt asc) {    ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),  "categories": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc)  {     ...,     "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  }}
 export type GroupListQueryResult = Array<{
   _id: string;
   _type: "group";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string | null;
+  nameZh?: string;
   slug?: Slug;
-  description?: string;
+  description: string | null;
+  descriptionZh?: string;
   priority?: number;
   categories: Array<{
     _id: string;
@@ -1734,9 +2023,11 @@ export type GroupListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1746,73 +2037,18 @@ export type GroupListQueryResult = Array<{
     priority?: number;
   }>;
 }>;
-// Variable: categoryListQuery
-// Query: *[_type == "category" && defined(slug.current)]   | order(priority desc) {      ...,}
-export type CategoryListQueryResult = Array<{
+// Variable: siteStatsQuery
+// Query: {  "toolCount": count(*[_type=="item" && defined(publishDate) && forceHidden != true]),  "categoryCount": count(*[_type=="category" && defined(slug.current)]),}
+export type SiteStatsQueryResult = {
+  toolCount: number;
+  categoryCount: number;
+};
+// Variable: itemTopOfCategoryQuery
+// Query: *[_type=="item"  && defined(slug.current)  && defined(publishDate)  && forceHidden != true  && sponsor != true  && references(*[_type=="category" && slug.current == $categorySlug]._id)]  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
+export type ItemTopOfCategoryQueryResult = Array<{
   _id: string;
-  _type: "category";
   _createdAt: string;
   _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  description?: string;
-  group?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "group";
-  };
-  priority?: number;
-}>;
-// Variable: categoryQuery
-// Query: *[_type == "category" && slug.current == $slug][0] {    ...,}
-export type CategoryQueryResult = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  description?: string;
-  group?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "group";
-  };
-  priority?: number;
-} | null;
-// Variable: tagListQuery
-// Query: *[_type == "tag" && defined(slug.current)]   | order(slug.current asc) {      ...,}
-export type TagListQueryResult = Array<{
-  _id: string;
-  _type: "tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  description?: string;
-}>;
-// Variable: tagQuery
-// Query: *[_type == "tag" && slug.current == $slug][0] {    ...,}
-export type TagQueryResult = {
-  _id: string;
-  _type: "tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  description?: string;
-} | null;
-// Variable: submissionListQuery
-// Query: *[_type == "item" && defined(slug.current)  && submitter._ref == $userId]   | order(_createdAt desc) {      _id,  _createdAt,  name,  slug,  description,  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]->,  categories[]->,  tags[]->,}
-export type SubmissionListQueryResult = Array<{
-  _id: string;
-  _createdAt: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -1863,7 +2099,14 @@ export type SubmissionListQueryResult = Array<{
   freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
   proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
   sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
-  rejectionReason: "Other reasons" | "The backlink to our site is not provided" | "The icon of the item is not in good quality" | "The image of the item is not in good quality" | "The information of the item is not clear" | "The item is not good fit for our directory" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
   submitter: {
     _id: string;
     _type: "user";
@@ -1875,6 +2118,13 @@ export type SubmissionListQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -1891,9 +2141,11 @@ export type SubmissionListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     icon?: {
       asset?: {
         _ref: string;
@@ -1914,9 +2166,11 @@ export type SubmissionListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: string | null;
+    descriptionZh?: string;
     group?: {
       _ref: string;
       _type: "reference";
@@ -1931,9 +2185,265 @@ export type SubmissionListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: string | null;
+    descriptionZh?: string;
+  }> | null;
+}>;
+// Variable: groupListWithCountQuery
+// Query: *[_type=="group"] | order(priority desc, _createdAt asc) {  ...,  "name": coalesce(nameZh, name),  "categories": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc) {    ...,    "name": coalesce(nameZh, name),    "count": count(*[_type=="item" && defined(publishDate) && forceHidden != true && references(^._id)]),  }}
+export type GroupListWithCountQueryResult = Array<{
+  _id: string;
+  _type: "group";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string | null;
+  nameZh?: string;
+  slug?: Slug;
+  description?: string;
+  descriptionZh?: string;
+  priority?: number;
+  categories: Array<{
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
     description?: string;
+    descriptionZh?: string;
+    group?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "group";
+    };
+    priority?: number;
+    count: number;
+  }>;
+}>;
+// Variable: categoryListQuery
+// Query: *[_type == "category" && defined(slug.current)]   | order(priority desc) {      ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),}
+export type CategoryListQueryResult = Array<{
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string | null;
+  nameZh?: string;
+  slug?: Slug;
+  description: string | null;
+  descriptionZh?: string;
+  group?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "group";
+  };
+  priority?: number;
+}>;
+// Variable: categoryQuery
+// Query: *[_type == "category" && slug.current == $slug][0] {    ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),}
+export type CategoryQueryResult = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string | null;
+  nameZh?: string;
+  slug?: Slug;
+  description: string | null;
+  descriptionZh?: string;
+  group?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "group";
+  };
+  priority?: number;
+} | null;
+// Variable: tagListQuery
+// Query: *[_type == "tag" && defined(slug.current)]   | order(slug.current asc) {      ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),}
+export type TagListQueryResult = Array<{
+  _id: string;
+  _type: "tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string | null;
+  nameZh?: string;
+  slug?: Slug;
+  description: string | null;
+  descriptionZh?: string;
+}>;
+// Variable: tagQuery
+// Query: *[_type == "tag" && slug.current == $slug][0] {    ...,  "name": coalesce(nameZh, name),  "description": coalesce(descriptionZh, description),}
+export type TagQueryResult = {
+  _id: string;
+  _type: "tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string | null;
+  nameZh?: string;
+  slug?: Slug;
+  description: string | null;
+  descriptionZh?: string;
+} | null;
+// Variable: submissionListQuery
+// Query: *[_type == "item" && defined(slug.current)  && submitter._ref == $userId]   | order(_createdAt desc) {      _id,  _createdAt,  _updatedAt,  "name": coalesce(nameZh, name),  slug,  "description": coalesce(descriptionZh, description),  link,  affiliateLink,  sponsor,  sponsorStartDate,  sponsorEndDate,  note,  featured,  icon {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  paid,  order,  pricePlan,  freePlanStatus,  proPlanStatus,  sponsorPlanStatus,  rejectionReason,  submitter->,  collections[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  categories[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },  tags[]-> {    ...,    "name": coalesce(nameZh, name),    "description": coalesce(descriptionZh, description),  },}
+export type SubmissionListQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  name: string | null;
+  slug: Slug | null;
+  description: string | null;
+  link: string | null;
+  affiliateLink: string | null;
+  sponsor: boolean | null;
+  sponsorStartDate: string | null;
+  sponsorEndDate: string | null;
+  note: string | null;
+  featured: boolean | null;
+  icon: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    blurDataURL: string | null;
+    imageColor: string | null;
+  } | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    blurDataURL: string | null;
+    imageColor: string | null;
+  } | null;
+  publishDate: string | null;
+  paid: boolean | null;
+  order: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "order";
+  } | null;
+  pricePlan: "free" | "pro" | "sponsor" | null;
+  freePlanStatus: "approved" | "pending" | "rejected" | "submitting" | null;
+  proPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
+  sponsorPlanStatus: "failed" | "pending" | "submitting" | "success" | null;
+  rejectionReason:
+    | "Other reasons"
+    | "The backlink to our site is not provided"
+    | "The icon of the item is not in good quality"
+    | "The image of the item is not in good quality"
+    | "The information of the item is not clear"
+    | "The item is not good fit for our directory"
+    | null;
+  submitter: {
+    _id: string;
+    _type: "user";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    email?: string;
+    emailVerified?: string;
+    image?: string;
+    link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
+    password?: string;
+    role?: "ADMIN" | "USER";
+    accounts?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "account";
+    };
+    stripeCustomerId?: string;
+  } | null;
+  collections: Array<{
+    _id: string;
+    _type: "collection";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: string | null;
+    descriptionZh?: string;
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+    priority?: number;
+  }> | null;
+  categories: Array<{
+    _id: string;
+    _type: "category";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: string | null;
+    descriptionZh?: string;
+    group?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "group";
+    };
+    priority?: number;
+  }> | null;
+  tags: Array<{
+    _id: string;
+    _type: "tag";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: string | null;
+    descriptionZh?: string;
   }> | null;
 }>;
 // Variable: pageQuery
@@ -1947,76 +2457,116 @@ export type PageQueryResult = {
   title?: string;
   slug?: Slug;
   excerpt?: string;
-  body: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      reference?: never;
-      _type: "internalLink";
-      _key: string;
-      slug: null;
-    } | {
-      href?: string;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    _key: string;
-    _type: "code";
-    language?: string;
-    filename?: string;
-    code?: string;
-    highlightedLines?: Array<number>;
-    markDefs: null;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              reference?:
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogCategory";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogPost";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "item";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "page";
+                  };
+              _type: "internalLink";
+              _key: string;
+              slug: Slug | null;
+            }
+          | {
+              href?: string;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+        markDefs: null;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   publishDate?: string;
 } | null;
 // Variable: blogCategoryListQuery
-// Query: *[_type == "blogCategory" && defined(slug.current)]   | order(priority desc) {      name,  slug,  description,  priority,}
+// Query: *[_type == "blogCategory" && defined(slug.current)]   | order(priority desc) {      "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),  slug,  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  priority,}
 export type BlogCategoryListQueryResult = Array<{
   name: string | null;
   slug: Slug | null;
-  description: string | null;
+  description: null | string;
   priority: number | null;
 }>;
 // Variable: blogCategoryMetadateQuery
-// Query: *[_type == "blogCategory" && slug.current == $slug][0] {      name,  slug,  description,  priority,  }
+// Query: *[_type == "blogCategory" && slug.current == $slug][0] {      "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),  slug,  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  priority,  }
 export type BlogCategoryMetadateQueryResult = {
   name: string | null;
   slug: Slug | null;
-  description: string | null;
+  description: null | string;
   priority: number | null;
 } | null;
 // Variable: blogPostQuery
-// Query: *[_type == "blogPost" && slug.current == $slug][0] {      relatedPosts[]-> {      _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,  },  body[]{    ...,    markDefs[]{      ...,      _type == "internalLink" => {        "slug": @.reference->slug      }    }  },    _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,    // "estReadingTime": round(length(pt::text(body)) / 5 / 180 ),  // "related": *[_type == "blogPost" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 ] | order(publishedDate desc, _createdAt desc) [0...2] {  //   slug,  //   title,  //   excerpt,  //   publishDate,  //   "date": coalesce(publishedDate, _createdAt),  //   "image": image  // },}
+// Query: *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {      relatedPosts[]-> {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },  },  body[]{      ...,  markDefs[]{    ...,    _type == "internalLink" => {      "type": @.reference->_type,      "slug": @.reference->slug    }  }  },  bodyZh[]{      ...,  markDefs[]{    ...,    _type == "internalLink" => {      "type": @.reference->_type,      "slug": @.reference->slug    }  }  },    _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },}
 export type BlogPostQueryResult = {
   relatedPosts: Array<{
     _id: string;
     _createdAt: string;
-    title: string | null;
+    _updatedAt: string;
     slug: Slug | null;
+    title: string | null;
     excerpt: string | null;
     featured: boolean | null;
     image: {
@@ -2034,6 +2584,12 @@ export type BlogPostQueryResult = {
       imageColor: string | null;
     } | null;
     publishDate: string | null;
+    lastReviewedAt: string | null;
+    seoTitle: string | null;
+    seoDescription: string | null;
+    canonicalUrl: string | null;
+    noIndex: boolean | null;
+    externalId: string | null;
     author: {
       _id: string;
       _type: "user";
@@ -2045,6 +2601,13 @@ export type BlogPostQueryResult = {
       emailVerified?: string;
       image?: string;
       link?: string;
+      slug?: Slug;
+      jobTitle?: string;
+      bio?: string;
+      expertise?: Array<string>;
+      twitter?: string;
+      linkedin?: string;
+      website?: string;
       password?: string;
       role?: "ADMIN" | "USER";
       accounts?: {
@@ -2061,60 +2624,186 @@ export type BlogPostQueryResult = {
       _createdAt: string;
       _updatedAt: string;
       _rev: string;
-      name?: string;
+      name: string | null;
+      nameZh?: string;
       slug?: Slug;
-      description?: string;
+      description: null | string;
       priority?: number;
     }> | null;
   }> | null;
-  body: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      reference?: never;
-      _type: "internalLink";
-      _key: string;
-      slug: null;
-    } | {
-      href?: string;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    _key: string;
-    _type: "code";
-    language?: string;
-    filename?: string;
-    code?: string;
-    highlightedLines?: Array<number>;
-    markDefs: null;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              reference?:
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogCategory";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogPost";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "item";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "page";
+                  };
+              _type: "internalLink";
+              _key: string;
+              type: "blogCategory" | "blogPost" | "item" | "page" | null;
+              slug: Slug | null;
+            }
+          | {
+              href?: string;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+        markDefs: null;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
+  bodyZh: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              reference?:
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogCategory";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "blogPost";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "item";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "page";
+                  };
+              _type: "internalLink";
+              _key: string;
+              type: "blogCategory" | "blogPost" | "item" | "page" | null;
+              slug: Slug | null;
+            }
+          | {
+              href?: string;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "code";
+        language?: string;
+        filename?: string;
+        code?: string;
+        highlightedLines?: Array<number>;
+        markDefs: null;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   _id: string;
   _createdAt: string;
-  title: string | null;
+  _updatedAt: string;
   slug: Slug | null;
+  title: string | null;
   excerpt: string | null;
   featured: boolean | null;
   image: {
@@ -2132,6 +2821,12 @@ export type BlogPostQueryResult = {
     imageColor: string | null;
   } | null;
   publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
   author: {
     _id: string;
     _type: "user";
@@ -2143,6 +2838,13 @@ export type BlogPostQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -2159,19 +2861,21 @@ export type BlogPostQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: null | string;
     priority?: number;
   }> | null;
 } | null;
 // Variable: blogPostMetadataQuery
-// Query: *[_type == "blogPost" && slug.current == $slug][0] {      _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,}
+// Query: *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },}
 export type BlogPostMetadataQueryResult = {
   _id: string;
   _createdAt: string;
-  title: string | null;
+  _updatedAt: string;
   slug: Slug | null;
+  title: string | null;
   excerpt: string | null;
   featured: boolean | null;
   image: {
@@ -2189,6 +2893,12 @@ export type BlogPostMetadataQueryResult = {
     imageColor: string | null;
   } | null;
   publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
   author: {
     _id: string;
     _type: "user";
@@ -2200,6 +2910,13 @@ export type BlogPostMetadataQueryResult = {
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -2216,19 +2933,21 @@ export type BlogPostMetadataQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: null | string;
     priority?: number;
   }> | null;
 } | null;
-// Variable: blogPostListQuery
-// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate)]   | order(publishDate desc) {      _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,}
-export type BlogPostListQueryResult = Array<{
+// Variable: blogRelatedPostsQuery
+// Query: *[    _type == "blogPost"    && slug.current != $slug    && defined(slug.current)    && defined(publishDate)    && publishDate <= now()    && count(categories[@._ref in $categoryIds]) > 0  ] | order(publishDate desc) [0...$count] {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },  }
+export type BlogRelatedPostsQueryResult = Array<{
   _id: string;
   _createdAt: string;
-  title: string | null;
+  _updatedAt: string;
   slug: Slug | null;
+  title: string | null;
   excerpt: string | null;
   featured: boolean | null;
   image: {
@@ -2246,6 +2965,12 @@ export type BlogPostListQueryResult = Array<{
     imageColor: string | null;
   } | null;
   publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
   author: {
     _id: string;
     _type: "user";
@@ -2257,6 +2982,13 @@ export type BlogPostListQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -2273,19 +3005,180 @@ export type BlogPostListQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: null | string;
+    priority?: number;
+  }> | null;
+}>;
+// Variable: authorBySlugQuery
+// Query: *[_type == "user" && (slug.current == $slug || _id == $slug)][0] {    _id,    name,    image,    link,    slug,    jobTitle,    bio,    expertise,    twitter,    linkedin,    website  }
+export type AuthorBySlugQueryResult = {
+  _id: string;
+  name: string | null;
+  image: string | null;
+  link: string | null;
+  slug: Slug | null;
+  jobTitle: string | null;
+  bio: string | null;
+  expertise: Array<string> | null;
+  twitter: string | null;
+  linkedin: string | null;
+  website: string | null;
+} | null;
+// Variable: blogPostsByAuthorQuery
+// Query: *[    _type == "blogPost"    && defined(slug.current)    && defined(publishDate)    && publishDate <= now()    && author._ref == $authorId  ] | order(publishDate desc) {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },  }
+export type BlogPostsByAuthorQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  slug: Slug | null;
+  title: string | null;
+  excerpt: string | null;
+  featured: boolean | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    blurDataURL: string | null;
+    imageColor: string | null;
+  } | null;
+  publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
+  author: {
+    _id: string;
+    _type: "user";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    email?: string;
+    emailVerified?: string;
+    image?: string;
+    link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
+    password?: string;
+    role?: "ADMIN" | "USER";
+    accounts?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "account";
+    };
+    stripeCustomerId?: string;
+  } | null;
+  categories: Array<{
+    _id: string;
+    _type: "blogCategory";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: null | string;
+    priority?: number;
+  }> | null;
+}>;
+// Variable: blogPostListQuery
+// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]  | order(publishDate desc) {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },}
+export type BlogPostListQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  slug: Slug | null;
+  title: string | null;
+  excerpt: string | null;
+  featured: boolean | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    blurDataURL: string | null;
+    imageColor: string | null;
+  } | null;
+  publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
+  author: {
+    _id: string;
+    _type: "user";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    email?: string;
+    emailVerified?: string;
+    image?: string;
+    link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
+    password?: string;
+    role?: "ADMIN" | "USER";
+    accounts?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "account";
+    };
+    stripeCustomerId?: string;
+  } | null;
+  categories: Array<{
+    _id: string;
+    _type: "blogCategory";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name: string | null;
+    nameZh?: string;
+    slug?: Slug;
+    description: null | string;
     priority?: number;
   }> | null;
 }>;
 // Variable: blogPostListOfLatestQuery
-// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate)]   | order(publishDate desc) [0...$count] {      _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,}
+// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]  | order(publishDate desc) [0...$count] {      _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },}
 export type BlogPostListOfLatestQueryResult = Array<{
   _id: string;
   _createdAt: string;
-  title: string | null;
+  _updatedAt: string;
   slug: Slug | null;
+  title: string | null;
   excerpt: string | null;
   featured: boolean | null;
   image: {
@@ -2303,6 +3196,12 @@ export type BlogPostListOfLatestQueryResult = Array<{
     imageColor: string | null;
   } | null;
   publishDate: string | null;
+  lastReviewedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean | null;
+  externalId: string | null;
   author: {
     _id: string;
     _type: "user";
@@ -2314,6 +3213,13 @@ export type BlogPostListOfLatestQueryResult = Array<{
     emailVerified?: string;
     image?: string;
     link?: string;
+    slug?: Slug;
+    jobTitle?: string;
+    bio?: string;
+    expertise?: Array<string>;
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
     password?: string;
     role?: "ADMIN" | "USER";
     accounts?: {
@@ -2330,21 +3236,22 @@ export type BlogPostListOfLatestQueryResult = Array<{
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    name?: string;
+    name: string | null;
+    nameZh?: string;
     slug?: Slug;
-    description?: string;
+    description: null | string;
     priority?: number;
   }> | null;
 }>;
 // Variable: searchBlogQuery
-// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && _score > 0]  | score(title match $query || excerpt match $query || pt::text(body) match $query)  | order(_score desc) {  _score,    _id,  _createdAt,  title,  slug,  excerpt,  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  author->,  categories[]->,}
+// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && _score > 0]  | score(title match $query || excerpt match $query || pt::text(body) match $query)  | order(_score desc) {  _score,    _id,  _createdAt,  _updatedAt,  slug,  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),  featured,  image {    ...,    "blurDataURL": asset->metadata.lqip,    "imageColor": asset->metadata.palette.dominant.background,  },  publishDate,  lastReviewedAt,  seoTitle,  seoDescription,  canonicalUrl,  noIndex,  externalId,  author->,  categories[]-> {    ...,    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  },}
 export type SearchBlogQueryResult = Array<never>;
 // Variable: blogCategoryWithCountQuery
-// Query: *[_type == "blogCategory"] {    name,  slug,  description,  priority,  "count": count(*[_type == "blogPost" && references(^._id)])} | order(count desc) [0...5]
+// Query: *[_type == "blogCategory"] {    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),  slug,  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),  priority,  "count": count(*[_type == "blogPost" && references(^._id)])} | order(count desc) [0...5]
 export type BlogCategoryWithCountQueryResult = Array<{
   name: string | null;
   slug: Slug | null;
-  description: string | null;
+  description: null | string;
   priority: number | null;
   count: number;
 }>;
@@ -2361,13 +3268,20 @@ export type UserWithAccountsQueryResult = {
   emailVerified?: string;
   image?: string;
   link?: string;
+  slug?: Slug;
+  jobTitle?: string;
+  bio?: string;
+  expertise?: Array<string>;
+  twitter?: string;
+  linkedin?: string;
+  website?: string;
   password?: string;
   role?: "ADMIN" | "USER";
   accounts: null;
   stripeCustomerId?: string;
 } | null;
 // Variable: itemListQueryForSitemap
-// Query: *[_type == "item" && defined(slug.current) && defined(publishDate)] | order(_createdAt asc) {  _id,  _updatedAt,  "slug": slug.current,}
+// Query: *[_type == "item" && defined(slug.current) && defined(publishDate) && forceHidden != true && sponsor != true] | order(_createdAt asc) {  _id,  _updatedAt,  "slug": slug.current,}
 export type ItemListQueryForSitemapResult = Array<{
   _id: string;
   _updatedAt: string;
@@ -2398,14 +3312,14 @@ export type CollectionListQueryForSitemapResult = Array<{
   count: number;
 }>;
 // Variable: blogListQueryForSitemap
-// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate)] | order(publishDate desc, _createdAt asc) {  _id,    _updatedAt,  "slug": slug.current,}
+// Query: *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now() && noIndex != true] | order(publishDate desc, _createdAt asc) {  _id,    _updatedAt,  "slug": slug.current,}
 export type BlogListQueryForSitemapResult = Array<{
   _id: string;
   _updatedAt: string;
   slug: string | null;
 }>;
 // Variable: blogCategoryListQueryForSitemap
-// Query: *[_type == "blogCategory" && defined(slug.current)] | order(_createdAt asc) {  _id,    _updatedAt,  "slug": slug.current,  "count": count(*[_type == "blogPost" && defined(publishDate) && references(^._id)])}
+// Query: *[_type == "blogCategory" && defined(slug.current)] | order(_createdAt asc) {  _id,    _updatedAt,  "slug": slug.current,  "count": count(*[_type == "blogPost" && defined(publishDate) && publishDate <= now() && noIndex != true && references(^._id)])}
 export type BlogCategoryListQueryForSitemapResult = Array<{
   _id: string;
   _updatedAt: string;
@@ -2424,38 +3338,44 @@ export type PageListQueryForSitemapResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"item\" && _id == $id][0] {\n  \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": ItemByIdQueryResult;
-    "*[_type == \"item\" && slug.current == $slug][0] {\n  \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": ItemInfoBySlugQueryResult;
-    "*[_type == \"item\" && _id == $id][0] {\n  \n  \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n  introduction,\n\n}": ItemFullInfoByIdQueryResult;
-    "*[_type == \"item\" && slug.current == $slug \n&& forceHidden != true] [0] {\n  \n  introduction,\n  \"related\": *[_type == \"item\" && defined(slug.current) \n    && defined(publishDate) \n    && forceHidden != true\n    && sponsor != true\n    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id] \n    | order(publishedDate desc, _createdAt desc) [0...3] {\n      \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n  },\n  \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n\n}": ItemFullInfoBySlugQueryResult;
-    "*[_type == \"item\" && defined(slug.current) \n  && defined(publishDate)\n  && forceHidden != true\n  && sponsor != true]\n  | order(coalesce(featured, false) desc, publishDate desc) {\n    \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": ItemListQueryResult;
-    "*[_type == \"item\" && defined(slug.current) \n  && defined(publishDate)\n  && forceHidden != true\n  && sponsor == true\n  && sponsorStartDate <= now()\n  && sponsorEndDate >= now()] \n  | order(coalesce(featured, false) desc, publishDate desc) {\n    \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": SponsorItemListQueryResult;
-    "*[_type == \"item\" && defined(slug.current) \n  && defined(publishDate) \n  && forceHidden != true \n  && sponsor != true\n  && featured == true] \n  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": ItemListOfFeaturedQueryResult;
-    "*[_type == \"item\" && defined(slug.current) \n  && defined(publishDate) \n  && forceHidden != true\n  && sponsor != true] \n  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": ItemListOfLatestQueryResult;
-    "*[_type == \"collection\" && defined(slug.current)] \n  | order(priority desc) {\n    \n  ...,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n\n}": CollectionListQueryResult;
-    "*[_type == \"collection\" && slug.current == $slug][0] {\n  \n  ...,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n\n}": CollectionQueryResult;
-    "*[_type==\"group\"] | order(priority desc, _createdAt asc) {\n  \n  ...,\n  \"categories\": *[_type=='category' && references(^._id)] | order(priority desc, _createdAt asc)\n  { \n    ..., \n  }\n\n}": GroupListQueryResult;
-    "*[_type == \"category\" && defined(slug.current)] \n  | order(priority desc) {\n    \n  ...,\n\n}": CategoryListQueryResult;
-    "*[_type == \"category\" && slug.current == $slug][0] {\n  \n  ...,\n\n}": CategoryQueryResult;
-    "*[_type == \"tag\" && defined(slug.current)] \n  | order(slug.current asc) {\n    \n  ...,\n\n}": TagListQueryResult;
-    "*[_type == \"tag\" && slug.current == $slug][0] {\n  \n  ...,\n\n}": TagQueryResult;
-    "*[_type == \"item\" && defined(slug.current)\n  && submitter._ref == $userId] \n  | order(_createdAt desc) {\n    \n  _id,\n  _createdAt,\n  name,\n  slug,\n  description,\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]->,\n  categories[]->,\n  tags[]->,\n\n}": SubmissionListQueryResult;
-    "\n  *[_type == \"page\" && slug.current == $slug][0] {\n    ...,\n    body[]{\n      ...,\n      markDefs[]{\n        ...,\n        _type == \"internalLink\" => {\n          \"slug\": @.reference->slug\n        }\n      }\n    },\n  }\n": PageQueryResult;
-    "\n  *[_type == \"blogCategory\" && defined(slug.current)] \n  | order(priority desc) {\n    \n  name,\n  slug,\n  description,\n  priority,\n\n}": BlogCategoryListQueryResult;
-    "\n  *[_type == \"blogCategory\" && slug.current == $slug][0] {\n    \n  name,\n  slug,\n  description,\n  priority,\n\n  }\n": BlogCategoryMetadateQueryResult;
-    "\n  *[_type == \"blogPost\" && slug.current == $slug][0] {\n    \n  relatedPosts[]-> {\n    \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n  },\n  body[]{\n    ...,\n    markDefs[]{\n      ...,\n      _type == \"internalLink\" => {\n        \"slug\": @.reference->slug\n      }\n    }\n  },\n  \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n  \n  // \"estReadingTime\": round(length(pt::text(body)) / 5 / 180 ),\n  // \"related\": *[_type == \"blogPost\" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 ] | order(publishedDate desc, _createdAt desc) [0...2] {\n  //   slug,\n  //   title,\n  //   excerpt,\n  //   publishDate,\n  //   \"date\": coalesce(publishedDate, _createdAt),\n  //   \"image\": image\n  // },\n\n}": BlogPostQueryResult;
-    "\n  *[_type == \"blogPost\" && slug.current == $slug][0] {\n    \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n}": BlogPostMetadataQueryResult;
-    "\n  *[_type == \"blogPost\" && defined(slug.current) && defined(publishDate)] \n  | order(publishDate desc) {\n    \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n}": BlogPostListQueryResult;
-    "\n  *[_type == \"blogPost\" && defined(slug.current) && defined(publishDate)] \n  | order(publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n}": BlogPostListOfLatestQueryResult;
-    "\n  *[_type == \"blogPost\" && defined(slug.current) && defined(publishDate) && _score > 0]\n  | score(title match $query || excerpt match $query || pt::text(body) match $query)\n  | order(_score desc) {\n  _score,\n  \n  _id,\n  _createdAt,\n  title,\n  slug,\n  excerpt,\n  featured,\n  image {\n    ...,\n    \"blurDataURL\": asset->metadata.lqip,\n    \"imageColor\": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  author->,\n  categories[]->,\n\n}": SearchBlogQueryResult;
-    "\n  *[_type == \"blogCategory\"] {\n  \n  name,\n  slug,\n  description,\n  priority,\n\n  \"count\": count(*[_type == \"blogPost\" && references(^._id)])\n} | order(count desc) [0...5]": BlogCategoryWithCountQueryResult;
-    "\n  *[_type == \"user\" && _id == $id][0] {\n    ...,\n    accounts[]->,\n  }\n": UserWithAccountsQueryResult;
-    "*[_type == \"item\" && defined(slug.current) && defined(publishDate)] | order(_createdAt asc) {\n  _id,\n  _updatedAt,\n  \"slug\": slug.current,\n}": ItemListQueryForSitemapResult;
-    "*[_type == \"category\" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n  \"count\": count(*[_type == \"item\" && defined(publishDate) && forceHidden != true && references(^._id)])\n}": CategoryListQueryForSitemapResult;
-    "*[_type == \"tag\" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n  \"count\": count(*[_type == \"item\" && defined(publishDate) && forceHidden != true && references(^._id)])\n}": TagListQueryForSitemapResult;
-    "*[_type == \"collection\" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n  \"count\": count(*[_type == \"item\" && defined(publishDate) && forceHidden != true && references(^._id)])\n}": CollectionListQueryForSitemapResult;
-    "*[_type == \"blogPost\" && defined(slug.current) && defined(publishDate)] | order(publishDate desc, _createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n}": BlogListQueryForSitemapResult;
-    "*[_type == \"blogCategory\" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n  \"count\": count(*[_type == \"blogPost\" && defined(publishDate) && references(^._id)])\n}": BlogCategoryListQueryForSitemapResult;
-    "*[_type == \"page\" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  \"slug\": slug.current,\n}": PageListQueryForSitemapResult;
+    '*[_type == "item" && _id == $id][0] {\n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemByIdQueryResult;
+    '*[_type == "item" && slug.current == $slug][0] {\n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemInfoBySlugQueryResult;
+    '*[_type == "item" && _id == $id][0] {\n  \n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n  "introduction": coalesce(introductionZh, introduction),\n\n}': ItemFullInfoByIdQueryResult;
+    '*[_type == "item" && slug.current == $slug \n&& forceHidden != true] [0] {\n  \n  introduction,\n  "related": *[_type == "item" && defined(slug.current) \n    && defined(publishDate) \n    && forceHidden != true\n    && sponsor != true\n    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id] \n    | order(publishedDate desc, _createdAt desc) [0...3] {\n      \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n  },\n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n\n}': ItemFullInfoBySlugQueryResult;
+    '*[_type == "item" && defined(slug.current) \n  && defined(publishDate)\n  && forceHidden != true\n  && sponsor != true]\n  | order(coalesce(featured, false) desc, publishDate desc) {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemListQueryResult;
+    '*[_type == "item" && defined(slug.current) \n  && defined(publishDate)\n  && forceHidden != true\n  && sponsor == true\n  && sponsorStartDate <= now()\n  && sponsorEndDate >= now()] \n  | order(coalesce(featured, false) desc, publishDate desc) {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': SponsorItemListQueryResult;
+    '*[_type == "item" && defined(slug.current) \n  && defined(publishDate) \n  && forceHidden != true \n  && sponsor != true\n  && featured == true] \n  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemListOfFeaturedQueryResult;
+    '*[_type == "item" && defined(slug.current) \n  && defined(publishDate) \n  && forceHidden != true\n  && sponsor != true] \n  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemListOfLatestQueryResult;
+    '*[_type == "collection" && defined(slug.current)] \n  | order(priority desc) {\n    \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n\n}': CollectionListQueryResult;
+    '*[_type == "collection" && slug.current == $slug][0] {\n  \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n\n}': CollectionQueryResult;
+    '*[_type=="group"] | order(priority desc, _createdAt asc) {\n  \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n  "categories": *[_type==\'category\' && references(^._id)] | order(priority desc, _createdAt asc)\n  { \n    ..., \n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  }\n\n}': GroupListQueryResult;
+    '{\n  "toolCount": count(*[_type=="item" && defined(publishDate) && forceHidden != true]),\n  "categoryCount": count(*[_type=="category" && defined(slug.current)]),\n}': SiteStatsQueryResult;
+    '*[_type=="item"\n  && defined(slug.current)\n  && defined(publishDate)\n  && forceHidden != true\n  && sponsor != true\n  && references(*[_type=="category" && slug.current == $categorySlug]._id)]\n  | order(coalesce(featured, false) desc, publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': ItemTopOfCategoryQueryResult;
+    '*[_type=="group"] | order(priority desc, _createdAt asc) {\n  ...,\n  "name": coalesce(nameZh, name),\n  "categories": *[_type==\'category\' && references(^._id)] | order(priority desc, _createdAt asc) {\n    ...,\n    "name": coalesce(nameZh, name),\n    "count": count(*[_type=="item" && defined(publishDate) && forceHidden != true && references(^._id)]),\n  }\n}': GroupListWithCountQueryResult;
+    '*[_type == "category" && defined(slug.current)] \n  | order(priority desc) {\n    \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n\n}': CategoryListQueryResult;
+    '*[_type == "category" && slug.current == $slug][0] {\n  \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n\n}': CategoryQueryResult;
+    '*[_type == "tag" && defined(slug.current)] \n  | order(slug.current asc) {\n    \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n\n}': TagListQueryResult;
+    '*[_type == "tag" && slug.current == $slug][0] {\n  \n  ...,\n  "name": coalesce(nameZh, name),\n  "description": coalesce(descriptionZh, description),\n\n}': TagQueryResult;
+    '*[_type == "item" && defined(slug.current)\n  && submitter._ref == $userId] \n  | order(_createdAt desc) {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  "name": coalesce(nameZh, name),\n  slug,\n  "description": coalesce(descriptionZh, description),\n  link,\n  affiliateLink,\n  sponsor,\n  sponsorStartDate,\n  sponsorEndDate,\n  note,\n  featured,\n  icon {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  paid,\n  order,\n  pricePlan,\n  freePlanStatus,\n  proPlanStatus,\n  sponsorPlanStatus,\n  rejectionReason,\n  submitter->,\n  collections[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  categories[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n  tags[]-> {\n    ...,\n    "name": coalesce(nameZh, name),\n    "description": coalesce(descriptionZh, description),\n  },\n\n}': SubmissionListQueryResult;
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    ...,\n    body[]{\n      ...,\n      markDefs[]{\n        ...,\n        _type == "internalLink" => {\n          "slug": @.reference->slug\n        }\n      }\n    },\n  }\n': PageQueryResult;
+    '\n  *[_type == "blogCategory" && defined(slug.current)] \n  | order(priority desc) {\n    \n  "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n  slug,\n  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  priority,\n\n}': BlogCategoryListQueryResult;
+    '\n  *[_type == "blogCategory" && slug.current == $slug][0] {\n    \n  "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n  slug,\n  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  priority,\n\n  }\n': BlogCategoryMetadateQueryResult;
+    '\n  *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {\n    \n  relatedPosts[]-> {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n  },\n  body[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      "type": @.reference->_type,\n      "slug": @.reference->slug\n    }\n  }\n\n  },\n  bodyZh[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      "type": @.reference->_type,\n      "slug": @.reference->slug\n    }\n  }\n\n  },\n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n\n}': BlogPostQueryResult;
+    '\n  *[_type == "blogPost" && slug.current == $slug && defined(publishDate) && publishDate <= now()][0] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n}': BlogPostMetadataQueryResult;
+    '\n  *[\n    _type == "blogPost"\n    && slug.current != $slug\n    && defined(slug.current)\n    && defined(publishDate)\n    && publishDate <= now()\n    && count(categories[@._ref in $categoryIds]) > 0\n  ] | order(publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n  }\n': BlogRelatedPostsQueryResult;
+    '\n  *[_type == "user" && (slug.current == $slug || _id == $slug)][0] {\n    _id,\n    name,\n    image,\n    link,\n    slug,\n    jobTitle,\n    bio,\n    expertise,\n    twitter,\n    linkedin,\n    website\n  }\n': AuthorBySlugQueryResult;
+    '\n  *[\n    _type == "blogPost"\n    && defined(slug.current)\n    && defined(publishDate)\n    && publishDate <= now()\n    && author._ref == $authorId\n  ] | order(publishDate desc) {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n  }\n': BlogPostsByAuthorQueryResult;
+    '\n  *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]\n  | order(publishDate desc) {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n}': BlogPostListQueryResult;
+    '\n  *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now()]\n  | order(publishDate desc) [0...$count] {\n    \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n}': BlogPostListOfLatestQueryResult;
+    '\n  *[_type == "blogPost" && defined(slug.current) && defined(publishDate) && _score > 0]\n  | score(title match $query || excerpt match $query || pt::text(body) match $query)\n  | order(_score desc) {\n  _score,\n  \n  _id,\n  _createdAt,\n  _updatedAt,\n  slug,\n  "title": select($locale == "zh-CN" => coalesce(titleZh, title), title),\n  "excerpt": select($locale == "zh-CN" => coalesce(excerptZh, excerpt), excerpt),\n  featured,\n  image {\n    ...,\n    "blurDataURL": asset->metadata.lqip,\n    "imageColor": asset->metadata.palette.dominant.background,\n  },\n  publishDate,\n  lastReviewedAt,\n  seoTitle,\n  seoDescription,\n  canonicalUrl,\n  noIndex,\n  externalId,\n  author->,\n  categories[]-> {\n    ...,\n    "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n    "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  },\n\n}': SearchBlogQueryResult;
+    '\n  *[_type == "blogCategory"] {\n  \n  "name": select($locale == "zh-CN" => coalesce(nameZh, name), name),\n  slug,\n  "description": select($locale == "zh-CN" => coalesce(descriptionZh, description), description),\n  priority,\n\n  "count": count(*[_type == "blogPost" && references(^._id)])\n} | order(count desc) [0...5]': BlogCategoryWithCountQueryResult;
+    '\n  *[_type == "user" && _id == $id][0] {\n    ...,\n    accounts[]->,\n  }\n': UserWithAccountsQueryResult;
+    '*[_type == "item" && defined(slug.current) && defined(publishDate) && forceHidden != true && sponsor != true] | order(_createdAt asc) {\n  _id,\n  _updatedAt,\n  "slug": slug.current,\n}': ItemListQueryForSitemapResult;
+    '*[_type == "category" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && references(^._id)])\n}': CategoryListQueryForSitemapResult;
+    '*[_type == "tag" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && references(^._id)])\n}': TagListQueryForSitemapResult;
+    '*[_type == "collection" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && references(^._id)])\n}': CollectionListQueryForSitemapResult;
+    '*[_type == "blogPost" && defined(slug.current) && defined(publishDate) && publishDate <= now() && noIndex != true] | order(publishDate desc, _createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n}': BlogListQueryForSitemapResult;
+    '*[_type == "blogCategory" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n  "count": count(*[_type == "blogPost" && defined(publishDate) && publishDate <= now() && noIndex != true && references(^._id)])\n}': BlogCategoryListQueryForSitemapResult;
+    '*[_type == "page" && defined(slug.current)] | order(_createdAt asc) {\n  _id,  \n  _updatedAt,\n  "slug": slug.current,\n}': PageListQueryForSitemapResult;
   }
 }

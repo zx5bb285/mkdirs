@@ -1,57 +1,37 @@
 import type { MarketingConfig } from "@/types";
 
+// title values are message keys ("Nav.search" etc.), resolved with next-intl
 export const marketingConfig: MarketingConfig = {
   menus: [
     {
-      title: "Home2",
-      href: "/home2",
-      icon: "home",
-    },
-    {
-      title: "Home3",
-      href: "/home3",
-      icon: "home",
-    },
-    {
-      title: "Search",
+      title: "Nav.search",
       href: "/search",
       icon: "search",
     },
     {
-      title: "Collection",
-      href: "/collection",
-      icon: "collection",
-    },
-    {
-      title: "Category",
+      title: "Nav.category",
       href: "/category",
       icon: "category",
     },
     {
-      title: "Tag",
-      href: "/tag",
-      icon: "tag",
+      title: "Nav.collection",
+      href: "/collection",
+      icon: "collection",
     },
     {
-      title: "Blog",
+      title: "Nav.blog",
       href: "/blog",
       icon: "blog",
     },
     {
-      title: "Pricing",
+      title: "Nav.pricing",
       href: "/pricing",
       icon: "pricing",
     },
     {
-      title: "Submit",
+      title: "Nav.submit",
       href: "/submit",
       icon: "submit",
-    },
-    {
-      title: "Studio",
-      href: "/studio",
-      icon: "studio",
-      external: true,
     },
   ],
 };

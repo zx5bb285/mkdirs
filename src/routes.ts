@@ -1,3 +1,5 @@
+import { routing } from "@/i18n/routing";
+
 /**
  * An array of routes that are accessible to the public
  * These routes do not require authentication
@@ -38,11 +40,12 @@ export const publicRoutes = [
   // draft mode
   "/api/draft",
 
+  // machine-to-machine blog publisher, secured by BLOG_BOT_SECRET
+  "/api/blog/generate",
+
   // test pages
   "/shadcn(/.*)?",
   "/loading(/.*)?",
-  "/home2(/.*)?",
-  "/home3(/.*)?",
 ];
 
 /**
@@ -66,7 +69,36 @@ export const authRoutes = [
 export const apiAuthPrefix = "/api/auth";
 
 /**
- * The default redirect path after logging in
+ * The default redirect path after logging in (locale-independent)
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+
+/**
+ * Extract the locale prefix from a pathname, e.g. "/zh-CN/search" -> "zh-CN".
+ * Returns null when the pathname has no locale prefix.
+ */
+export function getLocaleFromPathname(pathname: string): string | null {
+  const first = pathname.split("/")[1];
+  return (routing.locales as readonly string[]).includes(first) ? first : null;
+}
+
+/**
+ * Remove the locale prefix from a pathname, e.g. "/zh-CN/search" -> "/search".
+ * Pathnames without a locale prefix are returned unchanged.
+ */
+export function stripLocale(pathname: string): string {
+  if (!getLocaleFromPathname(pathname)) {
+    return pathname;
+  }
+  return `/${pathname.split("/").slice(2).join("/")}`;
+}
+
+/**
+ * The default redirect path after logging in. URLs are locale-less
+ * (localePrefix: "never"), so no prefix is applied; the argument is kept for
+ * call-site compatibility.
+ */
+export function defaultLoginRedirect(_locale?: string | null): string {
+  return DEFAULT_LOGIN_REDIRECT;
+}

@@ -1,10 +1,10 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { urlForIcon } from "@/lib/image";
 import { cn } from "@/lib/utils";
 import type { CollectionInfo } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
 
 type CollectionCardProps = {
