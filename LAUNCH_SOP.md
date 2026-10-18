@@ -17,12 +17,12 @@
 | 步骤 | 状态 | 完成 / 核查日期 | 依据与当前卡点 |
 |---|---|---|---|
 | 0. 上线前 3 个决策 | ✅ | 2026-10-18 核查 | 品牌、域名、语言策略均已落地；`localePrefix: "never"` 见 `src/i18n/routing.ts` |
-| 1. 账号与基础设施 | 🟡 | 2026-10-18 | Sanity ✅；Vercel 项目已建并部署 ✅；GitHub 已合并到 `main` ✅；Resend 仍为占位符 ⛔；AI Key 未配 |
+| 1. 账号与基础设施 | 🟡 | 2026-10-18 | Sanity ✅；Vercel 项目已建并部署 ✅；GitHub 已合并到 `main` ✅；Resend 发信域名已验证、生产环境已配置并实测 ✅；域名收件邮箱未建；AI Key 未配 |
 | 2. 本地环境跑通 | ✅ | 2026-10-18 核查 | `pnpm build` 通过，共 41 条路由；构建日志无错误 |
 | 3. 品牌与全站配置 | ✅ | 2026-10-18 | 3.1 生产 URL ✅；3.2 视觉资产 ✅；3.3 文案 ✅；3.4 菜单 ✅；3.5 About / Privacy / Terms 已在 Sanity 建好并验证 200 |
 | 4. 内容模型与首批数据 | ⬜ | — | Sanity 现状：3 items / 20 categories / 3 groups / 0 posts / 3 pages |
 | 5. SEO 配置与检查 | ⬜ | — | 依赖步骤 4 的博客与工具数据 |
-| 6. 支付、邮件与登录 | 🟡 | 2026-10-18 | 第一期裁剪 ✅：OAuth 按钮与 Pro/Sponsor 卡片已按环境变量隐藏；Free 套餐与 FAQ 文案已重写；Resend 代码已改为缺 Key 时显式报错，但真实 Key 仍缺 |
+| 6. 支付、邮件与登录 | ✅ | 2026-10-18 | 第一期裁剪 ✅；Resend 域名 `dirhuntai.com` 已验证，`RESEND_API_KEY` + `RESEND_AUDIENCE_ID`（DirHunt AI）已配到 Vercel production，注册验证邮件实测成功；仅收件邮箱 `admin@` 待建 |
 | 7. 部署上线 | 🟡 | 2026-10-18 | 生产已上线 https://dirhuntai.com ，`www` 308 跳主域；语言切换已修复并线上验证；GitHub 自动部署仍未连接，目前靠 CLI 部署 |
 | 8. 上线验收清单 | ⬜ | — | 依赖步骤 7 |
 | 9. 内容运营 SOP | ⬜ | — | 上线后启动 |
@@ -32,15 +32,16 @@
 
 按优先级执行：
 
-1. **6.2 配置 Resend**：当前 `RESEND_API_KEY` 未配置，开放注册前必须换成真实 Key 并验证域名
+1. **域名收件邮箱**：`hello@` / `admin@` 目前只能发、不能收；把 `RESEND_EMAIL_ADMIN` 改成真实邮箱，或在 Spaceship 配 MX 转发
 2. **1/7 连接 GitHub**：Vercel 项目尚未连上 GitHub 仓库，目前靠 CLI 部署；连接后才能每次 push 自动构建
 3. **4 首批内容**：清理演示分类，补 50–100 个工具与 3 篇评测
+4. **5/8 SEO**：内容就位后做 GSC / Bing 提交与 Rich Results 检查
 
 ### 已知阻塞项
 
 | 阻塞项 | 影响 | 解除条件 |
 |---|---|---|
-| Resend 未配置 | 注册、找回密码、订阅全部不可用 | 真实 API Key + 已验证发信域名（SPF / DKIM / DMARC） |
+| 域名邮箱未建 | 投稿通知发往 `admin@dirhuntai.com` 会退信；用户回复 `hello@` 无人接收 | 建邮箱或转发，或把 `RESEND_EMAIL_ADMIN` 改成真实邮箱 |
 | Vercel 未连接 GitHub | push 后不会自动部署 | 在 Vercel 安装 GitHub App 并授权 `zx5bb285/mkdirs` |
 
 ---
@@ -344,21 +345,34 @@ stripe listen --forward-to localhost:3000/api/webhook
 `auth.ts` 的 `signIn` 回调拒绝未验证邮箱的密码登录，所以没有验证邮件
 就无法用邮箱密码登录。
 
-1. 在 Resend 添加并验证域名（SPF / DKIM / DMARC）
-2. 配置：
+1. 在 Resend 添加并验证域名 ✅（`dirhuntai.com`，状态 `verified`）
+2. 配置 ✅：
 
 ```env
-RESEND_API_KEY=re_...
+RESEND_API_KEY=re_...                 # 已配到 Vercel production
 RESEND_EMAIL_FROM=hello@dirhuntai.com
-RESEND_EMAIL_ADMIN=admin@dirhuntai.com
-RESEND_AUDIENCE_ID=...
+RESEND_EMAIL_ADMIN=admin@dirhuntai.com  # 收件箱待建
+RESEND_AUDIENCE_ID=d01e70ab-...       # Resend 中新建的 "DirHunt AI" audience
 ```
 
-3. 触发一次注册/订阅邮件，确认送达
+3. 触发一次注册/订阅邮件，确认送达 ✅（2026-10-18 线上注册实测，
+   Resend API Key `last_used_at` 同步更新）
 
 > 代码侧已加保护：`src/lib/mail.ts` 在 `RESEND_API_KEY` 缺失或仍是
 > `re_placeholder` 时直接抛 `RESEND_API_KEY is not configured`，并把 Resend
 > 返回的 `error` 转成异常，避免注册流程“看似成功、实际没收到验证邮件”。
+
+#### Resend 与“域名邮箱”的关系
+
+- Resend 是**发信服务**，不是邮箱托管。当前域名能力为
+  `sending: enabled` / `receiving: disabled`。
+- API Key 是账号级凭据，不会创建任何邮箱地址；`from` 里的域名必须是已验证域名。
+  多域名账号建议每个域名单独建一个 “Sending access” Key，只授权该域名。
+- 要让 `hello@dirhuntai.com` **收信**，需要在 DNS 的 **apex** 上配置 MX
+  （Spaceship 邮件转发、ImprovMX、Zoho、Google Workspace 等）。
+  Resend 用的是 `send` / `rsend` 两个 CNAME 与 `resend._domainkey` TXT，
+  不使用 apex MX，因此两者不冲突。
+- 建议补一条 DMARC：`_dmarc.dirhuntai.com TXT "v=DMARC1; p=none; rua=mailto:你的邮箱"`。
 
 ### 6.3 OAuth（第二期）
 
@@ -630,6 +644,7 @@ pnpm batch:remove        # ⚠️ 删除全部目录数据
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-10-18 | Resend 配置完成：`dirhuntai.com` 状态 `verified`（DKIM TXT `resend._domainkey`、CNAME `send` / `rsend`）；新建 “DirHunt AI” audience（`d01e70ab-b423-4dd6-9c71-fde1f192cde0`）；`RESEND_API_KEY` / `RESEND_AUDIENCE_ID` 已写入 Vercel production 并重新部署；线上注册实测成功，Key `last_used_at` 更新；测试用户与 token 已清理。域名 `receiving: disabled`，`hello@` / `admin@` 收件箱仍未建 |
 | 2026-10-18 | 修复语言切换：`localePrefix: "never"` 下 URL 不变导致 `router.replace` 不触发服务端渲染；在 [locale-switcher.tsx](src/components/layout/locale-switcher.tsx) 中改为写入 `NEXT_LOCALE` 后调用 `router.refresh()`。用 headless Chrome 在 https://dirhuntai.com 实测中英双向切换，URL 保持不变、页面文案即时更新。DNS 已生效（A `@` / `www` → `76.76.21.21`）；Vercel 中将 `www` 设为 308 跳 `dirhuntai.com` |
 | 2026-10-18 | 推送并部署：260 个文件提交到 `feat/dirhuntai-launch-phase-1`，PR #1 squash 合并进 `main`；修复 `pnpm-lock.yaml` 与 `package.json` 不同步导致的 frozen-lockfile 失败；Vercel 项目 `dirhuntai` 创建并部署成功（https://dirhuntai.vercel.app），production 环境变量 18 项已配；Sanity CORS 补齐生产域名与 `localhost:3000`；`dirhuntai.com` / `www.dirhuntai.com` 已加入 Vercel 项目，DNS 待改；线上验证 `/`、`/about`、`/privacy`、`/terms`、`/pricing`、`/auth/login`、`/robots.txt`、`/sitemap.xml`、`/feed.xml`、`/studio` 均 200，定价页只渲染 Free、登录页无 OAuth 按钮 |
 | 2026-10-18 | 完成 3.5：Sanity 建 `page-about` / `page-privacy` / `page-terms` 并发布，三页均验证 200；完成步骤 6 第一期裁剪：`src/lib/auth-providers.ts` 按环境变量决定是否显示 OAuth，`src/config/price.ts` 的 `visiblePricePlans` 按 Price ID 过滤 Pro/Sponsor，定价页只渲染 Free；重写 Free 套餐与 FAQ 文案（中英）；`src/lib/mail.ts` 缺 Key 时显式抛错；`pnpm build` 通过，运行时验证 `/auth/login` 无 OAuth 按钮、`/pricing` 仅 Free |
