@@ -275,22 +275,41 @@ Item 字段尽量完整：
 
 ### 上线前逐项确认
 
-- [ ] `NEXT_PUBLIC_APP_URL` 是生产域名
-- [ ] `/robots.txt` 中的 Sitemap 地址正确
-- [ ] `/sitemap.xml` 无 `/en`、`/zh-CN` 重复目录
-- [ ] 文章页 JSON-LD 通过 Google Rich Results Test
-- [ ] 每页只有一个 `h1`
-- [ ] 正文标题层级从 `h2` 开始
-- [ ] 每篇文章有唯一 title / description
-- [ ] 图片全部有 alt
-- [ ] 文章之间、文章与分类页之间有内链
-- [ ] OG 图在社交平台预览正常
+2026-10-18 线上验收结果（https://dirhuntai.com）：
+
+- [x] `NEXT_PUBLIC_APP_URL` 是生产域名
+- [x] `/robots.txt` 中的 Sitemap 地址正确
+- [x] `/sitemap.xml` 无 `/en`、`/zh-CN` 重复目录（0 条 hreflang）
+- [ ] 文章页 JSON-LD 通过 Google Rich Results Test（代码已上线：`Organization`、`WebSite`、`SoftwareApplication`、`BlogPosting`、`BreadcrumbList`，待提交 GSC 后跑一次）
+- [x] 每页只有一个 `h1`
+- [x] 正文标题层级从 `h2` 开始
+- [x] 每篇文章有唯一 title / description
+- [x] 图片全部有 alt
+- [x] 文章之间、文章与分类页之间有内链（评测文内链到工具页与其它文章）
+- [x] OG 图在社交平台预览正常（`/api/og` 返回 200 PNG，工具页与文章页按页生成）
+
+### 第一期 P1 内容与 SEO（2026-10-18 完成）
+
+- 目录：81 个 AI 工具、17 个分类、5 个分组、46 个标签；每个分类 4–6 个工具
+- 合集：5 个主题合集（写作 / 设计 / 开发 / 视频 / 效率），81 个工具全部挂载
+- 博客：4 篇首发文章 + 评测方法页 + 编辑团队作者页 + 3 个博客分类
+- 页面：`/changelog` 已写入真实更新记录
+- 技术 SEO：sitemap 每小时从 CMS 重新生成（`revalidate = 3600`）；首页 title 用 tagline 避免重复品牌；工具页 JSON-LD 不再输出虚构 `offers`；文章页与工具页无封面时自动生成 OG 图
+- 验收：sitemap 171 条 URL（81 item / 17 category / 46 tag / 6 blog / 静态页），无模板 demo 残留；`/blog`、4 篇文章、作者页、分类页、5 个合集页、`/changelog` 全部 200 且正文渲染正常
 
 ### 搜索平台
 
 - Google Search Console：使用 **DNS TXT 验证**，提交 sitemap
-- Bing Webmaster Tools：提交 sitemap
+- Bing Webmaster Tools：提交 sitemap（可直接从 GSC 导入）
 - 主要做英文流量时，GSC 国际化定位保持默认
+
+DNS 托管在 **Spaceship**（`launch1/launch2.spaceship.net`），当前没有 TXT / MX 记录。GSC 验证步骤：
+
+1. GSC 选择「网域」资源，输入 `dirhuntai.com`
+2. 复制形如 `google-site-verification=...` 的 TXT 值
+3. Spaceship → 域名 → DNS → 添加 TXT 记录：主机 `@`，值粘贴上面的字符串，TTL 默认
+4. 回 GSC 点「验证」，通过后在「站点地图」提交 `https://dirhuntai.com/sitemap.xml`
+5. Bing Webmaster Tools 用「从 GSC 导入」即可，无需重复验证
 
 ---
 
@@ -644,6 +663,7 @@ pnpm batch:remove        # ⚠️ 删除全部目录数据
 
 | 日期 | 更新内容 |
 |---|---|
+| 2026-10-18/19 | P1 内容与 SEO 上线：Sanity 重建目录（81 工具 / 17 分类 / 5 分组 / 46 标签）、5 个主题合集、4 篇首发评测 + 评测方法页 + 编辑团队作者页；新增 `scripts/seed/` 系列脚本（taxonomy / items / blog / collections / changelog，可重复执行）；`sitemap.ts` 改为每小时 revalidate；首页 title 去重品牌；工具页移除虚构 `offers`；文章页 / 工具页无封面时自动生成 OG 图；`/changelog` 写入真实内容。PR #6 squash 合并并部署到 production，线上验收 sitemap 171 条 URL、无 demo 残留、博客 / 合集 / changelog 全部正常。期间发现两篇文章因 Sanity CDN 边缘缓存返回旧数据结构导致渲染报错，缓存过期后自行恢复，非代码问题。待办：GSC DNS TXT 验证 + 提交 sitemap |
 | 2026-10-18 | Resend 配置完成：`dirhuntai.com` 状态 `verified`（DKIM TXT `resend._domainkey`、CNAME `send` / `rsend`）；新建 “DirHunt AI” audience（`d01e70ab-b423-4dd6-9c71-fde1f192cde0`）；`RESEND_API_KEY` / `RESEND_AUDIENCE_ID` 已写入 Vercel production 并重新部署；线上注册实测成功，Key `last_used_at` 更新；测试用户与 token 已清理。域名 `receiving: disabled`，`hello@` / `admin@` 收件箱仍未建 |
 | 2026-10-18 | 修复语言切换：`localePrefix: "never"` 下 URL 不变导致 `router.replace` 不触发服务端渲染；在 [locale-switcher.tsx](src/components/layout/locale-switcher.tsx) 中改为写入 `NEXT_LOCALE` 后调用 `router.refresh()`。用 headless Chrome 在 https://dirhuntai.com 实测中英双向切换，URL 保持不变、页面文案即时更新。DNS 已生效（A `@` / `www` → `76.76.21.21`）；Vercel 中将 `www` 设为 308 跳 `dirhuntai.com` |
 | 2026-10-18 | 推送并部署：260 个文件提交到 `feat/dirhuntai-launch-phase-1`，PR #1 squash 合并进 `main`；修复 `pnpm-lock.yaml` 与 `package.json` 不同步导致的 frozen-lockfile 失败；Vercel 项目 `dirhuntai` 创建并部署成功（https://dirhuntai.vercel.app），production 环境变量 18 项已配；Sanity CORS 补齐生产域名与 `localhost:3000`；`dirhuntai.com` / `www.dirhuntai.com` 已加入 Vercel 项目，DNS 待改；线上验证 `/`、`/about`、`/privacy`、`/terms`、`/pricing`、`/auth/login`、`/robots.txt`、`/sitemap.xml`、`/feed.xml`、`/studio` 均 200，定价页只渲染 Free、登录页无 OAuth 按钮 |
