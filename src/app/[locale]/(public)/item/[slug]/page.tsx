@@ -43,11 +43,19 @@ export async function generateMetadata({
   }
 
   const imageProps = item?.image ? urlForImage(item?.image) : null;
+  const ogImageUrl = new URL(`${siteConfig.url}/api/og`);
+  ogImageUrl.searchParams.append("title", item.name);
+  ogImageUrl.searchParams.append("description", item.description || "");
+  ogImageUrl.searchParams.append(
+    "type",
+    item.categories?.[0]?.name || "AI Tool",
+  );
+
   return constructMetadata({
     title: `${item.name}`,
     description: item.description,
     canonicalUrl: `${siteConfig.url}/item/${params.slug}`,
-    image: imageProps?.src,
+    image: imageProps?.src || ogImageUrl.toString(),
     locale: params.locale,
     type: "article",
     publishedTime: item.publishDate || item._createdAt,
@@ -110,11 +118,8 @@ export default async function ItemPage({ params }: ItemPageProps) {
     ...(imageProps?.src && { image: imageProps.src }),
     applicationCategory: primaryCategory?.name || "WebApplication",
     operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
+    // No `offers` block: the directory does not track each tool's current
+    // pricing, and claiming price "0" would misrepresent paid products.
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,

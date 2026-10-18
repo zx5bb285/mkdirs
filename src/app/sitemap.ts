@@ -21,6 +21,10 @@ import {
 } from "@/sanity/lib/queries";
 import type { MetadataRoute } from "next";
 
+// The sitemap is generated from live CMS data. Regenerate it hourly so newly
+// published items and posts are discoverable without a redeploy.
+export const revalidate = 3600;
+
 const SITE_URL = (
   process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
 ).replace(/\/$/, "");

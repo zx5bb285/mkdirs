@@ -1,0 +1,144 @@
+[
+  {
+    "slug": "runway",
+    "name": "Runway",
+    "domain": "runwayml.com",
+    "link": "https://runwayml.com",
+    "featured": true,
+    "categories": ["ai-video-generators"],
+    "tags": ["video-generation", "video-editing", "art"],
+    "description": "AI video generation and editing suite for filmmakers, marketers, and creators.",
+    "introduction": "Runway combines generative video models with a broader editing toolkit. You can generate clips from text or images, extend shots, remove objects, and apply style effects, then assemble them in the browser. It is used for music videos, ads, and experimental film work.\n\n**Best for:** creators who want generative video plus practical post-production tools."
+  },
+  {
+    "slug": "pika",
+    "name": "Pika",
+    "domain": "pika.art",
+    "link": "https://pika.art",
+    "categories": ["ai-video-generators"],
+    "tags": ["video-generation", "social-media"],
+    "description": "Text and image-to-video generator focused on short clips and creative effects.",
+    "introduction": "Pika generates short videos from text prompts or still images. It emphasizes playful effects such as morphing, lip sync, and scene transformations, and provides controls for motion and camera behavior. Clips are typically short, making it a good fit for social content and rapid experimentation.\n\n**Best for:** social media clips and quick visual experiments."
+  },
+  {
+    "slug": "luma-dream-machine",
+    "name": "Luma Dream Machine",
+    "domain": "lumalabs.ai",
+    "link": "https://lumalabs.ai/dream-machine",
+    "categories": ["ai-video-generators"],
+    "tags": ["video-generation", "art"],
+    "description": "AI video model for generating cinematic clips from text and images.",
+    "introduction": "Luma Dream Machine generates video from text and images with an emphasis on natural motion and cinematic framing. It supports starting and ending frames, camera motion prompts, and iterative re-generation. The web interface keeps the workflow simple for non-professionals.\n\n**Best for:** marketers and creators who need atmospheric, camera-driven clips."
+  },
+  {
+    "slug": "kling-ai",
+    "name": "Kling AI",
+    "domain": "klingai.com",
+    "link": "https://klingai.com",
+    "categories": ["ai-video-generators"],
+    "tags": ["video-generation"],
+    "description": "Video generation platform with strong motion, longer clips, and creative controls.",
+    "introduction": "Kling AI is a video generation platform from Kuaishou. It supports text-to-video and image-to-video, with controls for motion intensity, camera movement, and clip duration. It has been noted for handling dynamic scenes and character movement well, and offers tools for extending and editing generated clips.\n\n**Best for:** creators who need dynamic motion and longer AI-generated shots."
+  },
+  {
+    "slug": "hailuo-ai",
+    "name": "Hailuo AI",
+    "domain": "hailuoai.video",
+    "link": "https://hailuoai.video",
+    "categories": ["ai-video-generators"],
+    "tags": ["video-generation", "social-media"],
+    "description": "MiniMax's text and image-to-video generator with expressive motion.",
+    "introduction": "Hailuo AI is a video generator from MiniMax. It produces short clips from text or images with expressive character motion and camera work, and includes templates for common social formats. The interface is lightweight, and the service has become popular for stylized short videos.\n\n**Best for:** fast, expressive short-form video generation."
+  },
+  {
+    "slug": "heygen",
+    "name": "HeyGen",
+    "domain": "heygen.com",
+    "link": "https://www.heygen.com",
+    "categories": ["ai-avatars-voice"],
+    "tags": ["avatar", "voice", "video-generation", "marketing"],
+    "description": "AI avatar videos, talking heads, and video translation for business.",
+    "introduction": "HeyGen creates videos with AI avatars and voices. You can write a script or upload audio and have a realistic presenter speak it, clone your own appearance and voice, or translate an existing video into another language with lip sync. Templates and a browser editor simplify production.\n\n**Best for:** training videos, marketing clips, and localized spokesperson content."
+  },
+  {
+    "slug": "synthesia",
+    "name": "Synthesia",
+    "domain": "synthesia.io",
+    "link": "https://www.synthesia.io",
+    "categories": ["ai-avatars-voice"],
+    "tags": ["avatar", "video-generation", "education"],
+    "description": "Enterprise AI video platform with avatars, templates, and collaboration.",
+    "introduction": "Synthesia is an enterprise-focused AI video platform. It provides studio-quality avatars, a template library, and a browser editor for turning scripts into training, onboarding, and product videos. Collaboration, brand controls, and governance features are aimed at large organizations.\n\n**Best for:** enterprises producing training and internal communication videos at scale."
+  },
+  {
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "domain": "elevenlabs.io",
+    "link": "https://elevenlabs.io",
+    "featured": true,
+    "categories": ["ai-avatars-voice"],
+    "tags": ["voice", "dubbing", "audio"],
+    "description": "Realistic text-to-speech, voice cloning, and dubbing in many languages.",
+    "introduction": "ElevenLabs specializes in natural-sounding speech synthesis. It offers text-to-speech in many languages, voice cloning from short samples, dubbing for video, and a library of stock voices. An API supports integration into apps, and controls cover stability, style, and pronunciation.\n\n**Best for:** voiceovers, audiobooks, dubbing, and apps that need high-quality speech."
+  },
+  {
+    "slug": "descript",
+    "name": "Descript",
+    "domain": "descript.com",
+    "link": "https://www.descript.com",
+    "categories": ["ai-avatars-voice"],
+    "tags": ["video-editing", "transcription", "audio"],
+    "description": "Text-based video and audio editor with transcription and AI voice tools.",
+    "introduction": "Descript lets you edit video and audio by editing a transcript. Remove a word and the corresponding audio disappears; delete a paragraph and the clip shortens. It also provides studio sound, filler-word removal, screen recording, and AI voice generation, which makes it popular for podcasts and tutorials.\n\n**Best for:** podcasters, course creators, and tutorial video editors."
+  },
+  {
+    "slug": "murf-ai",
+    "name": "Murf AI",
+    "domain": "murf.ai",
+    "link": "https://murf.ai",
+    "categories": ["ai-avatars-voice"],
+    "tags": ["voice", "audio", "education"],
+    "description": "AI voiceover studio with avatars, voice cloning, and team collaboration.",
+    "introduction": "Murf AI is a voiceover platform with a large voice library, pronunciation controls, and a timeline editor for syncing narration to slides or video. It includes AI avatars, voice cloning, and collaboration features for teams. The workflow is designed for presentations, e-learning, and ads.\n\n**Best for:** e-learning and marketing teams creating narrated presentations."
+  },
+  {
+    "slug": "suno",
+    "name": "Suno",
+    "domain": "suno.com",
+    "link": "https://suno.com",
+    "categories": ["ai-music"],
+    "tags": ["music", "audio"],
+    "description": "Generate complete songs, including vocals, from text prompts.",
+    "introduction": "Suno creates full songs from text descriptions, including vocals, instruments, and structure. You can specify genre, mood, and lyrics, then extend or remix the result. The quality is good enough for demos, social content, and brainstorming, though professional releases still require care around rights and mastering.\n\n**Best for:** song ideas, demos, and custom music for social or video projects."
+  },
+  {
+    "slug": "udio",
+    "name": "Udio",
+    "domain": "udio.com",
+    "link": "https://www.udio.com",
+    "categories": ["ai-music"],
+    "tags": ["music", "audio"],
+    "description": "AI music generator with vocals, style prompts, and track extension.",
+    "introduction": "Udio generates music from text prompts, with support for vocals, multiple genres, and section-level control. You can extend tracks, create variations, and refine lyrics or style. It is a direct alternative to Suno and is often compared on audio fidelity and lyrical coherence.\n\n**Best for:** creators who want iterative control over generated songs."
+  },
+  {
+    "slug": "soundraw",
+    "name": "Soundraw",
+    "domain": "soundraw.io",
+    "link": "https://soundraw.io",
+    "categories": ["ai-music"],
+    "tags": ["music", "audio"],
+    "description": "Royalty-free AI music generator for videos, podcasts, and streams.",
+    "introduction": "Soundraw generates royalty-free music by mood, genre, length, and tempo. Tracks can be customized section by section, and the license is designed for content creators who need background music without copyright claims. It integrates with common video editors through exports.\n\n**Best for:** YouTubers, podcasters, and streamers who need claim-free background music."
+  },
+  {
+    "slug": "aiva",
+    "name": "AIVA",
+    "domain": "aiva.ai",
+    "link": "https://www.aiva.ai",
+    "categories": ["ai-music"],
+    "tags": ["music", "audio"],
+    "description": "AI composer for cinematic soundtracks, game music, and background scores.",
+    "introduction": "AIVA is an AI composer aimed at cinematic and atmospheric music. It generates tracks from style presets or your own melodies, with controls for instrumentation and structure. The output is well suited to trailers, games, and background scores, and the platform provides licensing options for commercial use.\n\n**Best for:** game developers and video creators who need original score-like music."
+  }
+]

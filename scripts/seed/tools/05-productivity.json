@@ -1,0 +1,173 @@
+[
+  {
+    "slug": "otter-ai",
+    "name": "Otter.ai",
+    "domain": "otter.ai",
+    "link": "https://otter.ai",
+    "categories": ["ai-meeting-assistants"],
+    "tags": ["meeting", "transcription", "productivity"],
+    "description": "AI meeting assistant for transcription, summaries, and action items.",
+    "introduction": "Otter.ai joins meetings and produces live transcripts, summaries, and action items. It works with common video conferencing tools, supports speaker identification, and lets you search past conversations. The free tier covers basic use, while paid plans add more minutes and advanced collaboration.\n\n**Best for:** individuals and teams that want automatic meeting notes."
+  },
+  {
+    "slug": "fireflies-ai",
+    "name": "Fireflies.ai",
+    "domain": "fireflies.ai",
+    "link": "https://fireflies.ai",
+    "categories": ["ai-meeting-assistants"],
+    "tags": ["meeting", "transcription", "productivity"],
+    "description": "Meeting recorder with transcription, AI summaries, and CRM integrations.",
+    "introduction": "Fireflies.ai records and transcribes meetings across video-conferencing platforms. It generates summaries, action items, and topic trackers, and can push notes into CRM and project tools. Conversation analytics help sales and customer-success teams review calls at scale.\n\n**Best for:** sales and customer teams that want meeting notes in their CRM."
+  },
+  {
+    "slug": "tldv",
+    "name": "tl;dv",
+    "domain": "tldv.io",
+    "link": "https://tldv.io",
+    "categories": ["ai-meeting-assistants"],
+    "tags": ["meeting", "transcription", "productivity"],
+    "description": "Meeting recorder with AI notes, clips, and multilingual transcription.",
+    "introduction": "tl;dv records and transcribes meetings, then generates summaries and highlights. It supports many languages, timestamped notes, and shareable clips, and integrates with tools such as Notion, Slack, and HubSpot. The free plan includes unlimited recordings, which is unusual in this category.\n\n**Best for:** teams that want searchable meeting records and shareable clips."
+  },
+  {
+    "slug": "granola",
+    "name": "Granola",
+    "domain": "granola.ai",
+    "link": "https://www.granola.ai",
+    "categories": ["ai-meeting-assistants"],
+    "tags": ["meeting", "productivity"],
+    "description": "AI notepad that enhances your own meeting notes with context and summaries.",
+    "introduction": "Granola takes a different approach: it captures system audio and combines it with the notes you type, producing an enhanced record of the meeting. It works across meeting apps without joining as a bot, and can pull in context from calendars and documents. The result feels closer to a personal notebook than a recorder.\n\n**Best for:** people who take their own notes and want them enriched automatically."
+  },
+  {
+    "slug": "fathom",
+    "name": "Fathom",
+    "domain": "fathom.video",
+    "link": "https://fathom.video",
+    "categories": ["ai-meeting-assistants"],
+    "tags": ["meeting", "transcription", "free"],
+    "description": "Free AI meeting recorder with instant summaries and CRM sync.",
+    "introduction": "Fathom records, transcribes, and summarizes meetings, with a free plan that covers unlimited recordings and AI summaries. It highlights action items, lets you search across calls, and syncs notes to CRMs and other tools. Setup is quick, and it works with major conferencing platforms.\n\n**Best for:** individuals and small teams that want capable meeting notes for free."
+  },
+  {
+    "slug": "zapier",
+    "name": "Zapier",
+    "domain": "zapier.com",
+    "link": "https://zapier.com",
+    "categories": ["ai-automation"],
+    "tags": ["automation", "workflow", "no-code"],
+    "description": "Connect thousands of apps and automate workflows with AI-assisted steps.",
+    "introduction": "Zapier connects thousands of apps through automated workflows called Zaps. AI features help build workflows, extract data, and add language-model steps, while interfaces and tables support lightweight internal tools. It is the broadest integration platform for non-developers.\n\n**Best for:** operations and marketing teams automating repetitive cross-app tasks."
+  },
+  {
+    "slug": "make",
+    "name": "Make",
+    "domain": "make.com",
+    "link": "https://www.make.com",
+    "categories": ["ai-automation"],
+    "tags": ["automation", "workflow", "no-code"],
+    "description": "Visual automation builder with AI modules and advanced workflow logic.",
+    "introduction": "Make is a visual automation platform where workflows are assembled on a canvas. It supports branching, iteration, error handling, and AI modules, and connects to a large app library. The visual model makes complex multi-step automations easier to understand than long linear recipes.\n\n**Best for:** power users who need more logic and visibility than simple automation tools offer."
+  },
+  {
+    "slug": "n8n",
+    "name": "n8n",
+    "domain": "n8n.io",
+    "link": "https://n8n.io",
+    "categories": ["ai-automation"],
+    "tags": ["automation", "workflow", "open-source"],
+    "description": "Open-source workflow automation with AI agent nodes and self-hosting.",
+    "introduction": "n8n is an open-source automation platform that can be self-hosted or used in the cloud. It combines a visual workflow editor with code steps, AI agent nodes, and integrations. Self-hosting gives teams control over data and costs, which is attractive for technical organizations.\n\n**Best for:** technical teams that want automation they can host and extend."
+  },
+  {
+    "slug": "relevance-ai",
+    "name": "Relevance AI",
+    "domain": "relevanceai.com",
+    "link": "https://relevanceai.com",
+    "categories": ["ai-automation"],
+    "tags": ["automation", "workflow", "no-code"],
+    "description": "Build AI agents and multi-step workflows with tools and knowledge bases.",
+    "introduction": "Relevance AI is a platform for building AI agents and teams of agents that can use tools, access knowledge, and complete multi-step tasks. It provides templates, integrations, and a visual builder, aimed at business teams that want custom agents without starting from an API.\n\n**Best for:** teams building internal AI agents for sales, research, or operations."
+  },
+  {
+    "slug": "gamma",
+    "name": "Gamma",
+    "domain": "gamma.app",
+    "link": "https://gamma.app",
+    "featured": true,
+    "categories": ["ai-presentations"],
+    "tags": ["presentation", "productivity"],
+    "description": "AI-generated presentations, documents, and webpages from a prompt.",
+    "introduction": "Gamma creates presentations, documents, and simple webpages from prompts or uploaded outlines. It generates layouts, images, and structure automatically, then lets you edit in a card-based editor. Sharing and analytics are built in, and the format adapts to the screen rather than fixed slides.\n\n**Best for:** fast decks and visual documents that do not need pixel-perfect slides."
+  },
+  {
+    "slug": "beautiful-ai",
+    "name": "Beautiful.ai",
+    "domain": "beautiful.ai",
+    "link": "https://www.beautiful.ai",
+    "categories": ["ai-presentations"],
+    "tags": ["presentation", "design"],
+    "description": "Presentation software with smart layouts that adapt as you add content.",
+    "introduction": "Beautiful.ai is a presentation tool built around smart layouts. As you add text, images, or charts, the layout adjusts to maintain alignment and spacing, which reduces manual formatting. A library of templates and team controls make it suitable for consistent business presentations.\n\n**Best for:** teams that want polished, consistent decks without design effort."
+  },
+  {
+    "slug": "presentations-ai",
+    "name": "Presentations.AI",
+    "domain": "presentations.ai",
+    "link": "https://www.presentations.ai",
+    "categories": ["ai-presentations"],
+    "tags": ["presentation", "productivity"],
+    "description": "Prompt-to-slides generator with templates and brand customization.",
+    "introduction": "Presentations.AI turns prompts, documents, and outlines into slide decks. It offers a library of templates, brand customization, and editing tools for refining generated slides. The workflow is aimed at quickly producing a presentable first draft rather than designing from scratch.\n\n**Best for:** quickly turning an idea or document into a first-draft deck."
+  },
+  {
+    "slug": "slidesai",
+    "name": "SlidesAI",
+    "domain": "slidesai.io",
+    "link": "https://www.slidesai.io",
+    "categories": ["ai-presentations"],
+    "tags": ["presentation", "productivity"],
+    "description": "Google Slides add-on that generates slides from text and prompts.",
+    "introduction": "SlidesAI is an add-on for Google Slides that generates slide content from text or prompts. It creates titles, bullet points, and layouts inside an existing Google Slides presentation, so teams can stay in the Google Workspace workflow. It is a focused tool rather than a full presentation platform.\n\n**Best for:** Google Workspace users who want AI slide generation inside Slides."
+  },
+  {
+    "slug": "elicit",
+    "name": "Elicit",
+    "domain": "elicit.com",
+    "link": "https://elicit.com",
+    "categories": ["ai-research-tools"],
+    "tags": ["research", "papers", "education"],
+    "description": "AI research assistant for literature reviews and structured data extraction.",
+    "introduction": "Elicit helps with literature reviews by searching academic papers and extracting structured information such as methods, sample sizes, and findings. It can summarize papers, build comparison tables, and organize sources. The workflow is designed for researchers who need traceable evidence rather than open-ended chat.\n\n**Best for:** researchers and students conducting literature reviews."
+  },
+  {
+    "slug": "consensus",
+    "name": "Consensus",
+    "domain": "consensus.app",
+    "link": "https://consensus.app",
+    "categories": ["ai-research-tools"],
+    "tags": ["research", "papers"],
+    "description": "Search engine that summarizes scientific evidence with citations.",
+    "introduction": "Consensus is a search engine for scientific research. It surfaces relevant papers, summarizes findings, and shows whether studies support or contradict a claim. Citation-backed answers make it useful for evidence checks in health, social science, and policy work.\n\n**Best for:** evidence-based questions that need citations from research papers."
+  },
+  {
+    "slug": "notebooklm",
+    "name": "NotebookLM",
+    "domain": "notebooklm.google.com",
+    "link": "https://notebooklm.google.com",
+    "categories": ["ai-research-tools"],
+    "tags": ["research", "education", "free"],
+    "description": "Google's source-grounded notebook with summaries and audio overviews.",
+    "introduction": "NotebookLM lets you upload documents, links, and notes, then ask questions grounded in those sources. It provides citations back to the original text, generates study guides and briefings, and can turn material into an audio overview. It is designed to reduce unsupported answers by limiting itself to your sources.\n\n**Best for:** studying, research synthesis, and making sense of a document collection."
+  },
+  {
+    "slug": "scispace",
+    "name": "SciSpace",
+    "domain": "typeset.io",
+    "link": "https://typeset.io",
+    "categories": ["ai-research-tools"],
+    "tags": ["research", "papers", "education"],
+    "description": "Research assistant for reading, explaining, and organizing academic papers.",
+    "introduction": "SciSpace combines a paper search engine with an AI assistant that explains passages, formulas, and figures. You can ask questions about a paper, get simpler explanations, and organize references. It is built for students and researchers working through dense academic literature.\n\n**Best for:** reading and understanding academic papers more quickly."
+  }
+]

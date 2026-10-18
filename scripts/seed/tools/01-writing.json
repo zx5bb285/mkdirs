@@ -1,0 +1,205 @@
+[
+  {
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "domain": "chatgpt.com",
+    "link": "https://chatgpt.com",
+    "featured": true,
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "assistant", "writing", "research", "freemium"],
+    "description": "OpenAI's multimodal AI assistant for writing, research, analysis, and coding help.",
+    "introduction": "ChatGPT is OpenAI's general-purpose AI assistant. You can use it to draft and edit text, summarize documents, analyze data, brainstorm, write code, and answer questions in a conversational interface. The product supports file uploads, image understanding, voice conversations, web browsing, and custom GPTs for repeated tasks.\n\n**Best for:** individuals and teams that want one flexible assistant for everyday knowledge work. Features and usage limits depend on the plan you choose."
+  },
+  {
+    "slug": "claude",
+    "name": "Claude",
+    "domain": "claude.ai",
+    "link": "https://claude.ai",
+    "featured": true,
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "assistant", "writing", "research"],
+    "description": "Anthropic's AI assistant, strong at long documents, careful writing, and code review.",
+    "introduction": "Claude is Anthropic's AI assistant, available on the web, desktop, and mobile. It is particularly comfortable with long documents: you can upload reports, contracts, or codebases and ask for summaries, comparisons, or edits. Claude is also used for drafting, research, and programming tasks, with a writing style that many users find natural and measured.\n\n**Best for:** long-context reading, editing, and teams that value careful, well-structured answers."
+  },
+  {
+    "slug": "gemini",
+    "name": "Gemini",
+    "domain": "gemini.google.com",
+    "link": "https://gemini.google.com",
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "assistant", "research"],
+    "description": "Google's multimodal assistant, connected to Search and Google Workspace apps.",
+    "introduction": "Gemini is Google's AI assistant and model family. The consumer app handles text, images, audio, and files, and integrates with Google services such as Search, Gmail, Docs, and Drive on supported plans. It can help with research, writing, planning, and coding, and it is a natural choice if your work already lives in Google's ecosystem.\n\n**Best for:** Google Workspace users who want an assistant close to their email, documents, and search."
+  },
+  {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "domain": "perplexity.ai",
+    "link": "https://www.perplexity.ai",
+    "featured": true,
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "research", "free"],
+    "description": "AI answer engine that responds with cited sources and follow-up questions.",
+    "introduction": "Perplexity combines a conversational assistant with live web search. Answers include inline citations, so you can check where each claim came from, and you can switch between quick answers and deeper research modes. It supports file uploads and follow-up questions, making it useful for market research, fact-checking, and learning a new topic.\n\n**Best for:** research tasks where source transparency matters more than open-ended creative writing."
+  },
+  {
+    "slug": "microsoft-copilot",
+    "name": "Microsoft Copilot",
+    "domain": "copilot.microsoft.com",
+    "link": "https://copilot.microsoft.com",
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "assistant", "productivity"],
+    "description": "Microsoft's AI assistant with web answers and Microsoft 365 integration.",
+    "introduction": "Microsoft Copilot is the company's AI assistant, available through the web, Windows, and Microsoft 365 apps. The free experience focuses on chat, web-grounded answers, and image generation, while paid Microsoft 365 plans add assistance inside Word, Excel, PowerPoint, Outlook, and Teams. It is aimed at people who want AI help without leaving Microsoft's productivity suite.\n\n**Best for:** organizations standardized on Windows and Microsoft 365."
+  },
+  {
+    "slug": "poe",
+    "name": "Poe",
+    "domain": "poe.com",
+    "link": "https://poe.com",
+    "categories": ["ai-chatbots"],
+    "tags": ["chatbot", "assistant", "freemium"],
+    "description": "Quora's chat platform for comparing models, bots, and custom assistants.",
+    "introduction": "Poe is a chat platform from Quora that gives you access to many AI models and community-built bots in one place. You can compare answers from different models, create a custom bot with its own instructions and knowledge, and share it with others. A single subscription covers multiple models, which makes Poe convenient for experimentation.\n\n**Best for:** users who want to try several models and build lightweight custom chatbots."
+  },
+  {
+    "slug": "jasper",
+    "name": "Jasper",
+    "domain": "jasper.ai",
+    "link": "https://www.jasper.ai",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "marketing", "copywriting"],
+    "description": "AI marketing platform for on-brand copy, campaigns, and content workflows.",
+    "introduction": "Jasper is an AI writing platform built around marketing teams. It provides templates and workflows for ads, landing pages, emails, product descriptions, and long-form content, along with brand voice controls so outputs stay consistent. Teams can collaborate on campaigns, reuse approved messaging, and connect Jasper to other marketing tools.\n\n**Best for:** marketing teams producing a high volume of on-brand copy."
+  },
+  {
+    "slug": "copy-ai",
+    "name": "Copy.ai",
+    "domain": "copy.ai",
+    "link": "https://www.copy.ai",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "marketing", "copywriting"],
+    "description": "AI copywriting and go-to-market platform with workflows and brand voice.",
+    "introduction": "Copy.ai started as a short-form copywriting assistant and has grown into a go-to-market platform. It combines AI writing with reusable workflows for sales outreach, content repurposing, and marketing operations. Brand voice settings and team workspaces help keep output consistent across people and campaigns.\n\n**Best for:** sales and marketing teams that want repeatable AI workflows beyond one-off prompts."
+  },
+  {
+    "slug": "writesonic",
+    "name": "Writesonic",
+    "domain": "writesonic.com",
+    "link": "https://writesonic.com",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "seo", "content"],
+    "description": "AI writing and SEO platform for articles, landing pages, and chatbots.",
+    "introduction": "Writesonic bundles AI writing, SEO research, and chatbot creation into one platform. It can generate long-form articles with citations, optimize drafts for target keywords, and build support or lead-generation chatbots. The editor is designed for content teams that want research and drafting in the same place.\n\n**Best for:** content teams that want article drafting and basic SEO checks in one tool."
+  },
+  {
+    "slug": "grammarly",
+    "name": "Grammarly",
+    "domain": "grammarly.com",
+    "link": "https://www.grammarly.com",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "productivity", "language"],
+    "description": "AI writing assistant for grammar, clarity, tone, and rewriting across apps.",
+    "introduction": "Grammarly checks grammar, spelling, punctuation, clarity, and tone as you write. It works across browsers, desktop apps, and mobile keyboards, so it can review emails, documents, and social posts without switching tools. Paid plans add rewrites, tone adjustment, plagiarism checks, and team style guides.\n\n**Best for:** anyone who writes professionally and wants consistent correctness and tone."
+  },
+  {
+    "slug": "quillbot",
+    "name": "QuillBot",
+    "domain": "quillbot.com",
+    "link": "https://quillbot.com",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "education", "free"],
+    "description": "Paraphrasing, summarizing, and grammar tools for students and writers.",
+    "introduction": "QuillBot provides paraphrasing, summarization, grammar checking, and citation tools in a browser-based workspace. The paraphraser offers multiple modes and synonym controls, which is useful for rewording drafts while keeping the original meaning. A Chrome extension and integrations bring the same tools into common writing apps.\n\n**Best for:** students and writers who need quick rewording and summaries."
+  },
+  {
+    "slug": "rytr",
+    "name": "Rytr",
+    "domain": "rytr.me",
+    "link": "https://rytr.me",
+    "categories": ["ai-writing-assistants"],
+    "tags": ["writing", "copywriting", "freemium"],
+    "description": "Lightweight AI writing assistant with templates, tones, and a free tier.",
+    "introduction": "Rytr is a compact AI writing assistant focused on speed and simplicity. It offers templates for common formats, multiple tones and languages, and a built-in editor for short-form content. The free tier is generous enough for occasional use, while paid plans increase limits and add features such as plagiarism checks.\n\n**Best for:** freelancers and small teams that need affordable short-form copy."
+  },
+  {
+    "slug": "surfer-seo",
+    "name": "Surfer SEO",
+    "domain": "surferseo.com",
+    "link": "https://surferseo.com",
+    "categories": ["ai-seo-tools"],
+    "tags": ["seo", "content"],
+    "description": "Content optimization platform with SERP research, briefs, and content scoring.",
+    "introduction": "Surfer SEO analyzes search results to build content briefs and score drafts against the terms and structure that top-ranking pages use. It includes keyword research, outline generation, internal-link suggestions, and an editor that updates the score as you write. The workflow is designed to connect research directly to production.\n\n**Best for:** SEO teams and content agencies optimizing pages for competitive queries."
+  },
+  {
+    "slug": "frase",
+    "name": "Frase",
+    "domain": "frase.io",
+    "link": "https://www.frase.io",
+    "categories": ["ai-seo-tools"],
+    "tags": ["seo", "content", "writing"],
+    "description": "SEO research, content briefs, and AI writing for search-driven articles.",
+    "introduction": "Frase combines SERP research, content briefs, and AI drafting. You can pull together the questions and topics competitors cover, turn them into an outline, and write or optimize the article inside the same editor. It is aimed at teams that publish search-driven content regularly and want a repeatable brief-to-draft process.\n\n**Best for:** content marketers who want research and drafting in one workflow."
+  },
+  {
+    "slug": "clearscope",
+    "name": "Clearscope",
+    "domain": "clearscope.io",
+    "link": "https://www.clearscope.io",
+    "categories": ["ai-seo-tools"],
+    "tags": ["seo", "content"],
+    "description": "Content optimization and keyword coverage for editorial and SEO teams.",
+    "introduction": "Clearscope focuses on content optimization rather than automated writing. It analyzes top-ranking pages and recommends terms, questions, and readability targets, then grades drafts as they are edited. The platform is known for a clean editor and reporting that helps editorial teams standardize quality across many writers.\n\n**Best for:** editorial teams that keep human writers and want data-backed optimization."
+  },
+  {
+    "slug": "neuronwriter",
+    "name": "NeuronWriter",
+    "domain": "neuronwriter.com",
+    "link": "https://neuronwriter.com",
+    "categories": ["ai-seo-tools"],
+    "tags": ["seo", "content", "writing"],
+    "description": "Affordable SEO content editor with NLP term suggestions and SERP analysis.",
+    "introduction": "NeuronWriter is an SEO writing tool that analyzes competing pages and suggests terms, questions, and structure for a target query. It includes briefs, a content score, internal-link recommendations, and AI drafting at a lower price point than many enterprise suites. The interface is straightforward for solo site owners.\n\n**Best for:** independent publishers and small teams that need affordable content optimization."
+  },
+  {
+    "slug": "deepl",
+    "name": "DeepL",
+    "domain": "deepl.com",
+    "link": "https://www.deepl.com",
+    "categories": ["ai-translation"],
+    "tags": ["translation", "language", "productivity"],
+    "description": "High-quality machine translation and writing refinement across languages.",
+    "introduction": "DeepL is a machine translation service known for natural-sounding output, especially between European languages. It translates text, documents, and entire websites, and includes a writing assistant that improves grammar and style. A glossary feature helps keep product names and terminology consistent.\n\n**Best for:** businesses and professionals translating documents where tone and nuance matter."
+  },
+  {
+    "slug": "google-translate",
+    "name": "Google Translate",
+    "domain": "translate.google.com",
+    "link": "https://translate.google.com",
+    "categories": ["ai-translation"],
+    "tags": ["translation", "language", "free"],
+    "description": "Free translation across more than 100 languages, with camera and document support.",
+    "introduction": "Google Translate is a free translation service covering more than 100 languages. It handles typed text, documents, websites, images through the camera, and live conversation on mobile. The quality varies by language pair, but its reach and zero cost make it the default option for quick, everyday translation.\n\n**Best for:** quick, free translation and travel or on-the-spot language help."
+  },
+  {
+    "slug": "reverso",
+    "name": "Reverso",
+    "domain": "reverso.net",
+    "link": "https://www.reverso.net",
+    "categories": ["ai-translation"],
+    "tags": ["translation", "language", "education"],
+    "description": "Translation with real-world examples, conjugation, and dictionary context.",
+    "introduction": "Reverso offers translation alongside contextual examples pulled from real texts, plus conjugation, synonyms, and dictionaries. Seeing a phrase used in multiple sentences helps with idioms and word choice that plain machine translation can miss. It is available on the web and mobile.\n\n**Best for:** language learners and writers who want examples, not just a translated string."
+  },
+  {
+    "slug": "smartcat",
+    "name": "Smartcat",
+    "domain": "smartcat.ai",
+    "link": "https://www.smartcat.ai",
+    "categories": ["ai-translation"],
+    "tags": ["translation", "localization", "content"],
+    "description": "AI-powered translation management and localization platform for teams.",
+    "introduction": "Smartcat is a translation management system that combines machine translation, translation memory, glossaries, and human translator workflows. Teams can manage localization projects, review quality, and pay translators through the platform. AI features speed up first drafts while keeping terminology consistent.\n\n**Best for:** companies localizing products or documentation at scale."
+  }
+]

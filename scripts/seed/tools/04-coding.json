@@ -1,0 +1,153 @@
+[
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "domain": "cursor.com",
+    "link": "https://cursor.com",
+    "featured": true,
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "ide", "developer-tools"],
+    "description": "AI-first code editor built on VS Code with agentic codebase editing.",
+    "introduction": "Cursor is a code editor built on VS Code with AI woven into the workflow. It can answer questions about your codebase, edit multiple files, run commands, and complete code with context from your project. Because it imports VS Code extensions and settings, switching costs are low.\n\n**Best for:** developers who want an AI-native editor without leaving the VS Code ecosystem."
+  },
+  {
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "domain": "github.com",
+    "link": "https://github.com/features/copilot",
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "developer-tools"],
+    "description": "GitHub's AI pair programmer for completion, chat, and pull-request review.",
+    "introduction": "GitHub Copilot provides code completion, chat, and agent-style assistance across popular editors and GitHub itself. It can explain code, suggest tests, review pull requests, and work from issues. Deep integration with GitHub makes it convenient for teams already using the platform.\n\n**Best for:** teams standardized on GitHub that want AI help across the development lifecycle."
+  },
+  {
+    "slug": "windsurf",
+    "name": "Windsurf",
+    "domain": "windsurf.com",
+    "link": "https://windsurf.com",
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "ide", "developer-tools"],
+    "description": "AI-native IDE with agentic flows for multi-file changes and refactors.",
+    "introduction": "Windsurf, from the team behind Codeium, is an AI-native IDE built around agentic coding. Its Cascade feature can make coordinated edits across files, run terminal commands, and iterate on errors. The editor aims to keep developers in flow while delegating larger changes to the agent.\n\n**Best for:** developers who want an agent that can carry out multi-step coding tasks."
+  },
+  {
+    "slug": "tabnine",
+    "name": "Tabnine",
+    "domain": "tabnine.com",
+    "link": "https://www.tabnine.com",
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "developer-tools"],
+    "description": "Privacy-focused AI code completion with self-hosting and team controls.",
+    "introduction": "Tabnine provides AI code completion with a strong emphasis on privacy and deployment control. It supports self-hosted models, private code repositories, and organizational policies, which matters for regulated industries. Completions are available in major IDEs, and the product can be tuned to a team's codebase.\n\n**Best for:** enterprises that need AI completion without sending code to a public service."
+  },
+  {
+    "slug": "continue",
+    "name": "Continue",
+    "domain": "continue.dev",
+    "link": "https://www.continue.dev",
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "open-source", "ide"],
+    "description": "Open-source AI code assistant for VS Code and JetBrains with model choice.",
+    "introduction": "Continue is an open-source AI coding assistant that runs in VS Code and JetBrains. It lets you connect different models, including local ones, and customize prompts, context providers, and workflows. Because it is open source, teams can audit and adapt it to their environment.\n\n**Best for:** developers who want model flexibility, local inference, and open-source tooling."
+  },
+  {
+    "slug": "jetbrains-ai",
+    "name": "JetBrains AI",
+    "domain": "jetbrains.com",
+    "link": "https://www.jetbrains.com/ai/",
+    "categories": ["ai-code-assistants"],
+    "tags": ["coding", "ide"],
+    "description": "AI assistant integrated into JetBrains IDEs for completion, chat, and refactoring.",
+    "introduction": "JetBrains AI brings AI assistance into IntelliJ, PyCharm, WebStorm, and other JetBrains IDEs. It offers context-aware completion, chat about the open project, code explanation, commit message generation, and refactoring suggestions. Integration with the IDE's understanding of code structure is its main advantage.\n\n**Best for:** JetBrains users who want AI help that understands project structure."
+  },
+  {
+    "slug": "v0",
+    "name": "v0",
+    "domain": "v0.dev",
+    "link": "https://v0.dev",
+    "categories": ["ai-app-builders"],
+    "tags": ["app-builder", "no-code", "design"],
+    "description": "Vercel's generative UI tool for React and Tailwind interfaces.",
+    "introduction": "v0 generates React and Tailwind UI from prompts and screenshots. It produces editable components that can be copied into a project or iterated on in the browser, and it is particularly strong for marketing pages, dashboards, and common interface patterns. Vercel's deployment workflow is a natural next step.\n\n**Best for:** front-end developers and designers building React interfaces quickly."
+  },
+  {
+    "slug": "bolt",
+    "name": "Bolt",
+    "domain": "bolt.new",
+    "link": "https://bolt.new",
+    "categories": ["ai-app-builders"],
+    "tags": ["app-builder", "no-code", "prototyping"],
+    "description": "Browser-based prompt-to-app builder for full-stack web projects.",
+    "introduction": "Bolt.new, from StackBlitz, builds and runs full-stack web apps in the browser. You describe the app, and it scaffolds files, installs dependencies, and runs the dev server in a WebContainer. You can edit code directly, ask for changes, and deploy or export the project.\n\n**Best for:** rapid prototyping and small full-stack apps without local setup."
+  },
+  {
+    "slug": "lovable",
+    "name": "Lovable",
+    "domain": "lovable.dev",
+    "link": "https://lovable.dev",
+    "categories": ["ai-app-builders"],
+    "tags": ["app-builder", "no-code"],
+    "description": "AI app builder for full-stack web apps with database and auth integrations.",
+    "introduction": "Lovable generates full-stack web applications from natural-language descriptions. It connects to services such as Supabase for authentication and data, and produces a codebase you can continue editing. The product is aimed at founders and product teams moving from idea to working prototype.\n\n**Best for:** non-engineers and small teams building an MVP with a real backend."
+  },
+  {
+    "slug": "replit",
+    "name": "Replit",
+    "domain": "replit.com",
+    "link": "https://replit.com",
+    "categories": ["ai-app-builders"],
+    "tags": ["app-builder", "ide", "education"],
+    "description": "Cloud IDE with an AI agent that builds, tests, and deploys apps.",
+    "introduction": "Replit is a browser-based development environment with an AI agent that can create projects, write code, run tests, and deploy them. It supports many languages and provides hosting, databases, and collaboration. Because everything runs in the cloud, it works from any device.\n\n**Best for:** learning, quick experiments, and small apps that need hosting built in."
+  },
+  {
+    "slug": "openrouter",
+    "name": "OpenRouter",
+    "domain": "openrouter.ai",
+    "link": "https://openrouter.ai",
+    "categories": ["ai-developer-tools"],
+    "tags": ["api", "llm", "developer-tools", "infrastructure"],
+    "description": "Unified API and router for hundreds of language and image models.",
+    "introduction": "OpenRouter provides a single API for many models from different providers, with routing, fallbacks, and usage-based billing. It is useful for comparing models, avoiding provider lock-in, and building features that can switch models without rewriting integrations. The dashboard shows spend and request logs.\n\n**Best for:** developers who want model choice and a single billing integration."
+  },
+  {
+    "slug": "replicate",
+    "name": "Replicate",
+    "domain": "replicate.com",
+    "link": "https://replicate.com",
+    "categories": ["ai-developer-tools"],
+    "tags": ["api", "open-source", "developer-tools"],
+    "description": "Run and fine-tune open-source models through a simple API.",
+    "introduction": "Replicate hosts a large collection of open-source models and exposes them through an API. You can run image, video, audio, and language models without managing infrastructure, fine-tune supported models, and deploy custom versions. Community models make it a good place to experiment.\n\n**Best for:** developers who want hosted open-source models without GPU operations."
+  },
+  {
+    "slug": "hugging-face",
+    "name": "Hugging Face",
+    "domain": "huggingface.co",
+    "link": "https://huggingface.co",
+    "categories": ["ai-developer-tools"],
+    "tags": ["open-source", "llm", "developer-tools"],
+    "description": "Model and dataset hub with inference, spaces, and open-source tooling.",
+    "introduction": "Hugging Face is the central hub for open machine-learning models, datasets, and demos. It provides hosted inference, Spaces for sharing apps, libraries for training and deployment, and community documentation. Much of the open AI ecosystem publishes and discovers models here.\n\n**Best for:** ML practitioners and developers working with open models and datasets."
+  },
+  {
+    "slug": "groq",
+    "name": "Groq",
+    "domain": "groq.com",
+    "link": "https://groq.com",
+    "categories": ["ai-developer-tools"],
+    "tags": ["api", "llm", "infrastructure"],
+    "description": "Fast LLM inference on custom hardware with an OpenAI-compatible API.",
+    "introduction": "Groq provides low-latency inference for open language models on its own LPU hardware. Its API is largely compatible with OpenAI's format, so existing integrations can often switch with a small change. Speed makes it attractive for real-time chat, voice, and agent workloads.\n\n**Best for:** latency-sensitive applications and high-throughput inference."
+  },
+  {
+    "slug": "mistral-ai",
+    "name": "Mistral AI",
+    "domain": "mistral.ai",
+    "link": "https://mistral.ai",
+    "categories": ["ai-developer-tools"],
+    "tags": ["llm", "api", "open-source"],
+    "description": "European AI lab offering open-weight and commercial language models.",
+    "introduction": "Mistral AI develops language models ranging from compact open-weight releases to larger commercial models. Its models are available through its own API and cloud partners, and are often chosen for multilingual performance and European data-governance requirements. Developer tooling includes function calling and embeddings.\n\n**Best for:** teams that want capable models with open-weight options and EU hosting."
+  }
+]
