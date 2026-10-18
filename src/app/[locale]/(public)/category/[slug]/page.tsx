@@ -1,5 +1,6 @@
 import ItemGrid from "@/components/item/item-grid";
 import EmptyGrid from "@/components/shared/empty-grid";
+import { HeaderSection } from "@/components/shared/header-section";
 import CustomPagination from "@/components/shared/pagination";
 import { siteConfig } from "@/config/site";
 import { getItems } from "@/data/item";
@@ -17,6 +18,7 @@ import type {
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { categoryQuery, sponsorItemListQuery } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -55,10 +57,19 @@ export default async function CategoryPage({
   params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const sponsorItems =
-    (await sanityFetch<SponsorItemListQueryResult>({
+  const [category, sponsorItemsResult] = await Promise.all([
+    sanityFetch<CategoryQueryResult>({
+      query: categoryQuery,
+      params: { slug: params.slug },
+    }),
+    sanityFetch<SponsorItemListQueryResult>({
       query: sponsorItemListQuery,
-    })) || [];
+    }),
+  ]);
+  if (!category) {
+    return notFound();
+  }
+  const sponsorItems = sponsorItemsResult || [];
   // console.log("CategoryPage, sponsorItems", sponsorItems);
   const showSponsor = true;
   const hasSponsorItem = showSponsor && sponsorItems.length > 0;
@@ -84,6 +95,14 @@ export default async function CategoryPage({
 
   return (
     <div>
+      <HeaderSection
+        label="Category"
+        titleAs="h1"
+        title={category.name}
+        subtitle={category.description || undefined}
+        className="mb-8"
+      />
+
       {/* when no items are found */}
       {items?.length === 0 && <EmptyGrid />}
 
