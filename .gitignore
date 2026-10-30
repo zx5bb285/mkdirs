@@ -39,3 +39,6 @@ next-env.d.ts
 
 # idea
 /.idea/
+
+# local content backups (categories, env, Sanity exports)
+backups/

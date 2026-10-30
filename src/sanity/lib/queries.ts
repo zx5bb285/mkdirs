@@ -96,20 +96,65 @@ export const itemSimpleFields = /* groq */ `
   },
 `;
 
+// editorially reviewed content used by the item detail page
+export const itemReviewFields = /* groq */ `
+  verdict,
+  bestFor,
+  pros,
+  cons,
+  keyFeatures[]{ title, description },
+  pricingSummary,
+  pricingRows[]{ plan, price, billing, includes, note },
+  hasFreePlan,
+  startingPrice,
+  priceCurrency,
+  pricingUrl,
+  faqs[]{ question, answer },
+  lastVerified,
+  "reviewer": reviewer->{ _id, name, image, link, slug, jobTitle, bio },
+  sources[]{ title, url },
+  alternatives[]{
+    _key,
+    name,
+    url,
+    note,
+    "item": item->{
+      _id,
+      "name": coalesce(nameZh, name),
+      slug,
+      "description": coalesce(descriptionZh, description),
+      icon {
+        ...,
+        "blurDataURL": asset->metadata.lqip,
+        "imageColor": asset->metadata.palette.dominant.background,
+      },
+      image {
+        ...,
+        "blurDataURL": asset->metadata.lqip,
+        "imageColor": asset->metadata.palette.dominant.background,
+      },
+    },
+  },
+  seoTitle,
+  seoDescription,
+`;
+
 const itemFields = /* groq */ `
   ${itemSimpleFields}
   "introduction": coalesce(introductionZh, introduction),
+  ${itemReviewFields}
 `;
 
 // auto generate related items
 const itemFieldsWithRelated = /* groq */ `
-  introduction,
-  "related": *[_type == "item" && defined(slug.current) 
-    && defined(publishDate) 
+  "introduction": coalesce(introductionZh, introduction),
+  ${itemReviewFields}
+  "related": *[_type == "item" && defined(slug.current)
+    && defined(publishDate)
     && forceHidden != true
     && sponsor != true
-    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id] 
-    | order(publishedDate desc, _createdAt desc) [0...3] {
+    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id]
+    | order(publishDate desc, _createdAt desc) [0...3] {
       ${itemSimpleFields}
   },
   ${itemSimpleFields}
@@ -121,6 +166,35 @@ export const itemByIdQuery = defineQuery(`*[_type == "item" && _id == $id][0] {
 
 export const itemInfoBySlugQuery = defineQuery(`*[_type == "item" && slug.current == $slug][0] {
   ${itemSimpleFields}
+}`);
+
+// Lean query for generateMetadata: only the fields needed for title, description,
+// canonical, Open Graph, and article timestamps.
+export const itemMetadataBySlugQuery = defineQuery(`*[_type == "item" && slug.current == $slug
+&& forceHidden != true][0] {
+  _id,
+  _updatedAt,
+  "name": coalesce(nameZh, name),
+  slug,
+  "description": coalesce(descriptionZh, description),
+  link,
+  image {
+    ...,
+    "blurDataURL": asset->metadata.lqip,
+    "imageColor": asset->metadata.palette.dominant.background,
+  },
+  "categories": categories[]->{
+    "name": coalesce(nameZh, name),
+    slug,
+  },
+  "tags": tags[]->{
+    "name": coalesce(nameZh, name),
+    slug,
+  },
+  publishDate,
+  seoTitle,
+  seoDescription,
+  lastVerified,
 }`);
 
 export const itemFullInfoByIdQuery = defineQuery(`*[_type == "item" && _id == $id][0] {
@@ -180,6 +254,7 @@ export const collectionListQuery = defineQuery(`*[_type == "collection" && defin
 
 export const collectionQuery = defineQuery(`*[_type == "collection" && slug.current == $slug][0] {
   ${collectionFields}
+  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && sponsor != true && references(^._id)])
 }`);
 
 export const groupListQuery = groq`*[_type=="group"] | order(priority desc, _createdAt asc) {
@@ -221,6 +296,7 @@ export const categoryListQuery = defineQuery(`*[_type == "category" && defined(s
 
 export const categoryQuery = defineQuery(`*[_type == "category" && slug.current == $slug][0] {
   ${categoryFields}
+  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && sponsor != true && references(^._id)])
 }`);
 
 export const tagListQuery = defineQuery(`*[_type == "tag" && defined(slug.current)] 
@@ -230,6 +306,7 @@ export const tagListQuery = defineQuery(`*[_type == "tag" && defined(slug.curren
 
 export const tagQuery = defineQuery(`*[_type == "tag" && slug.current == $slug][0] {
   ${tagFields}
+  "count": count(*[_type == "item" && defined(publishDate) && forceHidden != true && sponsor != true && references(^._id)])
 }`);
 
 // ======================================================================================================================
@@ -343,6 +420,7 @@ export const blogCategoryListQuery = defineQuery(`
 export const blogCategoryMetadateQuery = defineQuery(`
   *[_type == "blogCategory" && slug.current == $slug][0] {
     ${blogCategoryFields}
+    "count": count(*[_type == "blogPost" && defined(publishDate) && publishDate <= now() && noIndex != true && references(^._id)])
   }
 `);
 
@@ -369,6 +447,45 @@ export const blogRelatedPostsQuery = defineQuery(`
     && publishDate <= now()
     && count(categories[@._ref in $categoryIds]) > 0
   ] | order(publishDate desc) [0...$count] {
+    ${blogPostSimpleFields}
+  }
+`);
+
+/**
+ * Editorial posts that link to an item from their body. This powers the
+ * "Related comparisons" block on tool pages and keeps the alternatives / vs
+ * cluster internally linked in both directions.
+ */
+export const blogPostsReferencingItemQuery = defineQuery(`
+  *[
+    _type == "blogPost"
+    && defined(slug.current)
+    && defined(publishDate)
+    && publishDate <= now()
+    && noIndex != true
+    && references(*[_type == "item" && slug.current == $slug]._id)
+  ] | order(publishDate desc) [0...$count] {
+    _id,
+    "title": title,
+    "slug": slug.current,
+    excerpt
+  }
+`);
+
+/**
+ * Newest published posts for the "Latest Articles" module on item and blog
+ * detail pages. Pass the current post (and any posts already shown on the
+ * page) via $excludeIds so the module never repeats what is visible above.
+ */
+export const blogLatestPostsQuery = defineQuery(`
+  *[
+    _type == "blogPost"
+    && defined(slug.current)
+    && defined(publishDate)
+    && publishDate <= now()
+    && noIndex != true
+    && !(_id in $excludeIds)
+  ] | order(publishDate desc, _createdAt desc) [0...$count] {
     ${blogPostSimpleFields}
   }
 `);
@@ -494,7 +611,25 @@ export const blogCategoryListQueryForSitemap = groq`*[_type == "blogCategory" &&
 }`;
 
 export const pageListQueryForSitemap = groq`*[_type == "page" && defined(slug.current)] | order(_createdAt asc) {
-  _id,  
+  _id,
+  _updatedAt,
+  "slug": slug.current,
+}`;
+
+// Author profile pages are only indexable when the author has at least one
+// published post; empty profiles stay out of the sitemap.
+export const authorListQueryForSitemap = groq`*[
+  _type == "user"
+  && defined(slug.current)
+  && count(*[
+    _type == "blogPost"
+    && defined(publishDate)
+    && publishDate <= now()
+    && noIndex != true
+    && author._ref == ^._id
+  ]) > 0
+] | order(_createdAt asc) {
+  _id,
   _updatedAt,
   "slug": slug.current,
 }`;

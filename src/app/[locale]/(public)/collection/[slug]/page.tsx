@@ -1,5 +1,6 @@
 import Container from "@/components/container";
 import ItemGrid from "@/components/item/item-grid";
+import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import EmptyGrid from "@/components/shared/empty-grid";
 import { HeaderSection } from "@/components/shared/header-section";
 import CustomPagination from "@/components/shared/pagination";
@@ -23,8 +24,10 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: { locale: Locale; slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }): Promise<Metadata | undefined> {
   const collection = await sanityFetch<CollectionQueryResult>({
     query: collectionQuery,
@@ -37,17 +40,23 @@ export async function generateMetadata({
     return;
   }
 
-  const ogImageUrl = new URL(`${siteConfig.url}/api/og`);
-  ogImageUrl.searchParams.append("title", collection.name);
-  ogImageUrl.searchParams.append("description", collection.description || "");
-  ogImageUrl.searchParams.append("type", "Collection");
+  const page = Number(
+    (searchParams as { page?: string } | undefined)?.page ?? "1",
+  );
+  const currentPage = Number.isFinite(page) && page > 0 ? page : 1;
+  const base = `/collection/${params.slug}`;
 
   return constructMetadata({
     title: `${collection.name}`,
-    description: collection.description,
-    canonicalUrl: `${siteConfig.url}/collection/${params.slug}`,
+    description:
+      collection.description || `Curated AI tools in the ${collection.name}.`,
+    canonicalUrl:
+      currentPage > 1
+        ? `${siteConfig.url}${base}?page=${currentPage}`
+        : `${siteConfig.url}${base}`,
     locale: params.locale,
-    // image: ogImageUrl.toString(),
+    // Empty collection pages stay reachable but out of the index.
+    noIndex: collection.count === 0,
   });
 }
 
@@ -96,15 +105,38 @@ export default async function CollectionPage({
     totalPages,
   );
 
+  const collectionUrl = `${siteConfig.url}/collection/${params.slug}`;
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", url: siteConfig.url },
+    { name: "Collections", url: `${siteConfig.url}/collection` },
+    { name: collection.name, url: collectionUrl },
+  ]);
+  const itemList =
+    items.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: collection.name,
+          numberOfItems: totalCount,
+          itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${siteConfig.url}/item/${item.slug.current}`,
+            name: item.name,
+          })),
+        }
+      : null;
+
   return (
     <div className="mb-16">
+      <JsonLd data={itemList ? [breadcrumb, itemList] : breadcrumb} />
       <div className="mt-8">
         <div className="w-full flex flex-col items-center justify-center gap-8">
           <HeaderSection
-            labelAs="h1"
             label="Collection"
-            titleAs="h2"
+            titleAs="h1"
             title={`${collection?.name}`}
+            subtitle={collection?.description || undefined}
           />
         </div>
       </div>

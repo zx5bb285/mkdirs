@@ -1,6 +1,6 @@
 import { localePath } from "@/i18n/routing";
-import { COLLECTIONS_PER_PAGE, ITEMS_PER_PAGE } from "@/lib/constants";
 import type {
+  AuthorListQueryForSitemapResult,
   BlogCategoryListQueryForSitemapResult,
   BlogListQueryForSitemapResult,
   CategoryListQueryForSitemapResult,
@@ -11,6 +11,7 @@ import type {
 } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  authorListQueryForSitemap,
   blogCategoryListQueryForSitemap,
   blogListQueryForSitemap,
   categoryListQueryForSitemap,
@@ -89,6 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     blogListQueryResult,
     blogCategoryListQueryResult,
     pageListQueryResult,
+    authorListQueryResult,
   ] = await Promise.all([
     sanityFetch<ItemListQueryForSitemapResult>({
       query: itemListQueryForSitemap,
@@ -111,6 +113,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sanityFetch<PageListQueryForSitemapResult>({
       query: pageListQueryForSitemap,
     }),
+    sanityFetch<AuthorListQueryForSitemapResult>({
+      query: authorListQueryForSitemap,
+    }),
   ]);
 
   for (const item of itemListQueryResult) {
@@ -122,52 +127,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const pageCount = Math.ceil(itemListQueryResult.length / ITEMS_PER_PAGE);
-  for (let i = 2; i <= pageCount; i++) {
-    pushLocalized(`/?page=${i}`, new Date(), {
-      priority: 0.5,
-      changeFrequency: "daily",
-    });
-  }
+  // Paginated listing URLs are excluded: they duplicate the first page and
+  // add no new indexable content. Their canonical points at themselves.
 
   for (const category of categoryListQueryResult) {
-    if (!category.slug) continue;
+    if (!category.slug || category.count === 0) continue;
     pushLocalized(`/category/${category.slug}`, new Date(category._updatedAt), {
       priority: 0.7,
       changeFrequency: "weekly",
     });
-
-    const pages = Math.ceil(category.count / ITEMS_PER_PAGE);
-    for (let i = 2; i <= pages; i++) {
-      pushLocalized(
-        `/category/${category.slug}?page=${i}`,
-        new Date(category._updatedAt),
-        {
-          priority: 0.5,
-          changeFrequency: "weekly",
-        },
-      );
-    }
   }
 
   for (const tag of tagListQueryResult) {
-    if (!tag.slug) continue;
+    if (!tag.slug || tag.count === 0) continue;
     pushLocalized(`/tag/${tag.slug}`, new Date(tag._updatedAt), {
       priority: 0.6,
       changeFrequency: "weekly",
     });
-
-    const pages = Math.ceil(tag.count / ITEMS_PER_PAGE);
-    for (let i = 2; i <= pages; i++) {
-      pushLocalized(`/tag/${tag.slug}?page=${i}`, new Date(tag._updatedAt), {
-        priority: 0.4,
-        changeFrequency: "weekly",
-      });
-    }
   }
 
   for (const collection of collectionListQueryResult) {
-    if (!collection.slug) continue;
+    if (!collection.slug || collection.count === 0) continue;
     pushLocalized(
       `/collection/${collection.slug}`,
       new Date(collection._updatedAt),
@@ -176,15 +156,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "weekly",
       },
     );
-
-    const pages = Math.ceil(collection.count / COLLECTIONS_PER_PAGE);
-    for (let i = 2; i <= pages; i++) {
-      pushLocalized(
-        `/collection/${collection.slug}?page=${i}`,
-        new Date(collection._updatedAt),
-        { priority: 0.5, changeFrequency: "weekly" },
-      );
-    }
   }
 
   for (const blog of blogListQueryResult) {
@@ -196,21 +167,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   for (const blogCategory of blogCategoryListQueryResult) {
-    if (!blogCategory.slug) continue;
+    if (!blogCategory.slug || blogCategory.count === 0) continue;
     pushLocalized(
       `/blog/category/${blogCategory.slug}`,
       new Date(blogCategory._updatedAt),
       { priority: 0.6, changeFrequency: "weekly" },
     );
+  }
 
-    const pages = Math.ceil(blogCategory.count / ITEMS_PER_PAGE);
-    for (let i = 2; i <= pages; i++) {
-      pushLocalized(
-        `/blog/category/${blogCategory.slug}?page=${i}`,
-        new Date(blogCategory._updatedAt),
-        { priority: 0.4, changeFrequency: "weekly" },
-      );
-    }
+  for (const author of authorListQueryResult) {
+    if (!author.slug) continue;
+    pushLocalized(`/blog/author/${author.slug}`, new Date(author._updatedAt), {
+      priority: 0.5,
+      changeFrequency: "monthly",
+    });
   }
 
   // Custom pages live at /[locale]/[slug] — not /page/[slug].

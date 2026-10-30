@@ -66,7 +66,15 @@ export default async function LocaleLayout({
       name: siteConfig.name,
       url: siteUrl,
       logo: `${siteUrl}${siteConfig.logo}`,
+      description: siteConfig.description,
       ...(sameAs.length > 0 && { sameAs }),
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "editorial",
+        email: siteConfig.mail,
+        url: `${siteUrl}/about`,
+        availableLanguage: ["English"],
+      },
     },
     {
       "@context": "https://schema.org",

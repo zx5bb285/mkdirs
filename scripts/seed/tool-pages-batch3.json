@@ -1,0 +1,1660 @@
+{
+  "collections": [
+    {
+      "id": "collection-ai-transcription-tools",
+      "name": "AI Transcription Tools",
+      "slug": "ai-transcription-tools",
+      "priority": 15,
+      "description": "AI transcription tools for meetings, interviews, podcasts and video. Compare free limits, language coverage, exports and per-minute pricing."
+    },
+    {
+      "id": "collection-minecraft-texture-generators",
+      "name": "Minecraft Texture Generators",
+      "slug": "minecraft-texture-generators",
+      "priority": 45,
+      "description": "AI generators for Minecraft block, item and GUI textures. Compare pixel-art resolutions, resource-pack exports, free limits and pricing."
+    }
+  ],
+  "items": {
+    "vidwud": {
+      "name": "Vidwud",
+      "slug": "vidwud",
+      "link": "https://vidwud.com/",
+      "description": "All-in-one AI studio for text-to-video, image-to-video, talking photos, photo dance and effects.",
+      "categorySlugs": ["video"],
+      "collectionSlugs": ["ai-tools-for-video-creators"],
+      "tagSlugs": ["image-to-video", "freemium"],
+      "seoTitle": "Vidwud Review 2026: AI Video Studio Pricing",
+      "seoDescription": "Vidwud is an all-in-one AI video, image and audio studio with talking photos, photo dance and effects. Compare free trials, credit plans and alternatives.",
+      "introduction": "Vidwud is a browser-based AI studio that combines video, image and audio generation in one workspace. Its video side covers text-to-video, image-to-video, talking-photo animation, photo dance, story-to-video and a library of effects and templates; the same account also exposes image generation, face swap, music tools and an AI clothes changer.\n\nThe appeal is breadth rather than a single best-in-class model. Instead of paying for separate apps for a talking avatar, a dance clip and a product image, you can run all three from one credit balance. Paid plans advertise access to 12 tools, multiple video models, HD image generation, no watermark, faster processing, uploads up to 500MB and unlimited storage.\n\nPricing is credit-based. The free tier is a limited trial; paid access starts at $12.99 per month for 80 credits, with cheaper per-credit half-yearly and yearly bundles. Credits are consumed per generation, and the number of credits a clip costs depends on the tool and output length, so the plan price is not the same as the cost per finished video. Check the current pricing page before committing to a long bundle.",
+      "verdict": "Vidwud is a broad, low-cost AI studio for creators who want many short-form video tricks in one place: image-to-video, talking photos, photo dance, story videos, effects and templates. The free trial is enough to test the workflow. Paid plans are affordable, but per-generation credit costs are unclear and output quality varies by model.",
+      "bestFor": "Creators who want one credit balance for talking photos, photo dance and short social videos",
+      "pros": [
+        "Combines video, image and audio tools in one browser workspace",
+        "Free trial lets you test the main video tools before paying",
+        "Paid plans include no watermark, HD images, 500MB uploads and unlimited storage",
+        "Half-yearly and yearly bundles cut the effective monthly price",
+        "Supports image-to-video, talking photo, photo dance, story-to-video and effects"
+      ],
+      "cons": [
+        "The per-generation credit cost is not shown clearly before you start",
+        "The homepage advertises multiple video models but does not name them",
+        "The free tier is a limited trial rather than a permanent free plan",
+        "Output quality and motion coherence vary by tool and model"
+      ],
+      "keyFeatures": [
+        {
+          "title": "AI video generator",
+          "description": "Turns a text prompt into a short video clip using one of several advertised video models."
+        },
+        {
+          "title": "Image-to-video and talking photo",
+          "description": "Animates a still image or makes a portrait speak, with lip movement driven by audio or text."
+        },
+        {
+          "title": "Photo dance and story-to-video",
+          "description": "Applies dance motion templates to a photo or turns a written story into a sequence of scenes."
+        },
+        {
+          "title": "Effects and template library",
+          "description": "Preset visual effects and social-video templates for fast short-form output."
+        },
+        {
+          "title": "All-in-one image and audio tools",
+          "description": "The same account includes image generation, face swap, music tools and an AI clothes changer."
+        }
+      ],
+      "pricingSummary": "Vidwud has a limited free trial. Paid access is sold as credit bundles: $12.99 per month for 80 credits, $24.99 every six months for 480 credits, and $29.99 per year for 960 credits. All paid tiers advertise 12 tools, multiple video models, HD images, no watermark, faster processing, 500MB uploads and unlimited storage. The pricing page does not itemise how many credits each tool or clip length consumes, so compare the cost per finished video before choosing a long bundle.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Limited trial",
+          "includes": "Free tries of the video tools"
+        },
+        {
+          "plan": "Monthly",
+          "price": "$12.99/mo",
+          "billing": "Billed monthly",
+          "includes": "80 credits per month; 12 tools; no watermark; HD images; 500MB uploads"
+        },
+        {
+          "plan": "Half-yearly",
+          "price": "$24.99",
+          "billing": "Billed every 6 months",
+          "includes": "480 credits; same paid features"
+        },
+        {
+          "plan": "Yearly",
+          "price": "$29.99",
+          "billing": "Billed annually",
+          "includes": "960 credits; same paid features"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 12.99,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://vidwud.com/pricing.html",
+      "faqs": [
+        {
+          "question": "Is Vidwud free?",
+          "answer": "Vidwud offers free tries, but the free tier is a limited trial rather than an ongoing free plan. Paid access starts at $12.99 per month for 80 credits."
+        },
+        {
+          "question": "How much does Vidwud cost?",
+          "answer": "Paid plans are $12.99 per month for 80 credits, $24.99 every six months for 480 credits, and $29.99 per year for 960 credits. Every paid tier advertises access to 12 tools, HD images, no watermark, faster processing, 500MB uploads and unlimited storage."
+        },
+        {
+          "question": "What can I make with Vidwud?",
+          "answer": "The video tools cover text-to-video, image-to-video, talking photos, photo dance, story-to-video and preset effects. The same account also includes image generation, face swap, music tools and an AI clothes changer."
+        },
+        {
+          "question": "Does Vidwud add a watermark?",
+          "answer": "Paid plans advertise no watermark. The free trial may add one, so check the export preview before relying on a free clip for published work."
+        },
+        {
+          "question": "Which AI video models does Vidwud use?",
+          "answer": "The homepage says paid plans include multiple video models but does not name them. Model availability can change, so check the selector inside the tool before buying a long bundle."
+        },
+        {
+          "question": "What are Vidwud's upload limits?",
+          "answer": "Paid plans advertise uploads up to 500MB and unlimited storage. The homepage does not state the free trial's upload or storage limits."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-runway",
+          "name": "Runway",
+          "url": "https://runwayml.com/",
+          "note": "A more established generative-video suite with stronger editing controls and less focus on photo-dance templates."
+        },
+        {
+          "itemRef": "item-cliptrend",
+          "name": "ClipTrend",
+          "url": "https://cliptrend.ai/",
+          "note": "A closer match for trend templates and image-to-video, with several named models in one workspace."
+        },
+        {
+          "name": "Pika",
+          "url": "https://pika.art/",
+          "note": "Focused on short creative video effects and image animation rather than an all-in-one tool library."
+        },
+        {
+          "name": "Kling AI",
+          "url": "https://klingai.com/",
+          "note": "A strong image-to-video and motion model; it is also one of the engines available through ClipTrend."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Vidwud official site",
+          "url": "https://vidwud.com/"
+        },
+        {
+          "title": "Vidwud pricing",
+          "url": "https://vidwud.com/pricing.html"
+        },
+        {
+          "title": "Vidwud terms of service",
+          "url": "https://vidwud.com/terms.html"
+        },
+        {
+          "title": "Vidwud privacy policy",
+          "url": "https://vidwud.com/privacy.html"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "cliptrend": {
+      "name": "ClipTrend",
+      "slug": "cliptrend",
+      "link": "https://cliptrend.ai/",
+      "description": "Image-to-video and trend-template studio with Kling, Veo, Seedance and other models in one workspace.",
+      "categorySlugs": ["video"],
+      "collectionSlugs": ["ai-tools-for-video-creators"],
+      "tagSlugs": ["image-to-video", "face-swap", "freemium"],
+      "seoTitle": "ClipTrend Review 2026: Pricing & Video Models",
+      "seoDescription": "ClipTrend is an image-to-video and trend-template studio with Kling, Veo, Seedance and more. Compare free credits, annual plans, credit packs, alternatives.",
+      "introduction": "ClipTrend is a browser-based image-to-video and short-form video workspace built around trend templates. You upload a photo or clip, choose an effect such as dance, hug, kiss, Halloween or meme, and generate a short vertical video. The same workspace also offers text-to-video, character swap, face swap, video extension, motion control and basic AI video editing, plus image tools for background removal, cartoon effects and GIF creation.\n\nThe main draw is model choice. ClipTrend exposes several engines in one interface, including Kling, Veo, Seedance, Vidu, Wan, Grok Imagine and MiniMax, so you can trade speed, quality and credit cost without opening separate accounts. Free users can animate a photo with MiniMax H3 as a 480p, five-second clip, and new Google sign-ups receive 30 credits. Paid generations unlock 768p or 2K output, longer clips and the full model list.\n\nPricing mixes subscriptions with pay-as-you-go credits. Annual plans are advertised at $10, $49 and $169 per month equivalent, monthly plans range from $15 to $399, and one-time credit packs start at $19.90 and remain valid for two years. Most templates cost roughly 8 to 40 credits for a five- to ten-second clip, so the effective price per video depends heavily on the model and duration. Failed generations are refunded automatically.",
+      "verdict": "ClipTrend is a flexible, trend-focused image-to-video studio. Access to Kling, Veo, Seedance and other engines in one workspace is genuinely useful, and the free MiniMax clip makes testing easy. Credit costs vary widely by model and template, though, so heavy users should compare annual plans with pay-as-you-go packs before committing.",
+      "bestFor": "Short-form creators who want trend templates and multiple video models without separate subscriptions",
+      "pros": [
+        "Multiple video and image models in one workspace",
+        "Free 480p MiniMax clip plus 30 sign-up credits",
+        "Trend templates for dance, hug, kiss, Halloween and memes",
+        "Pay-as-you-go credit packs remain valid for two years",
+        "Failed generations are refunded automatically; paid exports are watermark-free with commercial rights"
+      ],
+      "cons": [
+        "Credit cost per clip varies and is hard to estimate upfront",
+        "Free output is limited to 480p and five seconds",
+        "Model naming and total model counts are inconsistent across the site",
+        "Subscription and credit-pack pricing add complexity",
+        "Some trend templates produce similar results"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Trend template library",
+          "description": "One-click dance, hug, kiss, Halloween and meme effects built for short vertical video."
+        },
+        {
+          "title": "Image-to-video with model switching",
+          "description": "Animate a photo with MiniMax, Kling, Veo, Seedance, Vidu, Wan or Grok Imagine without leaving the workspace."
+        },
+        {
+          "title": "Text-to-video and video extension",
+          "description": "Generate from a prompt or extend an existing clip to a longer duration."
+        },
+        {
+          "title": "Face and character swap",
+          "description": "Replace a face or character in a source image or video, with motion control for pose guidance."
+        },
+        {
+          "title": "Image toolkit",
+          "description": "Background removal, cartoon and anime effects, GIF creation and text-to-image tools sit alongside the video features."
+        }
+      ],
+      "pricingSummary": "ClipTrend has a free tier with a 480p, five-second MiniMax clip and 30 credits for new Google sign-ups. Annual plans are $10 per month equivalent for Lite ($120/year, 7,500 credits), $49 per month equivalent for Pro ($588/year, 38,500 credits) and $169 per month equivalent for Ultra ($2,028/year, 140,000 credits). Monthly plans range from $15 to $399, and one-time credit packs start at $19.90 with two-year validity. Most templates cost about 8 to 40 credits for a five- to ten-second clip; paid credits include watermark-free exports and commercial rights.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Free account",
+          "includes": "30 sign-up credits; MiniMax H3 480p, 5-second clip; queued jobs"
+        },
+        {
+          "plan": "Lite",
+          "price": "$10/mo",
+          "billing": "$120 billed annually",
+          "includes": "7,500 credits; all models; priority queue; highest resolution; no watermark"
+        },
+        {
+          "plan": "Pro",
+          "price": "$49/mo",
+          "billing": "$588 billed annually",
+          "includes": "38,500 credits; all models; priority queue; highest resolution; no watermark"
+        },
+        {
+          "plan": "Ultra",
+          "price": "$169/mo",
+          "billing": "$2,028 billed annually",
+          "includes": "140,000 credits; all models; priority queue; highest resolution; no watermark"
+        },
+        {
+          "plan": "Credit pack",
+          "price": "From $19.90",
+          "billing": "One-time",
+          "includes": "Pay-as-you-go credits valid for two years"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 10,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://cliptrend.ai/pricing",
+      "faqs": [
+        {
+          "question": "Is ClipTrend free?",
+          "answer": "Yes, there is a free tier. Free accounts can animate a photo with MiniMax H3 as a 480p, five-second clip, and new Google sign-ups receive 30 credits. Free jobs may wait in a queue."
+        },
+        {
+          "question": "How much does ClipTrend cost?",
+          "answer": "Annual plans are $10 per month equivalent for Lite, $49 for Pro and $169 for Ultra. Monthly plans range from $15 to $399, and one-time credit packs start at $19.90 with two-year validity."
+        },
+        {
+          "question": "Which AI models are included?",
+          "answer": "The site lists Seedance 2.5, Vidu Q4, Kling 3, Veo 3.1, Wan 2.7, Grok Imagine, Nano Banana 2.1, Nano Banana Pro, Ideogram 3.0, GPT Image 2.5 and MiniMax H3. Model access can change, so check the selector before buying."
+        },
+        {
+          "question": "How many credits does a ClipTrend video cost?",
+          "answer": "ClipTrend says templates typically cost 8 to 40 credits for a five- to ten-second clip. The exact cost depends on the template, model, resolution and clip length."
+        },
+        {
+          "question": "Can I use ClipTrend videos commercially?",
+          "answer": "Paid credits include watermark-free exports and commercial rights according to the homepage. Review the current terms before publishing, especially for footage or faces you do not own."
+        },
+        {
+          "question": "Do ClipTrend credits expire?",
+          "answer": "One-time credit packs are advertised as valid for two years. Subscription credits follow the plan's billing cycle, so unused subscription credits may not carry over."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-runway",
+          "name": "Runway",
+          "url": "https://runwayml.com/",
+          "note": "A more production-oriented video suite with stronger editing and camera controls."
+        },
+        {
+          "itemRef": "item-vidwud",
+          "name": "Vidwud",
+          "url": "https://vidwud.com/",
+          "note": "A cheaper all-in-one studio with talking-photo and photo-dance tools, but fewer named models."
+        },
+        {
+          "name": "Pika",
+          "url": "https://pika.art/",
+          "note": "A focused image-animation and effects tool rather than a multi-model workspace."
+        },
+        {
+          "name": "Vidu",
+          "url": "https://www.vidu.com/",
+          "note": "One of the engines ClipTrend exposes; going direct may suit teams that standardise on Vidu."
+        }
+      ],
+      "sources": [
+        {
+          "title": "ClipTrend official site",
+          "url": "https://cliptrend.ai/"
+        },
+        {
+          "title": "ClipTrend pricing",
+          "url": "https://cliptrend.ai/pricing"
+        },
+        {
+          "title": "ClipTrend terms of service",
+          "url": "https://cliptrend.ai/terms-of-service"
+        },
+        {
+          "title": "ClipTrend refund policy",
+          "url": "https://cliptrend.ai/refund-policy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "musicful": {
+      "name": "Musicful",
+      "slug": "musicful",
+      "link": "https://musicful.ai/",
+      "description": "AI music and music-video platform for text-to-song, lyrics-to-song and hum-to-song generation.",
+      "categorySlugs": ["voice-audio"],
+      "collectionSlugs": ["ai-tools-for-video-creators"],
+      "tagSlugs": ["freemium"],
+      "seoTitle": "Musicful Review 2026: AI Music & Video Pricing",
+      "seoDescription": "Musicful turns text, lyrics or a hum into songs and music videos, with voice cloning and stem splitting. Compare weekly, monthly and perpetual plans.",
+      "introduction": "Musicful is an AI music platform that generates full songs and music videos from text, lyrics or a hummed melody. The core song generator supports more than 100 styles, from pop and rap to metal, K-pop, R&B, electronic and lo-fi, and can produce tracks up to eight minutes long with lyrics. Around that core, Musicful bundles an AI cover generator, singing voice generator, melody and beat tools, a lyrics writer, stem splitting, backing tracks, jingles and DJ drops.\n\nThe video side is unusual for a music generator. Musicful can turn a finished song into a lyric video, a visualizer or a cinematic music video, and the higher tiers add advanced lyric-video templates. Standard and above also unlock WAV and MIDI downloads, voice cloning, stem separation up to 13 tracks, lyric replacement and remastering, which makes the platform more useful for producers who want to edit or reuse the output.\n\nPricing is credit-based but structured unusually. Basic is $6.99 per week for 1,500 credits, Standard is $19.99 per month for 6,000 credits, Pro is displayed at $7.50 per month billed yearly for 28,000 credits, and Perpetual is a one-time $299.99 for 84,000 credits. There is no ongoing free plan on the pricing page, only an option to earn free credits. Commercial-use wording differs between the homepage and the pricing table, so confirm the current terms before releasing a song commercially.",
+      "verdict": "Musicful is a capable all-in-one music studio for creators who want songs, vocals and videos from one credit balance. The style range, stem splitting and video tools are strong for the price. Plan periods and credit allowances are unusually hard to compare, and commercial-use wording is inconsistent, so read the terms before releasing music commercially.",
+      "bestFor": "Creators who want AI songs, vocals and lyric videos from a single credit balance",
+      "pros": [
+        "Text, lyrics and hum-to-song generation in more than 100 styles",
+        "Music video, lyric video and visualizer tools",
+        "Stem splitting, WAV/MIDI export and voice cloning on higher tiers",
+        "Perpetual credit option alongside subscriptions",
+        "Songs up to eight minutes with 5K lyrics"
+      ],
+      "cons": [
+        "No ongoing free plan on the pricing page",
+        "Plans mix weekly, monthly, yearly and one-time billing",
+        "Pro's displayed price and credit allowance are hard to compare with Standard",
+        "Commercial-use wording conflicts between the homepage and pricing page",
+        "Credit costs per song or video are not obvious upfront"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Text, lyrics and hum to song",
+          "description": "Describe a song, paste lyrics or hum a melody, then generate a full track in a chosen genre."
+        },
+        {
+          "title": "100+ music styles",
+          "description": "Pop, rap, metal, K-pop, R&B, electronic, lo-fi and other styles, with tracks up to eight minutes."
+        },
+        {
+          "title": "Music and lyric videos",
+          "description": "Turn a finished song into a lyric video, visualizer or cinematic music video."
+        },
+        {
+          "title": "Voice cloning and AI covers",
+          "description": "Create custom voices and covers, with more voice slots on higher tiers."
+        },
+        {
+          "title": "Stem splitting and WAV/MIDI export",
+          "description": "Separate vocals and instruments, then download editable audio and MIDI files."
+        },
+        {
+          "title": "Perpetual credits",
+          "description": "A one-time 84,000-credit purchase for creators who do not want a recurring subscription."
+        }
+      ],
+      "pricingSummary": "Musicful has no ongoing free plan on its pricing page. Basic is $6.99 per week for 1,500 credits with limited models; Standard is $19.99 per month for 6,000 credits with all models, WAV/MIDI export, a basic voice clone and two-track stem splitting; Pro is displayed at $7.50 per month billed yearly for 28,000 credits with advanced voice cloning and stem splitting up to 13 tracks; Perpetual is $299.99 one-time for 84,000 credits and three voice slots. The page also shows crossed-out list prices and an 'earn free credits' option. Confirm commercial rights at checkout: the homepage says Free and Basic are non-commercial, while the pricing table lists commercial use on Basic.",
+      "pricingRows": [
+        {
+          "plan": "Basic",
+          "price": "$6.99/week",
+          "billing": "Billed weekly",
+          "includes": "1,500 credits; limited models; songs up to 8 minutes; basic lyric video",
+          "note": "List price $10.99/week"
+        },
+        {
+          "plan": "Standard",
+          "price": "$19.99/mo",
+          "billing": "Billed monthly",
+          "includes": "6,000 credits; all models; WAV/MIDI; basic voice clone; 2-track stem split",
+          "note": "List price $34.99/month"
+        },
+        {
+          "plan": "Pro",
+          "price": "$7.50/mo",
+          "billing": "Billed yearly",
+          "includes": "28,000 credits; advanced lyric video; advanced voice clone; 13-track stem split",
+          "note": "List price $14.17/month; yearly billing required"
+        },
+        {
+          "plan": "Perpetual",
+          "price": "$299.99",
+          "billing": "One-time",
+          "includes": "84,000 credits; all models; 3 voice slots; advanced features",
+          "note": "List price $599.99"
+        }
+      ],
+      "hasFreePlan": false,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://musicful.ai/pricing/",
+      "faqs": [
+        {
+          "question": "Does Musicful have a free plan?",
+          "answer": "No ongoing free plan is listed on the pricing page. The site offers an 'earn free credits' option, but the four visible plans are paid."
+        },
+        {
+          "question": "How much does Musicful cost?",
+          "answer": "Basic is $6.99 per week for 1,500 credits, Standard is $19.99 per month for 6,000 credits, Pro is displayed at $7.50 per month billed yearly for 28,000 credits, and Perpetual is $299.99 one-time for 84,000 credits."
+        },
+        {
+          "question": "What can I create with Musicful?",
+          "answer": "Text-to-song, lyrics-to-song and hum-to-song tracks in more than 100 styles, plus AI covers, voice cloning, lyric videos, visualizers and cinematic music videos."
+        },
+        {
+          "question": "Can I use Musicful songs commercially?",
+          "answer": "The homepage says commercial rights depend on the plan and that Free and Basic are for non-commercial use, while the pricing table lists commercial use on Basic. The wording conflicts, so confirm the current terms before releasing a song commercially."
+        },
+        {
+          "question": "Does Musicful support stem splitting?",
+          "answer": "Standard includes stem splitting for two tracks. Pro and Perpetual advertise stem splitting for up to 13 tracks, along with WAV and MIDI downloads."
+        },
+        {
+          "question": "How long can Musicful songs be?",
+          "answer": "The pricing page lists songs up to eight minutes with 5K lyrics across the paid tiers."
+        }
+      ],
+      "alternatives": [
+        {
+          "name": "Suno",
+          "url": "https://suno.com/",
+          "note": "A popular text-to-song generator with a strong style range and its own free-credit system."
+        },
+        {
+          "name": "Udio",
+          "url": "https://www.udio.com/",
+          "note": "Focused on high-quality song generation and remixing rather than lyric-video production."
+        },
+        {
+          "name": "Loudly",
+          "url": "https://www.loudly.com/",
+          "note": "An AI music platform aimed at creators who need royalty-cleared tracks for content."
+        },
+        {
+          "itemRef": "item-elevenlabs",
+          "name": "ElevenLabs",
+          "url": "https://elevenlabs.io/",
+          "note": "A better fit for voice-over, narration and voice cloning than for full songs."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Musicful official site",
+          "url": "https://musicful.ai/"
+        },
+        {
+          "title": "Musicful pricing",
+          "url": "https://musicful.ai/pricing/"
+        },
+        {
+          "title": "Musicful terms and conditions",
+          "url": "https://musicful.ai/terms-condition/"
+        },
+        {
+          "title": "Musicful refund policy",
+          "url": "https://musicful.ai/refund-policy/"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "otter-ai": {
+      "name": "Otter.ai",
+      "slug": "otter-ai",
+      "link": "https://otter.ai/",
+      "description": "AI meeting transcription and notes with live captions, speaker identification and summaries.",
+      "categorySlugs": ["productivity"],
+      "collectionSlugs": ["ai-transcription-tools", "ai-tools-for-productivity"],
+      "tagSlugs": [],
+      "seoTitle": "Otter.ai Review 2026: Pricing & Free Plan",
+      "seoDescription": "Otter.ai transcribes Zoom, Meet and Teams calls with speaker labels and summaries. Compare free minutes, Pro and Business pricing and alternatives.",
+      "introduction": "Otter.ai is an AI meeting assistant that transcribes conversations in real time and turns them into searchable notes. It joins Zoom, Google Meet and Microsoft Teams calls, records audio in person, and produces a transcript with speaker labels, a summary and action items. The web and mobile apps also support uploading existing audio and video files, with monthly import limits on each plan.\n\nThe strength is meeting workflow rather than raw transcription alone. Otter can capture a live call, identify who spoke, generate an outline, and let you ask questions about the transcript through AI Chat. Paid plans add advanced search, export options, team vocabulary and integrations. Business adds custom workflows, admin analytics and longer imported-file limits.\n\nThe free Basic plan includes 300 transcription minutes per month, three lifetime file imports and 30 minutes per conversation. Pro raises that to 1,200 minutes per month and 90 minutes per conversation with 10 imports per month, while Business focuses on unlimited in-app recording and 6,000 imported-file minutes per user. Pricing is per user: Pro is $16.99 per month or $8.33 per month billed annually, and Business is $30 or $19.99 per month billed annually. Otter is best for English-heavy meeting notes; language coverage and accuracy vary by plan.",
+      "verdict": "Otter.ai is the strongest choice for teams that live in video meetings and want transcripts, summaries and action items without extra work. Its live meeting capture is polished, and the free tier is generous enough to test. Import limits, English-first transcription and per-user pricing make it less attractive for large media archives or multilingual research.",
+      "bestFor": "Teams and professionals who want automatic notes, summaries and action items from meetings",
+      "pros": [
+        "Live transcription for Zoom, Google Meet and Microsoft Teams",
+        "Speaker labels, summaries and action items",
+        "Free plan with 300 minutes per month",
+        "AI Chat and search across conversations",
+        "Business plan supports long imported files and admin controls"
+      ],
+      "cons": [
+        "Free plan includes only three lifetime file imports",
+        "English-first experience; language support varies by plan",
+        "Per-user pricing gets expensive for teams",
+        "Conversation length is capped on lower plans",
+        "Not designed for high-volume media transcription"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Live meeting transcription",
+          "description": "Joins Zoom, Google Meet and Microsoft Teams calls and produces a live transcript with speaker labels."
+        },
+        {
+          "title": "Summaries and action items",
+          "description": "Generates an outline and extracts decisions and follow-up tasks after each conversation."
+        },
+        {
+          "title": "AI Chat over transcripts",
+          "description": "Ask questions about a meeting or search across past conversations instead of replaying audio."
+        },
+        {
+          "title": "File imports",
+          "description": "Upload existing audio or video for transcription, subject to monthly import limits."
+        },
+        {
+          "title": "Team administration",
+          "description": "Business adds custom workflows, admin analytics, team vocabulary and longer imported-file allowances."
+        }
+      ],
+      "pricingSummary": "Otter.ai has a free Basic plan with 300 minutes per month, three lifetime file imports and 30 minutes per conversation. Pro is $16.99 per user per month, or $8.33 per user per month billed annually, with 1,200 minutes per month, 10 imports per month and 90 minutes per conversation. Business is $30 or $19.99 per user per month billed annually, with unlimited in-app recording and 6,000 imported-file minutes per user per month. Enterprise pricing is custom.",
+      "pricingRows": [
+        {
+          "plan": "Basic",
+          "price": "$0",
+          "billing": "Free forever",
+          "includes": "300 minutes/month; 3 lifetime imports; 30 minutes/conversation"
+        },
+        {
+          "plan": "Pro",
+          "price": "$16.99/user/mo",
+          "billing": "Billed monthly",
+          "includes": "1,200 minutes/month; 10 imports/month; 90 minutes/conversation"
+        },
+        {
+          "plan": "Pro (annual)",
+          "price": "$8.33/user/mo",
+          "billing": "Billed annually",
+          "includes": "Same Pro features at the annual rate"
+        },
+        {
+          "plan": "Business",
+          "price": "$30/user/mo",
+          "billing": "Billed monthly",
+          "includes": "Unlimited in-app recording; 6,000 imported minutes/user; admin analytics"
+        },
+        {
+          "plan": "Business (annual)",
+          "price": "$19.99/user/mo",
+          "billing": "Billed annually",
+          "includes": "Same Business features at the annual rate"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 8.33,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://otter.ai/pricing",
+      "faqs": [
+        {
+          "question": "Is Otter.ai free?",
+          "answer": "Yes. The Basic plan is free forever and includes 300 transcription minutes per month, three lifetime file imports and 30 minutes per conversation."
+        },
+        {
+          "question": "How many minutes does Otter.ai include?",
+          "answer": "Basic includes 300 minutes per month, Pro includes 1,200 minutes per month, and Business includes unlimited in-app recording plus 6,000 imported-file minutes per user per month."
+        },
+        {
+          "question": "Does Otter.ai work with Zoom, Google Meet and Teams?",
+          "answer": "Yes. Otter can join meetings on Zoom, Google Meet and Microsoft Teams, and it also offers mobile and in-person recording."
+        },
+        {
+          "question": "Can I upload audio and video files to Otter.ai?",
+          "answer": "Yes, but imports are limited. Basic allows three lifetime imports, Pro allows 10 per month, and Business allows 6,000 imported-file minutes per user per month."
+        },
+        {
+          "question": "How accurate is Otter.ai?",
+          "answer": "Accuracy depends on audio quality, accents, background noise and language. Otter is optimised for English meetings; review important transcripts rather than treating them as verbatim legal records."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-descript",
+          "name": "Descript",
+          "url": "https://www.descript.com/",
+          "note": "Better when you need to edit the recording, not just read the transcript."
+        },
+        {
+          "itemRef": "item-happy-scribe",
+          "name": "Happy Scribe",
+          "url": "https://www.happyscribe.com/",
+          "note": "Stronger for multilingual subtitles and human proofreading."
+        },
+        {
+          "itemRef": "item-rev",
+          "name": "Rev",
+          "url": "https://www.rev.com/",
+          "note": "Offers human transcription when machine accuracy is not enough."
+        },
+        {
+          "name": "Fireflies.ai",
+          "url": "https://fireflies.ai/",
+          "note": "Another meeting notetaker with CRM integrations and conversation analytics."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Otter.ai pricing",
+          "url": "https://otter.ai/pricing"
+        },
+        {
+          "title": "Otter.ai official site",
+          "url": "https://otter.ai/"
+        },
+        {
+          "title": "Otter.ai terms of service",
+          "url": "https://otter.ai/terms-of-service"
+        },
+        {
+          "title": "Otter.ai privacy policy",
+          "url": "https://otter.ai/privacy-policy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "descript": {
+      "name": "Descript",
+      "slug": "descript",
+      "link": "https://www.descript.com/",
+      "description": "Text-based audio and video editor with AI transcription, Studio Sound and clip creation.",
+      "categorySlugs": ["productivity"],
+      "collectionSlugs": ["ai-transcription-tools", "ai-tools-for-productivity"],
+      "tagSlugs": [],
+      "seoTitle": "Descript Review 2026: Pricing & Free Plan",
+      "seoDescription": "Descript edits podcasts and videos by editing a transcript, with Studio Sound, filler-word removal and clip creation. Compare free minutes and pricing.",
+      "introduction": "Descript is a text-based editor for podcasts, videos and screen recordings. It transcribes your media, then lets you edit the recording by editing the transcript: delete a sentence and the corresponding audio disappears, or rearrange paragraphs and the timeline follows. That workflow makes it unusually fast to cut interviews, tutorials and talking-head videos without learning a timeline editor.\n\nAround the editor, Descript bundles AI features for cleaning audio, removing filler words, generating clips, recording screen and camera, and producing voice clones. The free plan includes 60 media minutes per month, 100 one-time AI credits, 720p export, 5GB storage and text-based editing. Hobbyist raises the allowance to 600 minutes, 1080p watermark-free export and Studio Sound; Creator adds 1,800 minutes, 4K export, more seats and the full Underlord AI toolset; Business adds 2,400 minutes, team Brand Studio and translation/dubbing in 30+ languages.\n\nPricing is per person and depends on billing. Hobbyist is $16 per month billed annually or $24 month-to-month, Creator is $24 or $35, and Business is $50 or $65. Descript is a production tool rather than a pure transcription service: if you only need a text file, Otter, Rev or Happy Scribe are simpler and often cheaper. If you need to publish audio or video, the transcript-driven editor can replace several separate tools.",
+      "verdict": "Descript is the best fit for creators who edit podcasts and videos rather than just transcribe them. Editing audio by deleting text is fast and intuitive, and Studio Sound, filler-word removal and clip creation cover most production chores. The free plan is a trial in practice, and per-person pricing adds up for teams that only need transcripts.",
+      "bestFor": "Podcasters and video creators who want to edit media by editing a transcript",
+      "pros": [
+        "Edit audio and video by editing text",
+        "Studio Sound and filler-word removal",
+        "Screen and camera recording plus clip creation",
+        "Transcription in 25 languages",
+        "Free plan with 60 media minutes and 100 AI credits"
+      ],
+      "cons": [
+        "Per-person pricing is high for pure transcription",
+        "Media-minute limits apply to imports and recordings",
+        "AI credits are separate from media minutes",
+        "Advanced tools require Creator or Business",
+        "Can be heavy for simple caption jobs"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Transcript-based editing",
+          "description": "Delete, reorder or rewrite text and the audio or video timeline updates with it."
+        },
+        {
+          "title": "Studio Sound",
+          "description": "Cleans background noise and improves speech quality on Hobbyist and above."
+        },
+        {
+          "title": "Filler-word and gap removal",
+          "description": "Strips ums, ahs and long pauses from a recording in one pass."
+        },
+        {
+          "title": "Screen and camera recording",
+          "description": "Records a screen, camera or both, then transcribes the result for editing."
+        },
+        {
+          "title": "Clip creation and publishing",
+          "description": "Finds shareable moments and exports clips, audio or video for social and podcast platforms."
+        },
+        {
+          "title": "Translation and dubbing",
+          "description": "Business adds translation and dubbing in more than 30 languages with proofreading."
+        }
+      ],
+      "pricingSummary": "Descript's Free plan includes 60 media minutes per month, 100 one-time AI credits, 720p export and 5GB storage. Hobbyist is $16 per person per month billed annually or $24 month-to-month for 600 minutes, 1080p export and Studio Sound. Creator is $24 or $35 for 1,800 minutes, 4K export and the full AI toolset. Business is $50 or $65 for 2,400 minutes, team Brand Studio and translation/dubbing. Enterprise pricing is custom.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Free forever",
+          "includes": "60 media minutes/month; 100 one-time AI credits; 720p export; 5GB storage"
+        },
+        {
+          "plan": "Hobbyist",
+          "price": "$16/mo",
+          "billing": "Billed annually ($24 month-to-month)",
+          "includes": "600 minutes/month; 400 AI credits/month; 1080p export; Studio Sound"
+        },
+        {
+          "plan": "Creator",
+          "price": "$24/mo",
+          "billing": "Billed annually ($35 month-to-month)",
+          "includes": "1,800 minutes/month; 800 AI credits/month; 4K export; full AI tools"
+        },
+        {
+          "plan": "Business",
+          "price": "$50/mo",
+          "billing": "Billed annually ($65 month-to-month)",
+          "includes": "2,400 minutes/month; 1,500 AI credits/month; Brand Studio; translation and dubbing"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 16,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://www.descript.com/pricing",
+      "faqs": [
+        {
+          "question": "Is Descript free?",
+          "answer": "Yes. The Free plan includes 60 media minutes per month, 100 one-time AI credits, 720p export, 5GB storage and text-based editing. It is enough to test the workflow, not to produce a weekly show."
+        },
+        {
+          "question": "How many minutes does Descript include?",
+          "answer": "Free includes 60 media minutes per month, Hobbyist 600, Creator 1,800 and Business 2,400. Descript measures imported and recorded media minutes, not just transcription output."
+        },
+        {
+          "question": "Does Descript transcribe in other languages?",
+          "answer": "Descript says transcription is available in 25 languages on all plans. Translation and dubbing in more than 30 languages are available on Business."
+        },
+        {
+          "question": "Can I export audio and video from Descript?",
+          "answer": "Yes. Paid plans support watermark-free export up to 1080p on Hobbyist and 4K on Creator and above. The Free plan caps export at 720p."
+        },
+        {
+          "question": "Is Descript a replacement for Otter.ai?",
+          "answer": "Not exactly. Otter is built around meeting capture and notes; Descript is built around editing recorded audio and video. Choose Otter for live meetings and Descript for produced content."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-otter-ai",
+          "name": "Otter.ai",
+          "url": "https://otter.ai/",
+          "note": "Better for live meeting notes, speaker-labelled summaries and team search."
+        },
+        {
+          "itemRef": "item-happy-scribe",
+          "name": "Happy Scribe",
+          "url": "https://www.happyscribe.com/",
+          "note": "A more focused subtitle and translation service with human proofreading."
+        },
+        {
+          "itemRef": "item-rev",
+          "name": "Rev",
+          "url": "https://www.rev.com/",
+          "note": "Offers human-verified transcripts and captions rather than an editing suite."
+        },
+        {
+          "name": "Riverside",
+          "url": "https://riverside.fm/",
+          "note": "Combines remote recording with transcription and clip creation for interview-style shows."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Descript pricing",
+          "url": "https://www.descript.com/pricing"
+        },
+        {
+          "title": "Descript official site",
+          "url": "https://www.descript.com/"
+        },
+        {
+          "title": "Descript terms of service",
+          "url": "https://www.descript.com/terms"
+        },
+        {
+          "title": "Descript privacy policy",
+          "url": "https://www.descript.com/privacy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "openai-whisper": {
+      "name": "OpenAI Whisper",
+      "slug": "openai-whisper",
+      "link": "https://github.com/openai/whisper",
+      "description": "Open-source speech-to-text model for multilingual transcription and translation, with a hosted API.",
+      "categorySlugs": ["productivity", "coding-development"],
+      "collectionSlugs": ["ai-transcription-tools"],
+      "tagSlugs": ["developer-tools", "free"],
+      "seoTitle": "OpenAI Whisper Review 2026: API Pricing & Use",
+      "seoDescription": "OpenAI Whisper is an open-source speech-to-text model with a paid API at $0.006 per minute. Compare languages, limits, deprecation and alternatives.",
+      "introduction": "OpenAI Whisper is a speech-recognition model that transcribes and translates audio. Unlike a hosted transcription app, Whisper is published as open-source code and model weights, so you can run it on your own hardware, embed it in an application, or call OpenAI's hosted whisper-1 endpoint through the API. That flexibility is why it appears inside many transcription products even when the brand on the screen is different.\n\nThe model is multilingual, handles noisy audio and can translate speech into English as well as transcribe it. The hosted API accepts audio files up to 25MB and bills by the minute at $0.006, with no subscription. Running it locally removes per-minute fees but shifts the cost to hardware and engineering: you need to install the runtime, choose a model size, manage audio conversion and handle long files by splitting them.\n\nWhisper is not a finished consumer app. There is no meeting bot, speaker-labelled dashboard or team workspace. It is a building block for developers and a free offline option for privacy-sensitive work. OpenAI has also scheduled whisper-1 for shutdown on February 26, 2027, recommending gpt-live-transcribe or gpt-transcribe instead, so new integrations should plan for migration rather than treating whisper-1 as a permanent endpoint.",
+      "verdict": "Whisper is the default open-source speech model for good reason: strong multilingual accuracy, offline operation and a simple paid API. It is not a transcription app, though, and the hosted whisper-1 endpoint is being retired in February 2027. Choose it for custom pipelines or private local processing, not for meeting notes or team collaboration.",
+      "bestFor": "Developers and privacy-focused users who want an open-source or API-based speech-to-text engine",
+      "pros": [
+        "Open-source code and model weights for local, offline use",
+        "Multilingual transcription and translation",
+        "Simple hosted API billed per minute",
+        "No subscription or seat minimum",
+        "Widely supported by third-party tools and libraries"
+      ],
+      "cons": [
+        "No built-in meeting bot, dashboard or team workflow",
+        "Hosted whisper-1 is deprecated with a February 26, 2027 shutdown",
+        "25MB API upload limit requires splitting long audio",
+        "Local inference needs hardware and engineering effort",
+        "Speaker diarization is not built in"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Open-source speech recognition",
+          "description": "Download the code and model weights and run transcription on your own hardware without sending audio to a third party."
+        },
+        {
+          "title": "Multilingual transcription",
+          "description": "Transcribes speech in many languages and can translate non-English audio into English."
+        },
+        {
+          "title": "Hosted whisper-1 API",
+          "description": "Send an audio file to OpenAI's API and receive a transcript without managing inference infrastructure."
+        },
+        {
+          "title": "Noisy-audio robustness",
+          "description": "Trained on varied audio, Whisper handles imperfect recordings better than many older speech models."
+        },
+        {
+          "title": "Ecosystem support",
+          "description": "Wrappers, desktop apps and transcription services commonly expose Whisper as an engine option."
+        }
+      ],
+      "pricingSummary": "Whisper has no subscription. The open-source version is free to download and run, with hardware and setup costs on your side. OpenAI's hosted whisper-1 API costs $0.006 per minute of audio and accepts files up to 25MB. OpenAI lists whisper-1 for shutdown on February 26, 2027 and recommends gpt-live-transcribe or gpt-transcribe for new work; check current API pricing before building.",
+      "pricingRows": [
+        {
+          "plan": "Open source",
+          "price": "$0",
+          "billing": "Self-hosted",
+          "includes": "Code and model weights; you pay for hardware and setup"
+        },
+        {
+          "plan": "OpenAI API",
+          "price": "$0.006/min",
+          "billing": "Pay as you go",
+          "includes": "Hosted whisper-1 endpoint; files up to 25MB"
+        }
+      ],
+      "hasFreePlan": true,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://developers.openai.com/api/docs/models/whisper-1",
+      "faqs": [
+        {
+          "question": "Is Whisper free?",
+          "answer": "The open-source model is free to download and run on your own hardware. OpenAI's hosted API is paid, at $0.006 per minute of audio, with no free tier listed for whisper-1."
+        },
+        {
+          "question": "How many languages does Whisper support?",
+          "answer": "Whisper is a multilingual model trained on a very broad set of languages; the open-source repository documents the supported language set. Availability and accuracy vary by language, so test your target language before deploying."
+        },
+        {
+          "question": "What is the Whisper API file limit?",
+          "answer": "The hosted whisper-1 endpoint accepts audio files up to 25MB. Longer recordings must be split into smaller chunks or processed through a different endpoint."
+        },
+        {
+          "question": "Is whisper-1 being discontinued?",
+          "answer": "Yes. OpenAI lists whisper-1 for shutdown on February 26, 2027 and recommends gpt-live-transcribe or gpt-transcribe for new integrations."
+        },
+        {
+          "question": "Does Whisper identify different speakers?",
+          "answer": "No. Whisper transcribes speech but does not provide built-in speaker diarization. You need a separate diarization model or a transcription service that adds speaker labels."
+        },
+        {
+          "question": "Can I run Whisper offline?",
+          "answer": "Yes. The open-source model can run locally or on your own servers, which is useful for private or regulated audio. You are responsible for hardware, updates and accuracy testing."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-descript",
+          "name": "Descript",
+          "url": "https://www.descript.com/",
+          "note": "A finished editing app with transcription built in, rather than a model to integrate."
+        },
+        {
+          "itemRef": "item-otter-ai",
+          "name": "Otter.ai",
+          "url": "https://otter.ai/",
+          "note": "A meeting-focused service with live capture, speaker labels and summaries."
+        },
+        {
+          "itemRef": "item-rev",
+          "name": "Rev",
+          "url": "https://www.rev.com/",
+          "note": "Adds human transcription and captions when machine output is not accurate enough."
+        },
+        {
+          "name": "AssemblyAI",
+          "url": "https://www.assemblyai.com/",
+          "note": "A developer API with hosted speech-to-text, speaker diarization and audio intelligence."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Whisper open-source repository",
+          "url": "https://github.com/openai/whisper"
+        },
+        {
+          "title": "OpenAI whisper-1 model page",
+          "url": "https://developers.openai.com/api/docs/models/whisper-1"
+        },
+        {
+          "title": "OpenAI API deprecations",
+          "url": "https://developers.openai.com/api/docs/deprecations"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "rev": {
+      "name": "Rev",
+      "slug": "rev",
+      "link": "https://www.rev.com/",
+      "description": "AI and human transcription, captions and translation with transparent per-minute pricing.",
+      "categorySlugs": ["productivity"],
+      "collectionSlugs": ["ai-transcription-tools", "ai-tools-for-productivity"],
+      "tagSlugs": [],
+      "seoTitle": "Rev Review 2026: Pricing, Free Plan & Humans",
+      "seoDescription": "Rev combines AI transcription with human-verified transcripts and captions at $1.99 per minute. Compare the free plan, AI tiers and alternatives.",
+      "introduction": "Rev combines AI transcription with a human transcription marketplace. The AI side turns audio and video into text in minutes, with a free plan that includes 45 minutes per month, English transcription, analysis of up to five files and a document editor. Paid AI plans raise the monthly allowance and add Spanish, more languages, workflow templates and larger file limits: Essentials includes 5,000 minutes per user per month, Pro includes 10,000 minutes and 37+ languages, and Unlimited is quoted by sales.\n\nThe human side is Rev's differentiator. You can order human-generated transcripts, captions and translations at $1.99 per minute, with subscriber discounts of 10% to 15% depending on plan and billing term. That makes Rev useful when accuracy matters more than speed, such as legal, research or published interviews, while the AI tier handles routine drafts and captions.\n\nRev is less of an all-in-one meeting assistant than Otter or Descript. It focuses on transcription, captions and documents rather than joining calls, recording screen video or editing a podcast. The free plan is genuinely usable for occasional files, but the per-user AI plans and per-minute human services mean costs can scale quickly. Compare the AI allowance with the human rate before choosing a plan.",
+      "verdict": "Rev is a strong pick when you need a human-verified transcript or caption file and do not want to manage freelancers. The AI tier is competent, the free allowance is useful and the $1.99-per-minute human service is transparent. It is less compelling as a meeting assistant or video editor, and heavy AI use gets expensive per seat.",
+      "bestFor": "Teams and researchers who need accurate transcripts, captions or human verification",
+      "pros": [
+        "Human transcription and captions at a clear per-minute rate",
+        "Free AI plan with 45 minutes per month",
+        "37+ languages on Pro",
+        "Document editor and analysis tools",
+        "Subscriber discounts on human services"
+      ],
+      "cons": [
+        "Human transcription is expensive at scale",
+        "AI plans are priced per seat",
+        "Less meeting-assistant functionality than Otter",
+        "No video editing or screen recording",
+        "Free plan is limited to English and five files"
+      ],
+      "keyFeatures": [
+        {
+          "title": "AI transcription",
+          "description": "Upload audio or video and receive a transcript in minutes, with a browser editor for corrections."
+        },
+        {
+          "title": "Human transcription",
+          "description": "Order a human-verified transcript or caption file at $1.99 per minute, with subscriber discounts."
+        },
+        {
+          "title": "Captions and subtitles",
+          "description": "Generate and edit caption files for video, with support for multiple languages on higher tiers."
+        },
+        {
+          "title": "Document editor and analysis",
+          "description": "Review transcripts, cite page and line positions and analyse up to 50 files on Pro."
+        },
+        {
+          "title": "Workflow templates",
+          "description": "Essentials and above include prebuilt and custom templates for repeatable transcription work."
+        }
+      ],
+      "pricingSummary": "Rev has a free plan with 45 AI minutes per month, English transcription and up to five files. Essentials is $29.99 per user per month, or $25.49 billed annually, for 5,000 minutes per month and Spanish. Pro is $59.99 or $47.99 per user per month billed annually, for 10,000 minutes and 37+ languages. Unlimited is custom. Human transcription, captions and translation cost $1.99 per minute, with subscriber discounts of 10% to 15%.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Free",
+          "includes": "45 AI minutes/month; English; analysis of up to 5 files; 1 user"
+        },
+        {
+          "plan": "Essentials",
+          "price": "$29.99/user/mo",
+          "billing": "Billed monthly ($25.49/mo annually)",
+          "includes": "5,000 minutes/user/month; English and Spanish; up to 10 files; 3 users"
+        },
+        {
+          "plan": "Pro",
+          "price": "$59.99/user/mo",
+          "billing": "Billed monthly ($47.99/mo annually)",
+          "includes": "10,000 minutes/user/month; 37+ languages; up to 50 files; 5 users"
+        },
+        {
+          "plan": "Human services",
+          "price": "$1.99/min",
+          "billing": "Per minute",
+          "includes": "Human transcription, captions and translation; subscriber discounts up to 15%"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 25.49,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://www.rev.com/pricing",
+      "faqs": [
+        {
+          "question": "Is Rev free?",
+          "answer": "Rev has a free AI plan with 45 minutes per month, English transcription, analysis of up to five files and one user. Human transcription is always paid."
+        },
+        {
+          "question": "How much does Rev cost?",
+          "answer": "AI plans are $29.99 per user per month for Essentials or $25.49 billed annually, and $59.99 for Pro or $47.99 billed annually. Human transcription, captions and translation cost $1.99 per minute, with subscriber discounts."
+        },
+        {
+          "question": "Does Rev offer human transcription?",
+          "answer": "Yes. Rev's main difference from pure AI tools is its human transcription marketplace. You can order human-verified transcripts, captions and translations at $1.99 per minute."
+        },
+        {
+          "question": "How many languages does Rev support?",
+          "answer": "The free plan is English only, Essentials adds Spanish, and Pro supports 37+ languages. Check the current language list before relying on a less common language."
+        },
+        {
+          "question": "Is Rev a meeting assistant?",
+          "answer": "No. Rev focuses on transcribing uploaded audio and video, captions and documents. It does not join Zoom or Teams calls the way Otter does."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-otter-ai",
+          "name": "Otter.ai",
+          "url": "https://otter.ai/",
+          "note": "Better for live meeting capture, speaker labels and automatic notes."
+        },
+        {
+          "itemRef": "item-happy-scribe",
+          "name": "Happy Scribe",
+          "url": "https://www.happyscribe.com/",
+          "note": "A closer match for multilingual subtitles, with human proofreading from $2 per minute."
+        },
+        {
+          "itemRef": "item-descript",
+          "name": "Descript",
+          "url": "https://www.descript.com/",
+          "note": "Better when you need to edit the recording rather than just transcribe it."
+        },
+        {
+          "name": "GoTranscript",
+          "url": "https://gotranscript.com/",
+          "note": "Another human transcription service, often compared with Rev on price and turnaround."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Rev pricing",
+          "url": "https://www.rev.com/pricing"
+        },
+        {
+          "title": "Rev official site",
+          "url": "https://www.rev.com/"
+        },
+        {
+          "title": "Rev terms of service",
+          "url": "https://www.rev.com/legal/terms"
+        },
+        {
+          "title": "Rev privacy policy",
+          "url": "https://www.rev.com/legal/privacy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "happy-scribe": {
+      "name": "Happy Scribe",
+      "slug": "happy-scribe",
+      "link": "https://www.happyscribe.com/",
+      "description": "AI transcription, subtitles and translation in 150+ languages with optional human proofreading.",
+      "categorySlugs": ["productivity"],
+      "collectionSlugs": ["ai-transcription-tools", "ai-tools-for-productivity"],
+      "tagSlugs": [],
+      "seoTitle": "Happy Scribe Review 2026: Pricing & Languages",
+      "seoDescription": "Happy Scribe transcribes and subtitles audio in 150+ languages, with human proofreading from $2/min. Compare the free trial, plans and alternatives.",
+      "introduction": "Happy Scribe is a transcription and subtitle platform built for multilingual media. You upload audio or video, choose a language, and receive a timestamped transcript that can be edited in the browser and exported as subtitles, captions or plain text. The platform supports more than 150 languages for transcription, translation and subtitles, and adds a human proofreading service from $2.00 per minute when machine output is not accurate enough.\n\nThe free tier is a 10-minute trial rather than a recurring free plan. Basic is $17 per month, or $8.50 per month billed annually, for 120 minutes per month and one seat. Pro is $29 or $19 per month for 600 minutes, unlimited meeting length and three seats. Business is $89 or $59 per month for 6,000 minutes, five seats, roles and permissions, and unlimited glossaries. Extra AI credits cost $0.20 per minute, and topped-up credits remain available beyond the billing cycle.\n\nHappy Scribe is strongest for subtitling, translation and interview archives. It is not a meeting bot: there is no automatic joining of Zoom or Meet calls, and the editor is focused on transcripts and captions rather than video production. Teams that need both meeting notes and subtitle files should compare it with Otter or Descript rather than treating the tools as interchangeable.",
+      "verdict": "Happy Scribe is a reliable multilingual transcription and subtitle service with a clean editor and a useful human-proofreading option. The 150+ language coverage and $0.20-per-minute extra credits suit media teams with variable workloads. The free tier is only a 10-minute trial, and the lack of a meeting bot makes it a complement to, not a replacement for, Otter or Descript.",
+      "bestFor": "Media teams that need multilingual transcripts, subtitles and optional human proofreading",
+      "pros": [
+        "150+ languages for transcription, subtitles and translation",
+        "Human proofreading from $2 per minute",
+        "Extra credits at $0.20 per minute and they carry over",
+        "Clean browser editor and multiple export formats",
+        "Team roles and glossaries on Business"
+      ],
+      "cons": [
+        "Free tier is only a 10-minute trial",
+        "No automatic meeting bot",
+        "Monthly minute allowances are modest on Basic",
+        "Human proofreading is expensive at scale",
+        "Seat limits on lower plans"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Multilingual transcription",
+          "description": "Transcribes audio and video in 150+ languages with timestamps and speaker detection."
+        },
+        {
+          "title": "Subtitle and caption export",
+          "description": "Exports SRT, VTT and other subtitle formats, plus plain text and document files."
+        },
+        {
+          "title": "Translation",
+          "description": "Translates transcripts and subtitles across languages without leaving the editor."
+        },
+        {
+          "title": "Human proofreading",
+          "description": "Orders a human review of machine output from $2.00 per minute."
+        },
+        {
+          "title": "Team glossaries and roles",
+          "description": "Business adds five seats, roles and permissions, and unlimited style guides and glossaries."
+        }
+      ],
+      "pricingSummary": "Happy Scribe's Free plan is a 10-minute trial. Basic is $17 per month, or $8.50 billed annually, for 120 minutes per month and one seat. Pro is $29 or $19 per month for 600 minutes and three seats. Business is $89 or $59 per month for 6,000 minutes, five seats, roles and glossaries. Extra AI credits cost $0.20 per minute and carry over; human proofreading starts at $2.00 per minute, or $1.90 on Business.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "10-minute trial",
+          "includes": "10 minutes of AI transcription, subtitles or translation"
+        },
+        {
+          "plan": "Basic",
+          "price": "$17/mo",
+          "billing": "Billed monthly ($8.50/mo annually)",
+          "includes": "120 minutes/month; 1 seat; watermark-free video exports"
+        },
+        {
+          "plan": "Pro",
+          "price": "$29/mo",
+          "billing": "Billed monthly ($19/mo annually)",
+          "includes": "600 minutes/month; 3 seats; unlimited meeting length; unlimited AI Chat"
+        },
+        {
+          "plan": "Business",
+          "price": "$89/mo",
+          "billing": "Billed monthly ($59/mo annually)",
+          "includes": "6,000 minutes/month; 5 seats; roles and permissions; unlimited glossaries"
+        },
+        {
+          "plan": "Extra credits",
+          "price": "$0.20/min",
+          "billing": "Pay as you go",
+          "includes": "Top-up credits that remain available beyond the billing cycle"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 8.5,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://www.happyscribe.com/pricing",
+      "faqs": [
+        {
+          "question": "Is Happy Scribe free?",
+          "answer": "Happy Scribe offers a 10-minute free trial for AI transcription, subtitles or translation. There is no ongoing free plan; paid plans start at $17 per month or $8.50 per month billed annually."
+        },
+        {
+          "question": "How much does Happy Scribe cost?",
+          "answer": "Basic is $17 per month or $8.50 billed annually, Pro is $29 or $19, and Business is $89 or $59. Extra AI credits cost $0.20 per minute, and human proofreading starts at $2.00 per minute."
+        },
+        {
+          "question": "How many languages does Happy Scribe support?",
+          "answer": "Happy Scribe advertises more than 150 languages for transcription, subtitles and translation. Accuracy varies by language and audio quality, so test a sample before committing to a large batch."
+        },
+        {
+          "question": "Does Happy Scribe join meetings automatically?",
+          "answer": "No. Happy Scribe is built around uploading audio or video files. It supports unlimited meeting recordings on some plans but does not act as a meeting bot that joins Zoom or Teams calls."
+        },
+        {
+          "question": "Do Happy Scribe top-up credits expire?",
+          "answer": "The pricing page says topped-up credits remain available beyond the billing cycle, while the credits included with a plan reset each cycle."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-otter-ai",
+          "name": "Otter.ai",
+          "url": "https://otter.ai/",
+          "note": "Better for live meeting notes and automatic call capture."
+        },
+        {
+          "itemRef": "item-descript",
+          "name": "Descript",
+          "url": "https://www.descript.com/",
+          "note": "Better for editing podcasts and videos, not just producing a transcript."
+        },
+        {
+          "itemRef": "item-rev",
+          "name": "Rev",
+          "url": "https://www.rev.com/",
+          "note": "Offers human transcription and captions with a similar per-minute model."
+        },
+        {
+          "name": "Sonix",
+          "url": "https://sonix.ai/",
+          "note": "Another multilingual transcription and translation service with a browser editor."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Happy Scribe pricing",
+          "url": "https://www.happyscribe.com/pricing"
+        },
+        {
+          "title": "Happy Scribe official site",
+          "url": "https://www.happyscribe.com/"
+        },
+        {
+          "title": "Happy Scribe transcription service",
+          "url": "https://www.happyscribe.com/transcription"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "mew-design": {
+      "name": "Mew Design",
+      "slug": "mew-design",
+      "link": "https://mew.design/",
+      "description": "AI Minecraft texture generator for blocks, items and GUI assets at 16x, 32x and 64x.",
+      "categorySlugs": ["image-design"],
+      "collectionSlugs": ["minecraft-texture-generators", "ai-tools-for-designers"],
+      "tagSlugs": ["design", "art", "freemium"],
+      "seoTitle": "Mew Design Review 2026: Minecraft Textures",
+      "seoDescription": "Mew Design generates Minecraft block, item and GUI textures at 16x, 32x or 64x from prompts, with seamless tiles and free starter credits. Compare pricing.",
+      "introduction": "Mew Design is a browser-based AI design tool with a dedicated Minecraft texture generator. You describe a block, item, weapon or GUI asset, choose a 16x, 32x or 64x pixel-art style, and generate a PNG that can be dropped into a Java or Bedrock resource pack. The tool can also produce seamless tileable block surfaces and transparent-background assets, which are the two details that usually break a quick AI texture attempt.\n\nA chat-based edit step lets you refine the result without starting over: adjust the palette, outline, detail level or seams, or upload a reference palette or moodboard you have rights to use. For larger packs, reusing the same palette and lighting across a set of assets is the main way to keep the look consistent.\n\nThe free tier includes 50 starter credits, 100MB of storage, standard-resolution downloads and standard conversations. Paid plans are Hobby at $5.69 per month for 500 credits (up to 250 images), Pro at $19.99 for 2,500 credits, Mega at $35.99 for 5,000 credits and Max at $64.99 for 10,000 credits. HD and PDF downloads require a paid membership, and annual billing is advertised as saving two months. Mew Design is a general design platform, so Minecraft textures are one workflow among many rather than a dedicated modding tool.",
+      "verdict": "Mew Design is the easiest entry point for prompt-to-texture work: it understands Minecraft asset types, offers the three resolutions modders actually use, and supports seamless tiles and transparent backgrounds. The free credits are enough to test a small pack. Serious resource-pack projects will want a paid tier for HD exports and more volume.",
+      "bestFor": "Minecraft creators who want prompt-based block, item and GUI textures at 16x to 64x",
+      "pros": [
+        "Minecraft-specific block, item, weapon and GUI presets",
+        "16x, 32x and 64x pixel-art styles",
+        "Seamless tile and transparent-background support",
+        "Chat-based refinement and reference uploads",
+        "Free 50 starter credits"
+      ],
+      "cons": [
+        "General design tool rather than a modding pipeline",
+        "HD and PDF downloads require payment",
+        "Free tier includes only 100MB of storage",
+        "No automatic resource-pack assembly",
+        "Output needs manual cleanup for consistent packs"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Minecraft asset presets",
+          "description": "Generate blocks, items, weapons and GUI icons rather than generic images."
+        },
+        {
+          "title": "16x, 32x and 64x styles",
+          "description": "Choose the pixel-art resolution that matches the resource pack's target look."
+        },
+        {
+          "title": "Seamless tiles",
+          "description": "Request repeatable block surfaces that tile without visible seams."
+        },
+        {
+          "title": "Chat-based refinement",
+          "description": "Adjust palette, outline, detail and seams through follow-up instructions."
+        },
+        {
+          "title": "Reference uploads",
+          "description": "Use a palette or moodboard you have rights to for more consistent pack colours and lighting."
+        }
+      ],
+      "pricingSummary": "Mew Design has a free tier with 50 starter credits, 100MB storage, standard-resolution downloads and standard conversations. Hobby is $5.69 per month for 500 credits (up to 250 images), Pro is $19.99 for 2,500 credits, Mega is $35.99 for 5,000 credits and Max is $64.99 for 10,000 credits. Annual billing is advertised as saving two months. HD and PDF downloads require an active paid membership.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Free",
+          "includes": "50 starter credits; 100MB storage; standard-resolution downloads"
+        },
+        {
+          "plan": "Hobby",
+          "price": "$5.69/mo",
+          "billing": "Billed monthly",
+          "includes": "500 credits/month; up to 250 images; HD downloads"
+        },
+        {
+          "plan": "Pro",
+          "price": "$19.99/mo",
+          "billing": "Billed monthly",
+          "includes": "2,500 credits/month; up to 1,250 images"
+        },
+        {
+          "plan": "Mega",
+          "price": "$35.99/mo",
+          "billing": "Billed monthly",
+          "includes": "5,000 credits/month; up to 2,500 images"
+        },
+        {
+          "plan": "Max",
+          "price": "$64.99/mo",
+          "billing": "Billed monthly",
+          "includes": "10,000 credits/month; up to 5,000 images"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 5.69,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://mew.design/pricing",
+      "faqs": [
+        {
+          "question": "Is Mew Design free?",
+          "answer": "Yes. Mew Design includes 50 starter credits, 100MB of storage and standard-resolution downloads on the free tier. HD downloads require a paid membership."
+        },
+        {
+          "question": "Does Mew Design export resource-pack-ready files?",
+          "answer": "It exports PNG assets intended for Java and Bedrock resource-pack workflows. You still need to place the files in the correct pack folders and add or edit pack.mcmeta yourself."
+        },
+        {
+          "question": "What texture resolutions does Mew Design support?",
+          "answer": "The Minecraft generator offers 16x, 32x and 64x pixel-art styles. Higher resolutions are heavier in game and may not match a vanilla-style pack."
+        },
+        {
+          "question": "Can Mew Design make seamless block textures?",
+          "answer": "Yes. The tool can generate repeatable block surfaces, and the chat editor can refine seams if the first result does not tile cleanly."
+        },
+        {
+          "question": "How much does Mew Design cost?",
+          "answer": "Hobby is $5.69 per month for 500 credits, Pro is $19.99 for 2,500 credits, Mega is $35.99 for 5,000 credits and Max is $64.99 for 10,000 credits. Annual billing is advertised as saving two months."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-pixel-gpt",
+          "name": "Pixel GPT",
+          "url": "https://deep-pixels.com/Home",
+          "note": "More batch controls and model tiers, but a more developer-oriented interface and confusing plan structure."
+        },
+        {
+          "itemRef": "item-spaleforce",
+          "name": "Spaleforce",
+          "url": "https://spaleforce.com/minecraft-texture-generator",
+          "note": "Better for repainting existing vanilla blocks into a consistent resource pack."
+        },
+        {
+          "name": "Kodari",
+          "url": "https://kodari.ai/",
+          "note": "Another prompt-to-PNG Minecraft texture generator with 16x, 32x and 64x output."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Mew Design Minecraft texture generator",
+          "url": "https://mew.design/create/ai-minecraft-texture-generator"
+        },
+        {
+          "title": "Mew Design pricing",
+          "url": "https://mew.design/pricing"
+        },
+        {
+          "title": "Mew Design terms of service",
+          "url": "https://mew.design/terms-of-service"
+        },
+        {
+          "title": "Mew Design privacy policy",
+          "url": "https://mew.design/privacy-policy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "pixel-gpt": {
+      "name": "Pixel GPT",
+      "slug": "pixel-gpt",
+      "link": "https://deep-pixels.com/Home",
+      "description": "Minecraft-focused AI texture generator for item icons and pixel art, with batch generation and yearly memberships.",
+      "categorySlugs": ["image-design"],
+      "collectionSlugs": ["minecraft-texture-generators", "ai-tools-for-designers"],
+      "tagSlugs": ["design", "art", "freemium"],
+      "seoTitle": "Pixel GPT Review 2026: Minecraft Pricing",
+      "seoDescription": "Pixel GPT generates Minecraft item, block and pixel-art textures from prompts, with a free Newbie queue and yearly memberships. Compare plans and limits.",
+      "introduction": "Pixel GPT, operated by Deep Pixels, is a prompt-driven generator aimed at Minecraft item textures and pixel art. It produces 16x16 and 32x32 Minecraft-style assets, 128x128 pixel art and profile pictures, with direct PNG downloads. Beyond single prompts, the site offers batch generation, a model explorer, chat, a config generator and basic image tools, so it can handle a set of items rather than one icon at a time.\n\nThe free Newbie section is open to everyone, but the site warns that image quality and text understanding are limited there. Paid memberships raise concurrency, batch size and access to faster or higher-quality models. Starter is $39.99 per year with two concurrent generations and 32 images per batch; Enthusiast is $49.99 for six months with 10 concurrent and 64 per batch; Pro is $59.99 per year with eight concurrent; Advanced is $99.99 per year with 16 concurrent and daily caps on Elite, Orion and Aurora models; Ultimate is $199.99 per year with 32 concurrent and 256 images per batch.\n\nThe pricing is unusual: most tiers are yearly, one is six-monthly, and several advertise unlimited generation with asterisks or daily caps on specific models. There is also a $19.99 add-on for 2,000 config credits, which are not used for image generation. Read the plan table carefully before buying, especially if you need a specific model rather than general throughput.",
+      "verdict": "Pixel GPT is a specialist Minecraft texture generator with a free queue and unusually deep batch controls. The output is built around pixel-art conventions rather than generic image prompts. Pricing is confusing, though: yearly terms, six-month terms, 'unlimited' claims with asterisks and model-specific daily caps all need checking before you commit.",
+      "bestFor": "Minecraft modders and server owners who generate many item textures in batches",
+      "pros": [
+        "Minecraft-specific item and pixel-art generation",
+        "16x16, 32x32 and 128x128 outputs",
+        "Batch generation and multiple model tiers",
+        "Free Newbie queue for testing",
+        "Direct PNG downloads"
+      ],
+      "cons": [
+        "Free tier quality and prompt understanding are limited",
+        "Pricing mixes yearly and six-month terms",
+        "'Unlimited' claims carry asterisks or model-specific caps",
+        "Interface and model names are developer-oriented",
+        "No resource-pack assembly"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Minecraft item generation",
+          "description": "Creates item icons and pixel-art assets from text prompts using Minecraft-style conventions."
+        },
+        {
+          "title": "16x16, 32x32 and 128x128",
+          "description": "Supports vanilla-style item resolutions plus larger pixel-art outputs and profile pictures."
+        },
+        {
+          "title": "Batch generation",
+          "description": "Generates multiple images per prompt and multiple batches, with plan-dependent concurrency."
+        },
+        {
+          "title": "Model selection",
+          "description": "Choose between speed-focused and quality-focused models, including Elite, Orion and Aurora tiers."
+        },
+        {
+          "title": "Supporting tools",
+          "description": "A model explorer, chat, config generator and basic image tools sit alongside the texture generator."
+        }
+      ],
+      "pricingSummary": "Pixel GPT has a free Newbie queue with limited quality. Starter is $39.99 per year with two concurrent generations and 32 images per batch. Enthusiast is $49.99 for six months with 10 concurrent and 64 per batch. Pro is $59.99 per year with eight concurrent. Advanced is $99.99 per year with 16 concurrent and daily caps on Elite, Orion and Aurora. Ultimate is $199.99 per year with 32 concurrent and 256 images per batch. A $19.99 add-on buys 2,000 config credits, which are not used for image generation.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "$0",
+          "billing": "Newbie queue",
+          "includes": "Public generations; limited quality and text understanding"
+        },
+        {
+          "plan": "Starter",
+          "price": "$39.99/yr",
+          "billing": "Billed yearly",
+          "includes": "Unlimited generation*; 2 concurrent; 32 images/batch; 2 images/prompt"
+        },
+        {
+          "plan": "Enthusiast",
+          "price": "$49.99",
+          "billing": "Billed every 6 months",
+          "includes": "Unlimited generation*; 10 concurrent; 64 images/batch; 3 images/prompt"
+        },
+        {
+          "plan": "Pro",
+          "price": "$59.99/yr",
+          "billing": "Billed yearly",
+          "includes": "Unlimited generation*; 8 concurrent; 32 images/batch"
+        },
+        {
+          "plan": "Advanced",
+          "price": "$99.99/yr",
+          "billing": "Billed yearly",
+          "includes": "Unlimited generation*; 16 concurrent; 96 images/batch; model daily caps"
+        },
+        {
+          "plan": "Ultimate",
+          "price": "$199.99/yr",
+          "billing": "Billed yearly",
+          "includes": "Unlimited generation*; 32 concurrent; 256 images/batch; higher daily caps"
+        }
+      ],
+      "hasFreePlan": true,
+      "priceCurrency": "USD",
+      "pricingUrl": "https://deep-pixels.com/Pricing",
+      "faqs": [
+        {
+          "question": "Is Pixel GPT free?",
+          "answer": "There is a free Newbie section with public generations, but the site warns that image quality and text understanding are limited. Faster and higher-quality models require a membership."
+        },
+        {
+          "question": "How much does Pixel GPT cost?",
+          "answer": "Starter is $39.99 per year, Enthusiast $49.99 for six months, Pro $59.99 per year, Advanced $99.99 per year and Ultimate $199.99 per year. Each tier changes concurrency, batch size and model access."
+        },
+        {
+          "question": "What resolutions does Pixel GPT support?",
+          "answer": "The site lists 16x16 and 32x32 Minecraft item textures, 128x128 pixel art and profile pictures. Check the selected model's output size before generating a full set."
+        },
+        {
+          "question": "Are Pixel GPT generations really unlimited?",
+          "answer": "Several plans advertise unlimited image generation, but the pricing table also lists batch limits and daily caps on specific models such as Elite, Orion and Aurora. Treat 'unlimited' as subject to those terms."
+        },
+        {
+          "question": "What is Deep Pixels?",
+          "answer": "Deep Pixels is the company and platform behind Pixel GPT. The Pixel GPT tool runs at deep-pixels.com and is also distributed as a desktop app."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-mew-design",
+          "name": "Mew Design",
+          "url": "https://mew.design/",
+          "note": "Simpler interface, clear Minecraft presets and 16x to 64x output with a free tier."
+        },
+        {
+          "itemRef": "item-spaleforce",
+          "name": "Spaleforce",
+          "url": "https://spaleforce.com/minecraft-texture-generator",
+          "note": "Built around repainting vanilla blocks rather than generating item icons from scratch."
+        },
+        {
+          "name": "Kodari",
+          "url": "https://kodari.ai/",
+          "note": "A prompt-to-PNG Minecraft texture generator with resource-pack-ready exports."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Pixel GPT official site",
+          "url": "https://deep-pixels.com/Home"
+        },
+        {
+          "title": "Pixel GPT pricing",
+          "url": "https://deep-pixels.com/Pricing"
+        },
+        {
+          "title": "Deep Pixels terms of service",
+          "url": "https://deep-pixels.com/TermsOfService"
+        },
+        {
+          "title": "Deep Pixels privacy policy",
+          "url": "https://deep-pixels.com/PrivacyPolicy"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    },
+    "spaleforce": {
+      "name": "Spaleforce",
+      "slug": "spaleforce",
+      "link": "https://spaleforce.com/minecraft-texture-generator",
+      "description": "AI Minecraft resource-pack generator that repaints vanilla blocks in 16x16 pixel art or HD.",
+      "categorySlugs": ["image-design"],
+      "collectionSlugs": ["minecraft-texture-generators", "ai-tools-for-designers"],
+      "tagSlugs": ["design", "art", "freemium"],
+      "seoTitle": "Spaleforce Review 2026: Minecraft Texture Packs",
+      "seoDescription": "Spaleforce repaints vanilla Minecraft blocks into consistent resource packs, with 3D previews and a free tier. Compare its 16x16 and HD output and pricing.",
+      "introduction": "Spaleforce takes a different approach from prompt-only texture generators: it repaints the vanilla Minecraft blocks you select, preserving their original layout so the result still reads as the block players expect. You search by block name, resource ID or numeric ID, select one or many blocks, and apply a single art direction across the set. That consistency is the hard part of resource packs, and it is the feature Spaleforce is built around.\n\nThe editor shows a per-block 3D preview on every face and warns when a texture is shared or biome-tinted, two common causes of a pack looking broken in game. Projects are saved for later editing and re-download, and the export is a .zip resource pack with the correct pack.mcmeta for Java Edition 1.13 or later. Entity-rendered blocks such as chests, signs and beds are excluded.\n\nThe free tier requires no credit card, allows up to 200 texture repaints per day, processes one at a time with roughly a 10-minute wait, and adds a watermark. Pro at €20 per month and Ultimate at €50 per month remove the wait and raise quotas; Ultimate also adds a V3 3D generator and Discord bots. Outputs can be 16x16 pixel art or realistic HD, with an Auto mode that picks HD when the art direction mentions words like realistic or photo.",
+      "verdict": "Spaleforce is the most resource-pack-aware tool in this group. Repainting existing blocks keeps layouts intact, the 3D preview catches shared-texture mistakes, and the export includes a working pack.mcmeta. The free queue is slow and watermarked, but Pro at €20 per month is reasonable for creators who ship packs regularly.",
+      "bestFor": "Resource-pack creators who want to restyle vanilla blocks consistently",
+      "pros": [
+        "Repaints existing vanilla blocks without changing layout",
+        "Consistent art direction across a whole pack",
+        "3D preview and shared/biome-tint warnings",
+        "Exports a .zip with pack.mcmeta for Java 1.13+",
+        "Free tier with up to 200 texture repaints per day"
+      ],
+      "cons": [
+        "Excludes entity-rendered blocks such as chests, signs and beds",
+        "Free queue is slow and watermarked",
+        "Paid plans are monthly with no annual discount listed",
+        "Java Edition focus",
+        "Not a from-scratch item icon generator"
+      ],
+      "keyFeatures": [
+        {
+          "title": "Vanilla block repainting",
+          "description": "Select existing blocks and restyle them while keeping the original texture layout intact."
+        },
+        {
+          "title": "Consistent art direction",
+          "description": "Apply one style across a set of blocks so a resource pack does not look assembled from different packs."
+        },
+        {
+          "title": "3D preview and warnings",
+          "description": "View textures on every face and get alerts for shared or biome-tinted textures."
+        },
+        {
+          "title": "Resource-pack export",
+          "description": "Download a .zip with the correct pack.mcmeta for Java Edition 1.13 or later."
+        },
+        {
+          "title": "Pixel art or HD output",
+          "description": "Choose 16x16 pixel art or realistic HD, with an Auto mode based on the art direction."
+        }
+      ],
+      "pricingSummary": "Spaleforce's free tier requires no credit card, allows up to 200 texture repaints per day, processes one at a time with roughly a 10-minute wait and adds a watermark. Pro is €20 per month and Ultimate is €50 per month; both remove the wait and raise quotas, and Ultimate adds a V3 3D generator and Discord bots. Paid plans are monthly with no annual discount listed on the generator page.",
+      "pricingRows": [
+        {
+          "plan": "Free",
+          "price": "€0",
+          "billing": "Free",
+          "includes": "Up to 200 texture repaints/day; one at a time; about 10-minute queue; watermark"
+        },
+        {
+          "plan": "Pro",
+          "price": "€20/mo",
+          "billing": "Billed monthly",
+          "includes": "No waiting period; higher quotas; 20 AI operations/day"
+        },
+        {
+          "plan": "Ultimate",
+          "price": "€50/mo",
+          "billing": "Billed monthly",
+          "includes": "Higher quotas; 50 generations and 20 edits/day; V3 3D generator; 5 Discord bots"
+        }
+      ],
+      "hasFreePlan": true,
+      "startingPrice": 20,
+      "priceCurrency": "EUR",
+      "pricingUrl": "https://spaleforce.com/minecraft-texture-generator",
+      "faqs": [
+        {
+          "question": "Is Spaleforce free?",
+          "answer": "Yes. The free tier requires no credit card and allows up to 200 texture repaints per day, but processes one at a time with roughly a 10-minute wait and adds a watermark."
+        },
+        {
+          "question": "How much does Spaleforce cost?",
+          "answer": "Pro is €20 per month and Ultimate is €50 per month. Both remove the waiting period and raise quotas; Ultimate adds a V3 3D generator and Discord bots."
+        },
+        {
+          "question": "Does Spaleforce work with Bedrock Edition?",
+          "answer": "The generator page specifies Java Edition 1.13 or later and exports a Java resource pack with pack.mcmeta. Bedrock compatibility is not stated, so test the pack before promising it to Bedrock players."
+        },
+        {
+          "question": "Can I edit a Spaleforce pack later?",
+          "answer": "Yes. Projects are saved for later editing and re-download, so you can revisit a pack without starting from the original blocks again."
+        },
+        {
+          "question": "Why are chests, signs and beds excluded?",
+          "answer": "Those blocks are rendered as entities rather than simple block textures, so repainting a single texture would not change their appearance correctly. Spaleforce excludes them instead of producing a broken result."
+        }
+      ],
+      "alternatives": [
+        {
+          "itemRef": "item-mew-design",
+          "name": "Mew Design",
+          "url": "https://mew.design/",
+          "note": "Better for generating new block, item and GUI assets from prompts rather than repainting vanilla blocks."
+        },
+        {
+          "itemRef": "item-pixel-gpt",
+          "name": "Pixel GPT",
+          "url": "https://deep-pixels.com/Home",
+          "note": "Better for high-volume item icons and pixel art, with batch generation and model tiers."
+        },
+        {
+          "name": "Kodari",
+          "url": "https://kodari.ai/",
+          "note": "A prompt-to-PNG Minecraft texture generator for items, tools and blocks."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Spaleforce Minecraft texture generator",
+          "url": "https://spaleforce.com/minecraft-texture-generator"
+        },
+        {
+          "title": "Spaleforce terms of service",
+          "url": "https://spaleforce.com/terms"
+        },
+        {
+          "title": "Spaleforce privacy policy",
+          "url": "https://spaleforce.com/privacy"
+        },
+        {
+          "title": "Spaleforce legal",
+          "url": "https://spaleforce.com/legal"
+        }
+      ],
+      "lastVerified": "2026-10-21",
+      "reviewerRef": "author-dirhuntai-editorial"
+    }
+  }
+}

@@ -1,7 +1,18 @@
+import LatestArticles from "@/components/blog/latest-articles";
 import ItemBreadCrumb from "@/components/item/item-bread-crumb";
 import SponsorItemCard from "@/components/item/item-card-sponsor";
 import ItemCustomMdx from "@/components/item/item-custom-mdx";
 import ItemGrid from "@/components/item/item-grid";
+import {
+  ItemAlternatives,
+  ItemFaqs,
+  ItemKeyFeatures,
+  ItemPricing,
+  ItemProsCons,
+  ItemRelatedPosts,
+  ItemSources,
+  ItemVerdict,
+} from "@/components/item/item-review";
 import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import BackButton from "@/components/shared/back-button";
 import { UserAvatar } from "@/components/shared/user-avatar";
@@ -10,16 +21,21 @@ import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { type Locale, localePath } from "@/i18n/routing";
 import { urlForIcon, urlForImage } from "@/lib/image";
+import { buildItemDescription, buildItemTitle } from "@/lib/item-seo";
 import { constructMetadata } from "@/lib/metadata";
 import { cn, getItemTargetLinkInWebsite, getLocaleDate } from "@/lib/utils";
 import type {
-  ItemInfoBySlugQueryResult,
+  BlogLatestPostsQueryResult,
+  BlogPostsReferencingItemQueryResult,
+  ItemMetadataBySlugQueryResult,
   SponsorItemListQueryResult,
 } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  blogLatestPostsQuery,
+  blogPostsReferencingItemQuery,
   itemFullInfoBySlugQuery,
-  itemInfoBySlugQuery,
+  itemMetadataBySlugQuery,
   sponsorItemListQuery,
 } from "@/sanity/lib/queries";
 import type { ItemFullInfo } from "@/types";
@@ -28,13 +44,22 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+function getWebsiteHost(link: string | null | undefined) {
+  if (!link) return null;
+  try {
+    return new URL(link).hostname;
+  } catch {
+    return null;
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale; slug: string };
 }): Promise<Metadata | undefined> {
-  const item = await sanityFetch<ItemInfoBySlugQueryResult>({
-    query: itemInfoBySlugQuery,
+  const item = await sanityFetch<ItemMetadataBySlugQueryResult>({
+    query: itemMetadataBySlugQuery,
     params: { slug: params.slug },
   });
   if (!item) {
@@ -43,23 +68,25 @@ export async function generateMetadata({
   }
 
   const imageProps = item?.image ? urlForImage(item?.image) : null;
+  const title = buildItemTitle(item);
+  const description = buildItemDescription(item);
   const ogImageUrl = new URL(`${siteConfig.url}/api/og`);
   ogImageUrl.searchParams.append("title", item.name);
-  ogImageUrl.searchParams.append("description", item.description || "");
+  ogImageUrl.searchParams.append("description", description);
   ogImageUrl.searchParams.append(
     "type",
     item.categories?.[0]?.name || "AI Tool",
   );
 
   return constructMetadata({
-    title: `${item.name}`,
-    description: item.description,
+    title,
+    description,
     canonicalUrl: `${siteConfig.url}/item/${params.slug}`,
     image: imageProps?.src || ogImageUrl.toString(),
     locale: params.locale,
     type: "article",
-    publishedTime: item.publishDate || item._createdAt,
-    modifiedTime: item._updatedAt,
+    publishedTime: item.publishDate || item._updatedAt,
+    modifiedTime: item.lastVerified || item._updatedAt,
     keywords: [
       item.name,
       ...(item.categories?.map((category) => category.name) ?? []),
@@ -80,13 +107,17 @@ export default async function ItemPage({ params }: ItemPageProps) {
   // });
 
   // if you support sponsor item, you can use this code
-  const [item, sponsorItems] = await Promise.all([
+  const [item, sponsorItems, relatedPostsResult] = await Promise.all([
     sanityFetch<ItemFullInfo>({
       query: itemFullInfoBySlugQuery,
       params: { slug: params.slug },
     }),
     sanityFetch<SponsorItemListQueryResult>({
       query: sponsorItemListQuery,
+    }),
+    sanityFetch<BlogPostsReferencingItemQueryResult>({
+      query: blogPostsReferencingItemQuery,
+      params: { slug: params.slug, count: 3 },
     }),
   ]);
 
@@ -95,6 +126,20 @@ export default async function ItemPage({ params }: ItemPageProps) {
     return notFound();
   }
 
+  const relatedPosts = relatedPostsResult || [];
+
+  // Newest posts for the footer module, skipping the ones the "Related
+  // comparisons" block already shows.
+  const latestPosts =
+    (await sanityFetch<BlogLatestPostsQueryResult>({
+      query: blogLatestPostsQuery,
+      params: {
+        locale: params.locale,
+        count: 3,
+        excludeIds: relatedPosts.map((post) => post._id),
+      },
+    })) ?? [];
+
   const imageProps = item?.image ? urlForImage(item?.image) : null;
   const imageBlurDataURL = item?.image?.blurDataURL || null;
   const iconProps = item?.icon ? urlForIcon(item.icon) : null;
@@ -102,6 +147,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
   const publishDate = item.publishDate || item._createdAt;
   const date = getLocaleDate(publishDate);
   const itemLink = getItemTargetLinkInWebsite(item);
+  const websiteHost = getWebsiteHost(item.link);
   const sponsorItem = sponsorItems?.length
     ? sponsorItems[Math.floor(Math.random() * sponsorItems.length)]
     : null;
@@ -118,14 +164,45 @@ export default async function ItemPage({ params }: ItemPageProps) {
     ...(imageProps?.src && { image: imageProps.src }),
     applicationCategory: primaryCategory?.name || "WebApplication",
     operatingSystem: "Web",
-    // No `offers` block: the directory does not track each tool's current
-    // pricing, and claiming price "0" would misrepresent paid products.
+    ...(item.keyFeatures?.length && {
+      featureList: item.keyFeatures
+        .map((feature) => feature.title)
+        .filter(Boolean),
+    }),
+    dateModified: item.lastVerified || item._updatedAt,
+    ...(item.hasFreePlan === true && { isAccessibleForFree: true }),
+    // Only emit an offer when a verified paid starting price exists. A free
+    // tier is not a price of zero; it is represented by isAccessibleForFree.
+    ...(item.startingPrice != null && {
+      offers: {
+        "@type": "Offer",
+        price: String(item.startingPrice),
+        priceCurrency: item.priceCurrency || "USD",
+        url: item.pricingUrl || item.link,
+        availability: "https://schema.org/InStock",
+      },
+    }),
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
     },
   };
+
+  const faqJsonLd = item.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: item.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
 
   const breadcrumb = breadcrumbJsonLd(
     [
@@ -147,7 +224,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="flex flex-col gap-8">
-      <JsonLd data={[appJsonLd, breadcrumb]} />
+      <JsonLd
+        data={[appJsonLd, breadcrumb, ...(faqJsonLd ? [faqJsonLd] : [])]}
+      />
       {/* Header section */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         {/* Left column */}
@@ -245,15 +324,19 @@ export default async function ItemPage({ params }: ItemPageProps) {
         </div>
       </div>
 
+      <ItemVerdict item={item} />
+
       {/* Content section */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         {/* Left column */}
         <div className="lg:col-span-3 flex flex-col">
           {/* Detailed content */}
-          <div className="bg-muted/50 rounded-lg p-6 mr-0 lg:mr-8">
-            <h2 className="text-lg font-semibold mb-4">Introduction</h2>
-            <ItemCustomMdx source={item.introduction} />
-          </div>
+          {item.introduction && (
+            <div className="bg-muted/50 rounded-lg p-6 mr-0 lg:mr-8">
+              <h2 className="text-lg font-semibold mb-4">Introduction</h2>
+              <ItemCustomMdx source={item.introduction} />
+            </div>
+          )}
 
           <div className="flex items-center justify-start mt-16">
             <BackButton />
@@ -293,17 +376,19 @@ export default async function ItemPage({ params }: ItemPageProps) {
                     </li>
                   )}
 
-                  <li className="flex justify-between space-x-4">
-                    <span className="text-muted-foreground">Website</span>
-                    <Link
-                      href={itemLink}
-                      target="_blank"
-                      prefetch={false}
-                      className="font-medium link-underline line-clamp-1"
-                    >
-                      {new URL(item.link).hostname}
-                    </Link>
-                  </li>
+                  {websiteHost && itemLink && (
+                    <li className="flex justify-between space-x-4">
+                      <span className="text-muted-foreground">Website</span>
+                      <Link
+                        href={itemLink}
+                        target="_blank"
+                        prefetch={false}
+                        className="font-medium link-underline line-clamp-1"
+                      >
+                        {websiteHost}
+                      </Link>
+                    </li>
+                  )}
 
                   <li className="flex justify-between">
                     <span className="text-muted-foreground">
@@ -357,6 +442,14 @@ export default async function ItemPage({ params }: ItemPageProps) {
         </div>
       </div>
 
+      <ItemKeyFeatures item={item} />
+      <ItemProsCons item={item} />
+      <ItemPricing item={item} />
+      <ItemAlternatives item={item} />
+      <ItemFaqs item={item} />
+      <ItemSources item={item} />
+      <ItemRelatedPosts posts={relatedPosts} />
+
       {/* Footer section shows related items */}
       {item.related && item.related.length > 0 && (
         <div className="flex flex-col gap-4 mt-8">
@@ -376,6 +469,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
           </div>
         </div>
       )}
+
+      {/* Footer section shows the newest posts across the blog */}
+      <LatestArticles posts={latestPosts} />
     </div>
   );
 }

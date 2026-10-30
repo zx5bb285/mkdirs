@@ -12,31 +12,31 @@ export type ScenarioItem = {
 export const scenarioList: ScenarioItem[] = [
   {
     key: "aiChat",
-    categorySlug: "ai-chat",
+    categorySlug: "life-assistant",
     titleKey: "Scenarios.aiChat",
     count: 6,
   },
   {
     key: "imageGen",
-    categorySlug: "ai-image-generators",
+    categorySlug: "image-design",
     titleKey: "Scenarios.imageGen",
     count: 6,
   },
   {
     key: "writing",
-    categorySlug: "ai-writing",
+    categorySlug: "writing-text",
     titleKey: "Scenarios.writing",
     count: 6,
   },
   {
     key: "video",
-    categorySlug: "ai-video",
+    categorySlug: "video",
     titleKey: "Scenarios.video",
     count: 6,
   },
   {
     key: "coding",
-    categorySlug: "ai-coding",
+    categorySlug: "coding-development",
     titleKey: "Scenarios.coding",
     count: 6,
   },
@@ -48,14 +48,8 @@ export const scenarioList: ScenarioItem[] = [
   },
   {
     key: "audio",
-    categorySlug: "ai-audio",
+    categorySlug: "voice-audio",
     titleKey: "Scenarios.audio",
-    count: 6,
-  },
-  {
-    key: "search",
-    categorySlug: "ai-search",
-    titleKey: "Scenarios.search",
     count: 6,
   },
 ];

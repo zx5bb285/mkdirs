@@ -1,4 +1,5 @@
 import ItemGrid from "@/components/item/item-grid";
+import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import EmptyGrid from "@/components/shared/empty-grid";
 import { HeaderSection } from "@/components/shared/header-section";
 import CustomPagination from "@/components/shared/pagination";
@@ -22,8 +23,10 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: { locale: Locale; slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }): Promise<Metadata | undefined> {
   const tag = await sanityFetch<TagQueryResult>({
     query: tagQuery,
@@ -34,17 +37,22 @@ export async function generateMetadata({
     return;
   }
 
-  const ogImageUrl = new URL(`${siteConfig.url}/api/og`);
-  ogImageUrl.searchParams.append("title", tag.name);
-  ogImageUrl.searchParams.append("description", tag.description || "");
-  ogImageUrl.searchParams.append("type", "Tag");
+  const page = Number(
+    (searchParams as { page?: string } | undefined)?.page ?? "1",
+  );
+  const currentPage = Number.isFinite(page) && page > 0 ? page : 1;
+  const base = `/tag/${params.slug}`;
 
   return constructMetadata({
     title: `${tag.name}`,
-    description: tag.description,
-    canonicalUrl: `${siteConfig.url}/tag/${params.slug}`,
+    description: tag.description || `AI tools tagged ${tag.name}.`,
+    canonicalUrl:
+      currentPage > 1
+        ? `${siteConfig.url}${base}?page=${currentPage}`
+        : `${siteConfig.url}${base}`,
     locale: params.locale,
-    // image: ogImageUrl.toString(),
+    // Empty taxonomy pages stay reachable but out of the index.
+    noIndex: tag.count === 0,
   });
 }
 
@@ -85,8 +93,31 @@ export default async function TagPage({
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
   console.log("TagPage, totalCount", totalCount, ", totalPages", totalPages);
 
+  const tagUrl = `${siteConfig.url}/tag/${params.slug}`;
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", url: siteConfig.url },
+    { name: "Tags", url: `${siteConfig.url}/tag` },
+    { name: tag.name, url: tagUrl },
+  ]);
+  const itemList =
+    items.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: `${tag.name} tools`,
+          numberOfItems: totalCount,
+          itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${siteConfig.url}/item/${item.slug.current}`,
+            name: item.name,
+          })),
+        }
+      : null;
+
   return (
     <div>
+      <JsonLd data={itemList ? [breadcrumb, itemList] : breadcrumb} />
       <HeaderSection
         label="Tag"
         titleAs="h1"

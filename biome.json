@@ -1,6 +1,12 @@
 {
   "files": {
-    "ignore": ["src/components/ui/*.tsx"]
+    "ignore": [
+      "src/components/ui/*.tsx",
+      ".next",
+      "backups",
+      "sanity.types.ts",
+      "schema.json"
+    ]
   },
   "formatter": {
     "enabled": true,

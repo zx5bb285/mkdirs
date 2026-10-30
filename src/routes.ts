@@ -49,6 +49,23 @@ export const publicRoutes = [
 ];
 
 /**
+ * Route prefixes that require a signed-in user.
+ *
+ * Only these paths are redirected to the login page. Any other unknown path
+ * falls through to the Next.js router so it can render a real 404 instead of
+ * a login redirect.
+ * @type {string[]}
+ */
+export const protectedRoutes = [
+  "/dashboard",
+  "/settings",
+  "/submit",
+  "/edit",
+  "/payment",
+  "/publish",
+];
+
+/**
  * An array of routes that are used for authentication
  * These routes will redirect logged in users to /dashboard
  * @type {string[]}

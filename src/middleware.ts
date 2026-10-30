@@ -5,6 +5,7 @@ import {
   authRoutes,
   defaultLoginRedirect,
   getLocaleFromPathname,
+  protectedRoutes,
   publicRoutes,
   stripLocale,
 } from "@/routes";
@@ -24,6 +25,11 @@ const handleI18n = createMiddleware(routing);
 
 const matchPublicRoute = (pathname: string) =>
   publicRoutes.some((route) => new RegExp(`^${route}$`).test(pathname));
+
+const matchProtectedRoute = (pathname: string) =>
+  protectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
 
 // URLs are locale-less (localePrefix: "never"), so the login path never
 // carries a locale prefix.
@@ -77,6 +83,7 @@ export default auth((req) => {
   // NEXT_LOCALE cookie (falling back to the default) at the end.
   const isAuthRoute = authRoutes.includes(pathname);
   const isPublicRoute = matchPublicRoute(pathname);
+  const isProtectedRoute = matchProtectedRoute(pathname);
 
   // redirect to dashboard if logged in and on auth routes
   if (isAuthRoute) {
@@ -86,8 +93,10 @@ export default auth((req) => {
     return handleI18n(req);
   }
 
-  // redirect to login if not logged in and not on public routes
-  if (!isLoggedIn && !isPublicRoute) {
+  // Only protected paths redirect to login. Unknown paths must fall through
+  // to the router so they render a real 404 (a redirect would return 302 and
+  // get indexed as a soft-404).
+  if (!isLoggedIn && isProtectedRoute && !isPublicRoute) {
     return redirectToLogin(pathname + nextUrl.search, nextUrl);
   }
 

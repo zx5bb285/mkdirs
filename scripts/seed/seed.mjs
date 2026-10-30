@@ -37,7 +37,7 @@ const ref = (id) => ({ _type: "reference", _ref: id });
 async function backup() {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const path = `/tmp/dirhuntai-content-backup-${stamp}.json`;
-  const docs = await client.fetch(`*[_type in $types] | order(_type asc)`, {
+  const docs = await client.fetch("*[_type in $types] | order(_type asc)", {
     types: TYPES,
   });
   await writeFile(path, JSON.stringify(docs, null, 2));
@@ -46,7 +46,7 @@ async function backup() {
 
 async function wipe() {
   const data = await client.delete({
-    query: `*[_type in $types]`,
+    query: "*[_type in $types]",
     params: { types: TYPES },
   });
   console.log("wipe:", JSON.stringify(data));

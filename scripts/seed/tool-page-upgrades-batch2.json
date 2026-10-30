@@ -1,0 +1,722 @@
+{
+  "chatgpt": {
+    "seoTitle": "ChatGPT Review 2026: Pricing & Alternatives",
+    "seoDescription": "ChatGPT is OpenAI's assistant for writing, research, coding and images. Compare Free, Go, Plus and Pro plans, pricing, limits and alternatives.",
+    "introduction": "ChatGPT is OpenAI's general-purpose AI assistant. It answers questions, drafts and edits text, analyzes uploaded files, generates images, searches the web and can write or debug code. Because one subscription covers many tasks, it is often the first AI tool people compare against specialist products.\n\nOpenAI sells ChatGPT in tiers rather than as a single plan. The free tier includes unlimited text chats on the current model with limited access to uploads, image generation, voice, Deep Research and Codex. Go adds more access at a lower price than Plus. Plus adds advanced reasoning, projects, scheduled tasks, custom GPTs and larger limits. Pro, priced from $100 per month, adds the highest usage tiers, the Astra model and the Dot agent, plus effectively unlimited image generation. Business and Enterprise are sold per seat with administrative controls.\n\nThe strengths are breadth and iteration speed. A user can move from research to a draft to a spreadsheet explanation in one conversation, and the desktop app can work with local files and applications. The weaknesses are equally broad: usage limits vary by plan and model, answers still need verification, and the interface is less specialized than tools built for one workflow. Teams that need shared brand rules or deep repository context should compare dedicated products before standardizing on ChatGPT.",
+    "verdict": "ChatGPT is the strongest generalist choice for most people: one subscription covers writing, research, file analysis, images and coding help. The free tier is usable, Go lowers the entry price, and Plus is the practical default for regular work. Pro only makes sense for heavy users who hit limits; businesses should compare per-seat controls first.",
+    "bestFor": "Individuals and teams that want one assistant for writing, research, files and light coding",
+    "pros": [
+      "One subscription covers writing, research, file analysis, images and coding",
+      "A usable free tier makes it easy to evaluate before paying",
+      "Go provides a cheaper paid entry point than Plus",
+      "Projects, tasks and custom GPTs support repeatable workflows",
+      "Desktop app can work with local files and applications"
+    ],
+    "cons": [
+      "Usage limits differ by plan, model and feature, which makes comparisons hard",
+      "The product changes frequently, so older reviews and tutorials go stale",
+      "Answers still require verification for factual or high-stakes work",
+      "Business pricing is per seat and less transparent than consumer plans"
+    ],
+    "keyFeatures": [
+      {
+        "title": "Conversational answers",
+        "description": "Ask follow-up questions in plain language and get explanations, drafts, summaries or step-by-step guidance in one thread."
+      },
+      {
+        "title": "Web search and Deep Research",
+        "description": "Search for current information and, on paid plans, run multi-source research reports with citations."
+      },
+      {
+        "title": "File and image analysis",
+        "description": "Upload documents, spreadsheets and screenshots to summarize, extract data or explain what is in an image."
+      },
+      {
+        "title": "Image generation",
+        "description": "Create and edit images from text prompts, with allowances that vary by plan and are effectively unlimited on Pro."
+      },
+      {
+        "title": "Codex coding help",
+        "description": "Write, explain and debug code, with Codex access and usage limits depending on the subscription tier."
+      },
+      {
+        "title": "Projects, tasks and custom GPTs",
+        "description": "Group related chats, schedule recurring tasks and build reusable assistants with instructions and knowledge files."
+      }
+    ],
+    "pricingSummary": "ChatGPT is free with limits. Go is $8/month, Plus $20/month and Pro starts at $100/month. Business is $25 per user per month, or $20 per user per month billed annually, with a two-seat minimum; Enterprise is quoted by sales. Prices and included limits change often, so confirm them on OpenAI's pricing page before buying.",
+    "pricingRows": [
+      {
+        "plan": "Free",
+        "price": "$0",
+        "billing": "Free forever",
+        "includes": "Unlimited text chats, with limited uploads, image generation, voice, Deep Research and Codex."
+      },
+      {
+        "plan": "Go",
+        "price": "$8/mo",
+        "billing": "Month-to-month",
+        "includes": "More access than Free at a lower price than Plus."
+      },
+      {
+        "plan": "Plus",
+        "price": "$20/mo",
+        "billing": "Month-to-month",
+        "includes": "Advanced reasoning, projects, scheduled tasks, custom GPTs and higher usage limits."
+      },
+      {
+        "plan": "Pro",
+        "price": "From $100/mo",
+        "billing": "Month-to-month",
+        "includes": "Highest usage tiers, Astra model, Dot agent and effectively unlimited image generation."
+      },
+      {
+        "plan": "Business",
+        "price": "$25/user/mo",
+        "billing": "$20/user/mo billed annually; two-seat minimum",
+        "includes": "Shared workspace and administrative controls for teams."
+      },
+      {
+        "plan": "Enterprise",
+        "price": "Custom",
+        "billing": "Contact sales",
+        "includes": "Enterprise controls, support and contract terms."
+      }
+    ],
+    "hasFreePlan": true,
+    "startingPrice": 8,
+    "priceCurrency": "USD",
+    "pricingUrl": "https://openai.com/chatgpt/pricing/",
+    "faqs": [
+      {
+        "question": "Is ChatGPT free?",
+        "answer": "Yes. The free plan includes unlimited text chats, but uploads, image generation, voice, Deep Research and Codex have limited access. Paid plans raise those limits and add features such as projects, tasks and custom GPTs."
+      },
+      {
+        "question": "What is the difference between ChatGPT Go and Plus?",
+        "answer": "Go costs $8 per month and provides more access than the free plan. Plus costs $20 per month and adds advanced reasoning, projects, scheduled tasks, custom GPTs and larger usage allowances. Go is the cheaper step up; Plus is the fuller individual plan."
+      },
+      {
+        "question": "What does ChatGPT Pro include?",
+        "answer": "Pro starts at $100 per month and provides the highest usage tiers, access to the Astra model and the Dot agent, plus effectively unlimited image generation. It is aimed at users who regularly hit the limits of Plus."
+      },
+      {
+        "question": "Does ChatGPT have a business plan?",
+        "answer": "Yes. ChatGPT Business is sold per seat at $25 per user per month, or $20 per user per month billed annually, with a minimum of two seats. Enterprise pricing and terms are quoted by sales."
+      },
+      {
+        "question": "Can ChatGPT generate images?",
+        "answer": "Yes. Image generation is available across plans with different allowances. The free tier is limited, paid plans include more, and Pro is described as effectively unlimited for image generation."
+      }
+    ],
+    "alternatives": [
+      {
+        "itemRef": "item-claude",
+        "note": "A strong alternative for long documents, careful writing and coding, with a different conversational style."
+      },
+      {
+        "itemRef": "item-copy-ai",
+        "note": "More focused on marketing copy and repeatable content workflows than general research."
+      },
+      {
+        "itemRef": "item-jasper",
+        "note": "Built around brand voice and campaign work for marketing teams rather than one-to-one chat."
+      },
+      {
+        "name": "Perplexity",
+        "url": "https://www.perplexity.ai/",
+        "note": "Search-first answers with citations, useful when research is the main job."
+      },
+      {
+        "name": "Microsoft Copilot",
+        "url": "https://copilot.microsoft.com/",
+        "note": "A ChatGPT-based assistant integrated with Microsoft products and the web."
+      }
+    ],
+    "sources": [
+      {
+        "title": "ChatGPT plans and pricing",
+        "url": "https://openai.com/chatgpt/pricing/"
+      },
+      {
+        "title": "ChatGPT Business help article",
+        "url": "https://help.openai.com/"
+      },
+      {
+        "title": "OpenAI product overview",
+        "url": "https://openai.com/chatgpt/"
+      }
+    ],
+    "lastVerified": "2026-10-20",
+    "reviewerRef": "author-dirhuntai-editorial"
+  },
+  "claude": {
+    "seoTitle": "Claude Review 2026: Pricing & Alternatives",
+    "seoDescription": "Claude is Anthropic's AI assistant for writing, analysis and coding. Compare Free, Pro, Max and Team plans, pricing, usage limits and alternatives.",
+    "introduction": "Claude is Anthropic's AI assistant, available in the browser and through desktop and mobile apps. It is used for drafting and editing, analyzing long documents, research, data work and coding. Its feature set includes web search, file and code execution, memory, connectors and Artifacts, which display generated documents, diagrams and small apps beside the conversation.\n\nAnthropic sells Claude to individuals and teams. The free plan covers the core assistant with usage limits. Pro costs $20 per month, or $17 per month when paid annually, and adds higher usage, Projects, Claude Code, the Chrome extension and Microsoft 365 integration. Max starts at $100 per month with either 5x or 20x the Pro usage. Team Standard is $25 per seat per month ($20 annually), Team Premium is $125 ($100 annually), and Enterprise is $20 per seat per month billed annually with a 20-seat minimum.\n\nClaude's main strength is document-level work. Long context, careful writing and Artifacts make it well suited to reports, contracts, research synthesis and code review. The trade-offs are a narrower consumer ecosystem than ChatGPT's, plan-dependent usage limits and a higher entry price for heavy use. Buyers should compare Pro with Max and Team rather than assuming the cheapest paid tier will cover daily professional use.",
+    "verdict": "Claude is the better choice when the work is long, document-heavy or code-adjacent. Pro at $20 per month is a fair default for professionals, while Max is for people who consistently exhaust Pro. Teams get administrative controls and shared billing, but should model real usage before choosing Standard or Premium seats.",
+    "bestFor": "Professionals and teams working with long documents, research and code",
+    "pros": [
+      "Strong long-document analysis and careful, readable writing",
+      "Artifacts turn answers into editable documents, diagrams and small apps",
+      "Projects and memory keep recurring context available",
+      "Claude Code and connectors support technical workflows",
+      "Clear individual, team and enterprise tiers"
+    ],
+    "cons": [
+      "Usage limits are plan-dependent and can interrupt heavy sessions",
+      "The consumer ecosystem is smaller than ChatGPT's",
+      "Max is substantially more expensive than Pro",
+      "Some integrations are tied to specific plans or platforms"
+    ],
+    "keyFeatures": [
+      {
+        "title": "Long-document analysis",
+        "description": "Upload reports, contracts or research and ask for summaries, comparisons, extraction or line-level editing."
+      },
+      {
+        "title": "Writing and editing",
+        "description": "Draft, restructure and tighten prose while preserving tone, with follow-up revisions in the same conversation."
+      },
+      {
+        "title": "Artifacts",
+        "description": "Render generated content in a side panel as a document, diagram, website or small application that can be iterated."
+      },
+      {
+        "title": "Projects and memory",
+        "description": "Keep reference material and instructions together, and retain useful context across conversations."
+      },
+      {
+        "title": "Claude Code",
+        "description": "Work with codebases from the terminal or editor, with Pro and higher plans including access."
+      },
+      {
+        "title": "Connectors and integrations",
+        "description": "Connect work tools and, on paid plans, use the Chrome extension and Microsoft 365 integration."
+      }
+    ],
+    "pricingSummary": "Claude is free with usage limits. Pro is $20 per month, or $17 per month billed annually. Max starts at $100 per month with 5x or 20x Pro usage. Team Standard is $25 per seat per month ($20 annual), Team Premium is $125 ($100 annual), and Enterprise is $20 per seat per month billed annually with a 20-seat minimum.",
+    "pricingRows": [
+      {
+        "plan": "Free",
+        "price": "$0",
+        "billing": "Free forever",
+        "includes": "Core chat, web search, file and code execution, memory, connectors and Artifacts with usage limits."
+      },
+      {
+        "plan": "Pro",
+        "price": "$20/mo",
+        "billing": "$17/mo billed annually ($200 prepaid)",
+        "includes": "Higher usage, Projects, Claude Code, Chrome extension and Microsoft 365 integration."
+      },
+      {
+        "plan": "Max",
+        "price": "From $100/mo",
+        "billing": "Month-to-month",
+        "includes": "5x or 20x the Pro usage for heavy individual use."
+      },
+      {
+        "plan": "Team Standard",
+        "price": "$25/seat/mo",
+        "billing": "$20/seat/mo billed annually",
+        "includes": "Shared workspace, administration, SSO and API credits."
+      },
+      {
+        "plan": "Team Premium",
+        "price": "$125/seat/mo",
+        "billing": "$100/seat/mo billed annually",
+        "includes": "Team controls with higher usage for each seat."
+      },
+      {
+        "plan": "Enterprise",
+        "price": "$20/seat/mo",
+        "billing": "Billed annually; 20-seat minimum",
+        "includes": "Enterprise controls, support and contracted usage."
+      }
+    ],
+    "hasFreePlan": true,
+    "startingPrice": 20,
+    "priceCurrency": "USD",
+    "pricingUrl": "https://claude.com/pricing",
+    "faqs": [
+      {
+        "question": "Is Claude free?",
+        "answer": "Yes. Claude has a free plan that includes the core assistant, web search, file and code execution, memory, connectors and Artifacts, subject to usage limits. Paid plans raise those limits and add features such as Projects and Claude Code."
+      },
+      {
+        "question": "How much does Claude Pro cost?",
+        "answer": "Claude Pro is $20 per month, or $17 per month when billed annually at $200 prepaid. It adds higher usage, Projects, Claude Code, the Chrome extension and Microsoft 365 integration."
+      },
+      {
+        "question": "What is the difference between Claude Pro and Max?",
+        "answer": "Max is aimed at heavy users and starts at $100 per month, offering 5x or 20x the usage of Pro. Pro is the standard individual plan; Max is for people who regularly reach Pro's limits."
+      },
+      {
+        "question": "Does Claude have a team plan?",
+        "answer": "Yes. Team Standard is $25 per seat per month, or $20 billed annually. Team Premium is $125 per seat per month, or $100 billed annually, with higher usage. Both add shared administration and SSO."
+      },
+      {
+        "question": "Can Claude write and run code?",
+        "answer": "Yes. Claude can generate and explain code, execute code in supported environments and work with files. Claude Code provides a dedicated workflow for repository-level coding on Pro and higher plans."
+      }
+    ],
+    "alternatives": [
+      {
+        "itemRef": "item-chatgpt",
+        "note": "A broader consumer assistant with more plan options and image generation."
+      },
+      {
+        "itemRef": "item-cursor",
+        "note": "A dedicated AI code editor for repository-level development rather than general chat."
+      },
+      {
+        "itemRef": "item-copy-ai",
+        "note": "More focused on marketing copy and repeatable content production."
+      },
+      {
+        "name": "Perplexity",
+        "url": "https://www.perplexity.ai/",
+        "note": "Search-first research with citations, useful when source discovery matters most."
+      },
+      {
+        "name": "Gemini",
+        "url": "https://gemini.google.com/",
+        "note": "Google's assistant, tightly integrated with Google Workspace and search."
+      }
+    ],
+    "sources": [
+      {
+        "title": "Claude plans and pricing",
+        "url": "https://claude.com/pricing"
+      },
+      {
+        "title": "Claude product overview",
+        "url": "https://claude.com/"
+      },
+      {
+        "title": "Anthropic documentation",
+        "url": "https://docs.anthropic.com/"
+      }
+    ],
+    "lastVerified": "2026-10-20",
+    "reviewerRef": "author-dirhuntai-editorial"
+  },
+  "cursor": {
+    "seoTitle": "Cursor Review 2026: Pricing & Alternatives",
+    "seoDescription": "Cursor is an AI code editor built around agents and codebase context. Compare Free, Plus, Premium, Super and Ultra pricing, limits and alternatives.",
+    "introduction": "Cursor is an AI-first code editor built on the familiar VS Code foundation. Instead of adding a chat panel to an existing editor, it treats the codebase as the main source of context: the agent can inspect files, plan multi-file changes, run commands and show a diff for review before changes are accepted.\n\nThe product is sold in individual and team tiers. The free plan provides limited agent requests. Plus is $8 per month, Premium $30, Super $100 and Ultra $200, with each step raising model and agent allowances. Teams costs from $30 per user per month, and Enterprise is quoted separately. Cursor does not publish a single usage number that applies to every model, so buyers should read the current limits rather than comparing headline prices alone.\n\nCursor is strongest for developers who already know what they want to change and need the editor to carry context across files. Plan Mode helps scope work before editing, and change review keeps a human in the loop. The drawbacks are cost at heavy usage, the need to review generated diffs carefully, and a learning curve for teams adopting new agent workflows. It is not a replacement for understanding the code being changed.",
+    "verdict": "Cursor is the most practical AI editor for developers who want agent-driven changes without leaving a VS Code-style environment. Plus is a low-risk entry point, while Premium and above suit daily heavy use. Teams should budget for usage limits and review every diff; the editor accelerates work but does not remove the need for engineering judgment.",
+    "bestFor": "Developers and engineering teams that want agent-assisted editing across a codebase",
+    "pros": [
+      "Familiar VS Code-style environment with a short setup path",
+      "Agent can plan and apply multi-file changes with reviewable diffs",
+      "Plan Mode helps scope work before code is modified",
+      "Choice of models and integrations with common developer tools",
+      "Team and enterprise tiers add shared administration"
+    ],
+    "cons": [
+      "Heavy agent use can hit plan limits quickly",
+      "Generated changes still require careful human review",
+      "Pricing tiers are harder to compare than a single usage quota",
+      "Large or unusual codebases may need extra context setup"
+    ],
+    "keyFeatures": [
+      {
+        "title": "Agent-driven editing",
+        "description": "Describe a task and let the agent inspect the repository, edit multiple files and run commands to complete it."
+      },
+      {
+        "title": "Plan Mode",
+        "description": "Scope a change and agree on an approach before the agent starts modifying code."
+      },
+      {
+        "title": "Codebase understanding",
+        "description": "Use repository context to answer questions, trace behavior and locate the files involved in a change."
+      },
+      {
+        "title": "Change review",
+        "description": "Inspect proposed diffs and accept or reject edits rather than applying generated code blindly."
+      },
+      {
+        "title": "Model selection",
+        "description": "Choose among supported models for different tasks and budget levels."
+      },
+      {
+        "title": "Integrations and cloud agents",
+        "description": "Connect GitHub, GitLab and common work tools, and use CLI, cloud agents and the SDK for broader workflows."
+      }
+    ],
+    "pricingSummary": "Cursor is free with limited agent requests. Plus is $8 per month, Premium $30, Super $100 and Ultra $200. Teams starts at $30 per user per month, and Enterprise is quoted by sales. Each paid tier raises model and agent allowances, so compare the current limits rather than price alone.",
+    "pricingRows": [
+      {
+        "plan": "Free",
+        "price": "$0",
+        "billing": "Free forever",
+        "includes": "Limited agent requests and access to the editor."
+      },
+      {
+        "plan": "Plus",
+        "price": "$8/mo",
+        "billing": "Month-to-month",
+        "includes": "Higher model and agent allowances than Free."
+      },
+      {
+        "plan": "Premium",
+        "price": "$30/mo",
+        "billing": "Month-to-month",
+        "includes": "More usage for regular agent-assisted development."
+      },
+      {
+        "plan": "Super",
+        "price": "$100/mo",
+        "billing": "Month-to-month",
+        "includes": "High usage for daily, heavy agent workflows."
+      },
+      {
+        "plan": "Ultra",
+        "price": "$200/mo",
+        "billing": "Month-to-month",
+        "includes": "The highest individual allowances for sustained use."
+      },
+      {
+        "plan": "Teams",
+        "price": "From $30/user/mo",
+        "billing": "Per seat",
+        "includes": "Shared billing and team administration; Enterprise is quoted separately."
+      }
+    ],
+    "hasFreePlan": true,
+    "startingPrice": 8,
+    "priceCurrency": "USD",
+    "pricingUrl": "https://cursor.com/pricing",
+    "faqs": [
+      {
+        "question": "Is Cursor free?",
+        "answer": "Cursor has a free plan with limited agent requests. Paid plans start at $8 per month for Plus and raise model and agent allowances. The free tier is suitable for evaluation, not sustained daily agent use."
+      },
+      {
+        "question": "How much does Cursor cost?",
+        "answer": "Plus is $8 per month, Premium $30, Super $100 and Ultra $200. Teams starts at $30 per user per month, and Enterprise is quoted by sales. Each tier changes the included model and agent usage."
+      },
+      {
+        "question": "Is Cursor a replacement for VS Code?",
+        "answer": "Cursor is built on a VS Code-style foundation and is designed as an editor in its own right. Teams can migrate familiar settings and extensions, but should test their specific toolchain before standardizing."
+      },
+      {
+        "question": "Does Cursor work with GitHub and GitLab?",
+        "answer": "Yes. Cursor documents integrations with GitHub and GitLab, along with common tools such as Slack, Linear, Notion and Jira, plus CLI, cloud agents and an SDK."
+      },
+      {
+        "question": "Is Cursor good for large codebases?",
+        "answer": "Cursor is designed around codebase context and multi-file changes, which helps on larger repositories. Results still depend on how the project is structured and on reviewing the agent's proposed diffs."
+      }
+    ],
+    "alternatives": [
+      {
+        "itemRef": "item-github-copilot",
+        "note": "A closely integrated assistant for GitHub and popular editors, with a different pricing model."
+      },
+      {
+        "itemRef": "item-chatgpt",
+        "note": "Useful for explaining code and drafting snippets outside the editor."
+      },
+      {
+        "itemRef": "item-claude",
+        "note": "Strong for code review and long-file reasoning, with Claude Code as a separate workflow."
+      },
+      {
+        "name": "Windsurf",
+        "url": "https://windsurf.com/",
+        "note": "Another agent-focused editor with a comparable multi-file workflow."
+      },
+      {
+        "name": "Tabnine",
+        "url": "https://www.tabnine.com/",
+        "note": "An enterprise-oriented coding assistant with an emphasis on privacy and deployment control."
+      }
+    ],
+    "sources": [
+      {
+        "title": "Cursor plans and pricing",
+        "url": "https://cursor.com/pricing"
+      },
+      {
+        "title": "Cursor documentation",
+        "url": "https://docs.cursor.com/"
+      },
+      {
+        "title": "Cursor product overview",
+        "url": "https://cursor.com/"
+      }
+    ],
+    "lastVerified": "2026-10-20",
+    "reviewerRef": "author-dirhuntai-editorial"
+  },
+  "midjourney": {
+    "seoTitle": "Midjourney Review 2026: Pricing & Plans",
+    "seoDescription": "Midjourney is a generative image and video tool known for stylized results. Compare Basic, Standard, Pro and Mega plans, pricing and alternatives.",
+    "introduction": "Midjourney is a generative image tool that turns text prompts and reference images into artwork, product concepts and visual assets. It is known for a distinctive, highly stylized look and for giving users detailed control over references, aspect ratios and variations. The current product is used through a web app as well as Discord, and it also supports video generation.\n\nMidjourney sells monthly subscriptions rather than a free tier. Basic is $10 per month, Standard $30, Pro $60 and Mega $120, with annual billing reducing each price. Plans are metered in GPU hours: roughly 3.3 hours on Basic, 15 on Standard, 30 on Pro and 60 on Mega. Higher tiers add more concurrent jobs, stealth mode and other workflow features. The official plans page does not describe a free trial, so budget for at least one month before committing.\n\nThe tool is strongest for visual exploration: moodboards, style references and rapid variations make it easy to explore a direction before producing a final asset. It is weaker for precise, text-heavy layouts and for workflows that require exact brand templates. Users who need editable design files, team brand controls or social templates should compare a design platform rather than treating Midjourney as a full replacement.",
+    "verdict": "Midjourney remains a leading choice for distinctive AI imagery and fast visual exploration. The lack of a free plan makes it a committed purchase, and GPU-hour limits matter for heavy upscaling or video. Basic suits occasional creators, Standard is the practical default, and Pro or Mega only pay off for studios with consistent volume.",
+    "bestFor": "Designers, marketers and creators producing stylized images and concept art",
+    "pros": [
+      "Distinctive visual style that is hard to match with generic image models",
+      "Strong reference, style and personalization controls",
+      "Web app makes organizing and revisiting generations easier",
+      "Higher tiers add more GPU hours and workflow features",
+      "Video generation extends the same subscription"
+    ],
+    "cons": [
+      "No free plan or documented free trial",
+      "Plans are metered in GPU hours, which heavy users can exhaust",
+      "Less suited to precise layouts and editable design files",
+      "Prompt craft still has a learning curve"
+    ],
+    "keyFeatures": [
+      {
+        "title": "Text-to-image generation",
+        "description": "Generate a set of image variations from a written prompt, then refine or upscale the results."
+      },
+      {
+        "title": "Image prompts and references",
+        "description": "Use uploaded images to guide composition, subject or visual direction."
+      },
+      {
+        "title": "Style references and personalization",
+        "description": "Apply consistent visual styles and build moodboards that steer later generations."
+      },
+      {
+        "title": "Editor and upscaling",
+        "description": "Upscale, vary, zoom, pan and edit generated images inside the Midjourney workflow."
+      },
+      {
+        "title": "Video generation",
+        "description": "Create short video outputs from prompts or images as part of the subscription."
+      },
+      {
+        "title": "Web app workspace",
+        "description": "Create, organize and revisit images in the web app instead of relying only on chat history."
+      }
+    ],
+    "pricingSummary": "Midjourney has no free plan. Basic is $10 per month, Standard $30, Pro $60 and Mega $120; annual billing lowers each price. Plans include about 3.3, 15, 30 and 60 GPU hours per month respectively, and higher tiers add workflow features. Confirm current limits on the official plans page before subscribing.",
+    "pricingRows": [
+      {
+        "plan": "Basic",
+        "price": "$10/mo",
+        "billing": "$8/mo billed annually ($96/year)",
+        "includes": "About 3.3 GPU hours per month for image generation."
+      },
+      {
+        "plan": "Standard",
+        "price": "$30/mo",
+        "billing": "$24/mo billed annually ($288/year)",
+        "includes": "About 15 GPU hours per month plus additional workflow features."
+      },
+      {
+        "plan": "Pro",
+        "price": "$60/mo",
+        "billing": "$48/mo billed annually ($576/year)",
+        "includes": "About 30 GPU hours per month and higher-tier features."
+      },
+      {
+        "plan": "Mega",
+        "price": "$120/mo",
+        "billing": "$96/mo billed annually ($1,152/year)",
+        "includes": "About 60 GPU hours per month for high-volume production."
+      }
+    ],
+    "hasFreePlan": false,
+    "startingPrice": 10,
+    "priceCurrency": "USD",
+    "pricingUrl": "https://docs.midjourney.com/docs/plans",
+    "faqs": [
+      {
+        "question": "Does Midjourney have a free plan?",
+        "answer": "The official plans page does not describe a free plan or free trial. Midjourney subscriptions start at $10 per month for Basic, so users should expect to pay before generating images."
+      },
+      {
+        "question": "How much does Midjourney cost?",
+        "answer": "Basic is $10 per month, Standard $30, Pro $60 and Mega $120. Annual billing reduces the monthly equivalent to $8, $24, $48 and $96 respectively."
+      },
+      {
+        "question": "What are GPU hours in Midjourney?",
+        "answer": "GPU hours are the usage unit for image and video generation. Each plan includes a monthly allowance: about 3.3 hours on Basic, 15 on Standard, 30 on Pro and 60 on Mega. Heavy upscaling or video work can use them quickly."
+      },
+      {
+        "question": "Does Midjourney generate video?",
+        "answer": "Yes. Midjourney supports video generation in addition to images. The feature is part of the subscription, and usage counts against the plan's GPU-hour allowance."
+      },
+      {
+        "question": "Is Midjourney good for commercial design work?",
+        "answer": "Midjourney is strong for concept art, marketing imagery and visual exploration. It is less suited to precise layouts, editable templates and brand-controlled design systems, so teams often pair it with a design tool."
+      }
+    ],
+    "alternatives": [
+      {
+        "itemRef": "item-canva",
+        "note": "A design platform for editable templates, brand kits and social assets rather than pure image generation."
+      },
+      {
+        "itemRef": "item-myimg-ai",
+        "note": "An image-focused tool for specific generation and editing workflows."
+      },
+      {
+        "name": "Adobe Firefly",
+        "url": "https://firefly.adobe.com/",
+        "note": "Adobe's generative image tool, integrated with Creative Cloud and commercial-use positioning."
+      },
+      {
+        "name": "Ideogram",
+        "url": "https://ideogram.ai/",
+        "note": "An image generator often chosen for text rendering inside images."
+      },
+      {
+        "name": "Leonardo AI",
+        "url": "https://leonardo.ai/",
+        "note": "A generation platform with model presets and production-oriented controls."
+      }
+    ],
+    "sources": [
+      {
+        "title": "Midjourney plans",
+        "url": "https://docs.midjourney.com/docs/plans"
+      },
+      {
+        "title": "Midjourney quick start",
+        "url": "https://docs.midjourney.com/docs/quick-start"
+      },
+      {
+        "title": "Midjourney documentation",
+        "url": "https://docs.midjourney.com/"
+      }
+    ],
+    "lastVerified": "2026-10-20",
+    "reviewerRef": "author-dirhuntai-editorial"
+  },
+  "jasper": {
+    "seoTitle": "Jasper Review 2026: Pricing & Alternatives",
+    "seoDescription": "Jasper is an AI marketing platform for brand-consistent campaigns. Compare its Pro and Business plans, features, pricing and alternatives for teams.",
+    "introduction": "Jasper is an AI marketing platform built for teams that produce campaigns, landing pages, emails and long-form content. Unlike a general chatbot, it organizes work around brand voice, reusable knowledge, audiences and repeatable marketing workflows. The goal is consistency: every output should sound like the same company, even when different people generate it.\n\nJasper sells two plans. Pro is $69 per seat per month, or $59 per seat per month billed annually, and includes the core platform: Canvas, marketing agents, Brand Voice, knowledge assets, audiences, more than 100 agents, LLM routing, 30+ languages, image generation and editing, integrations, a browser extension, a plagiarism checker and a seven-day version history. Business pricing is custom and adds controls for larger organizations. Jasper does not advertise a free plan, but it does offer a trial.\n\nJasper is most valuable when marketing output is repetitive and brand consistency matters. It is less compelling for individuals who mainly need occasional drafting, because general assistants cost far less. The platform also adds process: teams need to configure brand voice and knowledge before the output improves. Buyers should run a trial with real campaign material and compare the total cost against a general assistant plus a style guide.",
+    "verdict": "Jasper is a good fit for marketing teams that need brand-consistent output at volume. Its Brand Voice, knowledge assets and agent library are more structured than a general chatbot, but Pro is expensive for occasional use. Run a trial with real campaign work and confirm that the team will actually maintain the brand setup.",
+    "bestFor": "Marketing teams producing brand-consistent campaigns and content at volume",
+    "pros": [
+      "Brand Voice and knowledge assets keep output consistent across writers",
+      "Marketing-specific agents and Canvas support repeatable workflows",
+      "Supports 30+ languages and multiple content formats",
+      "Integrations and a browser extension fit existing marketing tools",
+      "Business tier adds controls for larger organizations"
+    ],
+    "cons": [
+      "Pro is expensive compared with general-purpose assistants",
+      "No free plan; evaluation requires a trial",
+      "Value depends on configuring brand voice and knowledge properly",
+      "Business pricing requires a sales conversation"
+    ],
+    "keyFeatures": [
+      {
+        "title": "Brand Voice",
+        "description": "Define tone, terminology and style so generated copy matches the company's existing voice."
+      },
+      {
+        "title": "Knowledge assets",
+        "description": "Store product facts, audience notes and reference material that the platform can use in outputs."
+      },
+      {
+        "title": "Marketing agents",
+        "description": "Use purpose-built agents for campaigns, emails, ads and other repeatable marketing tasks."
+      },
+      {
+        "title": "Canvas",
+        "description": "Edit and restructure long-form content in a document-style workspace rather than a chat thread."
+      },
+      {
+        "title": "Audiences",
+        "description": "Define target audiences so messaging can be adapted to different segments."
+      },
+      {
+        "title": "Integrations and extension",
+        "description": "Connect Jasper to existing marketing tools and use the browser extension while working elsewhere."
+      }
+    ],
+    "pricingSummary": "Jasper Pro is $69 per seat per month, or $59 per seat per month billed annually. Business pricing is custom. There is no free plan, but a trial is available. Confirm seat minimums, trial length and current features with Jasper before committing a team.",
+    "pricingRows": [
+      {
+        "plan": "Pro",
+        "price": "$69/seat/mo",
+        "billing": "$59/seat/mo billed annually",
+        "includes": "Canvas, marketing agents, Brand Voice, knowledge assets, audiences, 100+ agents, 30+ languages, image tools, integrations and a browser extension."
+      },
+      {
+        "plan": "Business",
+        "price": "Custom",
+        "billing": "Contact sales",
+        "includes": "Organization controls and terms for larger teams."
+      }
+    ],
+    "hasFreePlan": false,
+    "startingPrice": 69,
+    "priceCurrency": "USD",
+    "pricingUrl": "https://www.jasper.ai/pricing",
+    "faqs": [
+      {
+        "question": "Does Jasper have a free plan?",
+        "answer": "Jasper does not advertise a free plan. It offers a trial, after which Pro is $69 per seat per month or $59 per seat per month billed annually. Business pricing is custom."
+      },
+      {
+        "question": "How much does Jasper cost?",
+        "answer": "Jasper Pro costs $69 per seat per month, or $59 per seat per month when billed annually. Business is quoted by sales, so larger teams need to request pricing."
+      },
+      {
+        "question": "What is Jasper best used for?",
+        "answer": "Jasper is designed for marketing work: campaigns, ads, emails, landing pages and long-form content. Brand Voice, knowledge assets and marketing agents are intended to keep output consistent across a team."
+      },
+      {
+        "question": "Does Jasper support multiple languages?",
+        "answer": "Yes. Jasper lists support for more than 30 languages, which lets teams adapt campaigns for different markets. Quality should still be checked by a fluent reviewer."
+      },
+      {
+        "question": "Is Jasper worth it compared with ChatGPT?",
+        "answer": "Jasper costs more but adds brand-voice setup, reusable knowledge, marketing agents and team workflows. It is worth considering when several marketers need consistent output; individuals with occasional needs will usually spend less with a general assistant."
+      }
+    ],
+    "alternatives": [
+      {
+        "itemRef": "item-copy-ai",
+        "note": "A marketing-focused alternative with workflow automation and a different pricing structure."
+      },
+      {
+        "itemRef": "item-grammarly",
+        "note": "Better for correcting and polishing existing prose than generating campaigns."
+      },
+      {
+        "itemRef": "item-chatgpt",
+        "note": "A lower-cost general assistant for drafting, research and one-off marketing tasks."
+      },
+      {
+        "name": "Writesonic",
+        "url": "https://writesonic.com/",
+        "note": "An AI writing platform with marketing templates and SEO-oriented workflows."
+      },
+      {
+        "name": "Anyword",
+        "url": "https://www.anyword.com/",
+        "note": "A copywriting platform focused on performance-oriented marketing variants."
+      }
+    ],
+    "sources": [
+      {
+        "title": "Jasper plans and pricing",
+        "url": "https://www.jasper.ai/pricing"
+      },
+      {
+        "title": "Jasper product overview",
+        "url": "https://www.jasper.ai/"
+      },
+      {
+        "title": "Jasper help center",
+        "url": "https://help.jasper.ai/"
+      }
+    ],
+    "lastVerified": "2026-10-20",
+    "reviewerRef": "author-dirhuntai-editorial"
+  }
+}

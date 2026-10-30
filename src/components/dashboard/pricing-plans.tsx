@@ -72,9 +72,11 @@ const PricingPlanCard = ({ item, pricePlan }: PricingPlanCardProps) => {
             <div className="text-4xl font-semibold font-workSans leading-relaxed text-primary">
               ${pricePlan.price}
             </div>
-            <div className="text-sm font-semibold font-workSans leading-relaxed text-muted-foreground">
-              {t(pricePlan.priceSuffix)}
-            </div>
+            {pricePlan.priceSuffix && (
+              <div className="text-sm font-semibold font-workSans leading-relaxed text-muted-foreground">
+                {t(pricePlan.priceSuffix)}
+              </div>
+            )}
           </div>
         </div>
 

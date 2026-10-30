@@ -12,6 +12,7 @@ import type { BlogCategoryMetadateQueryResult } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { blogCategoryMetadateQuery } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -45,6 +46,7 @@ export async function generateMetadata({
         ? `${siteConfig.url}${base}?page=${currentPage}`
         : `${siteConfig.url}${base}`,
     locale: params.locale,
+    noIndex: category.count === 0,
   });
 }
 
@@ -59,6 +61,9 @@ export default async function BlogCategoryPage({
     query: blogCategoryMetadateQuery,
     params: { slug: params.slug, locale: params.locale },
   });
+  if (!category) {
+    return notFound();
+  }
 
   const { page } = searchParams as { [key: string]: string };
   const currentPage = page ? Number(page) : 1;

@@ -27,6 +27,7 @@ export default function ImageUpload({
   const [imageUrl, setImageUrl] = useState<string | null>(currentImageUrl);
 
   // Add effect to watch currentImageUrl changes
+  // biome-ignore lint/correctness/useExhaustiveDependencies: sync prop changes only; adding imageUrl would reset a fresh upload
   useEffect(() => {
     if (currentImageUrl !== imageUrl) {
       setImageUrl(currentImageUrl);

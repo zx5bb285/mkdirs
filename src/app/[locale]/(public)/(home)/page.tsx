@@ -32,16 +32,32 @@ import {
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}): Promise<Metadata> {
   const locale = (await getLocale()) as "zh-CN" | "en";
   const t = await getTranslations({ locale, namespace: "Site" });
+  const { page, category, tag, q, f } = searchParams as {
+    [key: string]: string | undefined;
+  };
+  const currentPage =
+    Number.isFinite(Number(page)) && Number(page) > 0 ? Number(page) : 1;
+  const isFiltered = Boolean(category || tag || q || f);
+
   return constructMetadata({
     // The helper appends the site name, so the tagline alone yields
     // "<tagline> - DirHunt AI" instead of repeating the brand.
     title: t("tagline"),
     description: t("description"),
-    canonicalUrl: `${siteConfig.url}/`,
+    canonicalUrl:
+      currentPage > 1
+        ? `${siteConfig.url}/?page=${currentPage}`
+        : `${siteConfig.url}/`,
     locale,
+    // Filtered home pages are faceted listings: keep them out of the index.
+    noIndex: isFiltered,
   });
 }
 

@@ -159,7 +159,8 @@ const categories = [
     name: "Guides",
     slug: "guides",
     priority: 80,
-    description: "Practical guides for evaluating and getting more from AI tools.",
+    description:
+      "Practical guides for evaluating and getting more from AI tools.",
   },
 ].map((category) => ({
   ...category,
@@ -193,13 +194,43 @@ const posts = [
       h2("Quick comparison"),
       table([
         ["Tool", "Best for", "Free tier", "Notable strength"],
-        ["ChatGPT", "Flexible drafting and research", "Yes", "Conversational editing and file analysis"],
-        ["Claude", "Long documents and careful editing", "Yes", "Large context and natural prose"],
-        ["Jasper", "Marketing teams", "Trial only", "Brand voice and campaign workflows"],
-        ["Copy.ai", "Sales and marketing operations", "Yes", "Reusable workflows"],
-        ["Grammarly", "Everyday correctness and tone", "Yes", "Works across apps"],
+        [
+          "ChatGPT",
+          "Flexible drafting and research",
+          "Yes",
+          "Conversational editing and file analysis",
+        ],
+        [
+          "Claude",
+          "Long documents and careful editing",
+          "Yes",
+          "Large context and natural prose",
+        ],
+        [
+          "Jasper",
+          "Marketing teams",
+          "Trial only",
+          "Brand voice and campaign workflows",
+        ],
+        [
+          "Copy.ai",
+          "Sales and marketing operations",
+          "Yes",
+          "Reusable workflows",
+        ],
+        [
+          "Grammarly",
+          "Everyday correctness and tone",
+          "Yes",
+          "Works across apps",
+        ],
         ["QuillBot", "Paraphrasing and study", "Yes", "Fast rewording"],
-        ["Surfer SEO", "Search-driven articles", "No", "SERP-based content scoring"],
+        [
+          "Surfer SEO",
+          "Search-driven articles",
+          "No",
+          "SERP-based content scoring",
+        ],
       ]),
       h2("General assistants: ChatGPT and Claude"),
       p(
@@ -276,12 +307,42 @@ const posts = [
       h2("Quick comparison"),
       table([
         ["Tool", "Best for", "Free tier", "Notable strength"],
-        ["Cursor", "AI-first individual editing", "Limited", "Multi-file agent inside VS Code"],
-        ["GitHub Copilot", "Teams already on GitHub", "Limited", "Integration across the development lifecycle"],
-        ["Windsurf", "Agentic refactors", "Limited", "Cascade multi-step flows"],
-        ["Tabnine", "Regulated enterprises", "Trial", "Self-hosting and policy controls"],
-        ["Continue", "Open-source and local models", "Open source", "Model and context flexibility"],
-        ["JetBrains AI", "JetBrains IDE users", "Limited", "IDE-aware project context"],
+        [
+          "Cursor",
+          "AI-first individual editing",
+          "Limited",
+          "Multi-file agent inside VS Code",
+        ],
+        [
+          "GitHub Copilot",
+          "Teams already on GitHub",
+          "Limited",
+          "Integration across the development lifecycle",
+        ],
+        [
+          "Windsurf",
+          "Agentic refactors",
+          "Limited",
+          "Cascade multi-step flows",
+        ],
+        [
+          "Tabnine",
+          "Regulated enterprises",
+          "Trial",
+          "Self-hosting and policy controls",
+        ],
+        [
+          "Continue",
+          "Open-source and local models",
+          "Open source",
+          "Model and context flexibility",
+        ],
+        [
+          "JetBrains AI",
+          "JetBrains IDE users",
+          "Limited",
+          "IDE-aware project context",
+        ],
       ]),
       h2("Agentic editors: Cursor and Windsurf"),
       p(
@@ -354,11 +415,31 @@ const posts = [
       h2("Quick comparison"),
       table([
         ["Tool", "Best for", "Free tier", "Notable strength"],
-        ["Runway", "Generation plus editing", "Credits", "All-in-one production toolkit"],
-        ["Pika", "Social clips and effects", "Credits", "Playful transformations"],
-        ["Luma Dream Machine", "Cinematic motion", "Credits", "Camera and keyframe control"],
+        [
+          "Runway",
+          "Generation plus editing",
+          "Credits",
+          "All-in-one production toolkit",
+        ],
+        [
+          "Pika",
+          "Social clips and effects",
+          "Credits",
+          "Playful transformations",
+        ],
+        [
+          "Luma Dream Machine",
+          "Cinematic motion",
+          "Credits",
+          "Camera and keyframe control",
+        ],
         ["Kling AI", "Dynamic scenes", "Credits", "Longer, motion-heavy shots"],
-        ["Hailuo AI", "Stylized short videos", "Credits", "Expressive character motion"],
+        [
+          "Hailuo AI",
+          "Stylized short videos",
+          "Credits",
+          "Expressive character motion",
+        ],
       ]),
       h2("Runway: the production suite"),
       p(
@@ -463,9 +544,7 @@ const posts = [
   _type: "blogPost",
   slug: { _type: "slug", current: post.slug },
   author: { _type: "reference", _ref: author._id },
-  categories: [
-    { _type: "reference", _ref: `blogCategory-${post.category}` },
-  ],
+  categories: [{ _type: "reference", _ref: `blogCategory-${post.category}` }],
   lastReviewedAt: "2026-10-18T00:00:00Z",
 }));
 

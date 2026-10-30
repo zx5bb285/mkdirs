@@ -183,19 +183,22 @@ export const structure = (
       '_type == "item" && sponsor == true',
     );
 
-    // published items
+    // Published vs unpublished must follow the document state, not
+    // `publishDate`: a draft inherits the published date, which used to make
+    // every draft appear under "Published Items". Studio keeps drafts as
+    // `drafts.<id>` documents and shows one row per document pair.
     const publishedItems = createFilteredListItem(
       "Published Items",
       item.name,
       TaskIcon,
-      '_type == "item" && publishDate != null',
+      '_type == "item" && !(_id in path("drafts.**"))',
     );
 
     const unpublishedItems = createFilteredListItem(
       "Unpublished Items",
       item.name,
       ClockIcon,
-      '_type == "item" && publishDate == null',
+      '_type == "item" && _id in path("drafts.**")',
     );
 
     const allItems = S.documentTypeListItem(item.name)

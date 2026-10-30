@@ -9,6 +9,23 @@ export default defineType({
   type: "document",
   groups: [
     {
+      name: "content",
+      title: "Content",
+      default: true,
+    },
+    {
+      name: "review",
+      title: "Review",
+    },
+    {
+      name: "pricing",
+      title: "Pricing",
+    },
+    {
+      name: "seo",
+      title: "SEO",
+    },
+    {
       name: "status",
       title: "Status",
     },
@@ -33,18 +50,21 @@ export default defineType({
       name: "name",
       title: "Name",
       type: "string",
+      group: "content",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "nameZh",
       title: "Name (简体中文)",
       type: "string",
+      group: "content",
       fieldset: "zh",
     }),
     defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
+      group: "content",
       options: {
         source: "name",
         maxLength: 96,
@@ -56,6 +76,7 @@ export default defineType({
       name: "featured",
       title: "Mark as Featured",
       type: "boolean",
+      group: "content",
       initialValue: false,
       description:
         "If the item is featured, it will be displayed in the featured section",
@@ -64,12 +85,14 @@ export default defineType({
       name: "link",
       title: "Link",
       type: "string",
+      group: "content",
       description: "The link shown on the website",
     }),
     defineField({
       name: "affiliateLink",
       title: "Affiliate Link",
       type: "string",
+      group: "content",
       description:
         "The affiliate link, not shown on the website, leave it blank if you don't have one",
     }),
@@ -77,12 +100,14 @@ export default defineType({
       name: "description",
       title: "Description",
       type: "text",
+      group: "content",
       rows: 3,
     }),
     defineField({
       name: "descriptionZh",
       title: "Description (简体中文)",
       type: "text",
+      group: "content",
       rows: 3,
       fieldset: "zh",
     }),
@@ -91,6 +116,7 @@ export default defineType({
       title: "Collections",
       description: "The collections of the item, may have multiple collections",
       type: "array",
+      group: "content",
       of: [
         {
           type: "reference",
@@ -103,6 +129,7 @@ export default defineType({
       title: "Categories",
       description: "The categories of the item, may have multiple categories",
       type: "array",
+      group: "content",
       of: [
         {
           type: "reference",
@@ -115,6 +142,7 @@ export default defineType({
       title: "Tags",
       description: "The tags of the item, may have multiple tags",
       type: "array",
+      group: "content",
       of: [
         {
           type: "reference",
@@ -126,6 +154,7 @@ export default defineType({
       name: "submitter",
       title: "Submitter",
       type: "reference",
+      group: "content",
       to: [{ type: "user" }],
       // do not require submitter, because the item maybe submitted by admin
       // validation: (rule) => rule.required(),
@@ -135,6 +164,7 @@ export default defineType({
       title: "Introduction",
       description: "The introduction of the item, in markdown format",
       type: "markdown",
+      group: "content",
       // https://github.com/sanity-io/sanity-plugin-markdown?tab=readme-ov-file#custom-image-urls
       // The function will be invoked whenever an image is pasted
       // or dragged into the markdown editor, after upload completes.
@@ -149,6 +179,7 @@ export default defineType({
       title: "Introduction (简体中文)",
       description: "The chinese introduction of the item, in markdown format",
       type: "markdown",
+      group: "content",
       fieldset: "zh",
       options: {
         imageUrl: (imageAsset: SanityImageAssetDocument) => {
@@ -160,6 +191,7 @@ export default defineType({
       name: "icon",
       title: "Icon",
       type: "image",
+      group: "content",
       fields: [
         {
           name: "alt",
@@ -176,6 +208,7 @@ export default defineType({
       name: "image",
       title: "Image",
       type: "image",
+      group: "content",
       options: {
         hotspot: true,
       },
@@ -191,6 +224,355 @@ export default defineType({
         },
       ],
     }),
+    // ---------------------------------------------------------------------
+    // Review content (optional; legacy items can stay as they are)
+    defineField({
+      name: "verdict",
+      title: "Verdict",
+      description:
+        "Answer-first editorial verdict, 40-70 words. Shown near the top of the item page.",
+      type: "text",
+      rows: 4,
+      group: "review",
+    }),
+    defineField({
+      name: "bestFor",
+      title: "Best for",
+      description:
+        "One line describing the reader this tool suits, e.g. 'Best for teams that write in English every day'.",
+      type: "string",
+      group: "review",
+      validation: (rule) =>
+        rule.max(120).warning("Keep this to one short line."),
+    }),
+    defineField({
+      name: "pros",
+      title: "Pros",
+      type: "array",
+      group: "review",
+      of: [{ type: "string" }],
+      validation: (rule) => rule.max(8),
+    }),
+    defineField({
+      name: "cons",
+      title: "Cons",
+      type: "array",
+      group: "review",
+      of: [{ type: "string" }],
+      validation: (rule) => rule.max(8),
+    }),
+    defineField({
+      name: "keyFeatures",
+      title: "Key features",
+      description:
+        "Four to six short feature blocks. Each one is rendered as a numbered card.",
+      type: "array",
+      group: "review",
+      of: [
+        {
+          type: "object",
+          name: "keyFeature",
+          title: "Key feature",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "description",
+              title: "Description",
+              type: "text",
+              rows: 2,
+            }),
+          ],
+          preview: {
+            select: { title: "title", subtitle: "description" },
+          },
+        },
+      ],
+      validation: (rule) => rule.max(8),
+    }),
+    defineField({
+      name: "faqs",
+      title: "FAQs",
+      description:
+        "Four to six questions readers actually ask. Rendered in an accordion and as FAQPage structured data.",
+      type: "array",
+      group: "review",
+      of: [
+        {
+          type: "object",
+          name: "faq",
+          title: "FAQ",
+          fields: [
+            defineField({
+              name: "question",
+              title: "Question",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "answer",
+              title: "Answer",
+              type: "text",
+              rows: 4,
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: "question", subtitle: "answer" },
+          },
+        },
+      ],
+      validation: (rule) => rule.max(8),
+    }),
+    defineField({
+      name: "alternatives",
+      title: "Alternatives",
+      description:
+        "Up to five alternatives. Prefer an internal item reference; use name + URL for tools not yet in the directory.",
+      type: "array",
+      group: "review",
+      of: [
+        {
+          type: "object",
+          name: "alternative",
+          title: "Alternative",
+          fields: [
+            defineField({
+              name: "item",
+              title: "Directory item",
+              description: "Optional internal reference.",
+              type: "reference",
+              to: [{ type: "item" }],
+            }),
+            defineField({
+              name: "name",
+              title: "Name",
+              description: "Required for external alternatives.",
+              type: "string",
+            }),
+            defineField({
+              name: "url",
+              title: "URL",
+              description: "Optional external link.",
+              type: "url",
+            }),
+            defineField({
+              name: "note",
+              title: "Why it is an alternative",
+              type: "string",
+            }),
+          ],
+          preview: {
+            select: {
+              name: "name",
+              itemName: "item.name",
+              url: "url",
+              media: "item.icon",
+            },
+            prepare({ name, itemName, url, media }) {
+              return {
+                title: name || itemName || "Alternative",
+                subtitle: url,
+                media,
+              };
+            },
+          },
+        },
+      ],
+      validation: (rule) =>
+        rule.max(5).custom((rows) => {
+          if (!Array.isArray(rows)) return true;
+          const alternatives = rows as Array<{
+            item?: unknown;
+            name?: unknown;
+          }>;
+          const invalid = alternatives.findIndex(
+            (row) => !row?.item && !row?.name,
+          );
+          return invalid === -1
+            ? true
+            : `Alternative #${invalid + 1} needs a directory item or a name.`;
+        }),
+    }),
+    defineField({
+      name: "sources",
+      title: "Sources",
+      description:
+        "Official pages used to verify the facts on this page (product page, pricing page, docs).",
+      type: "array",
+      group: "review",
+      of: [
+        {
+          type: "object",
+          name: "source",
+          title: "Source",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "URL",
+              type: "url",
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: "title", subtitle: "url" },
+          },
+        },
+      ],
+      validation: (rule) => rule.max(8),
+    }),
+    defineField({
+      name: "lastVerified",
+      title: "Last verified",
+      description:
+        "The date the facts and prices on this page were last checked against the official sources.",
+      type: "date",
+      group: "review",
+      options: { dateFormat: "YYYY-MM-DD" },
+    }),
+    defineField({
+      name: "reviewer",
+      title: "Reviewer",
+      description: "Editor or editorial team responsible for this review.",
+      type: "reference",
+      group: "review",
+      to: [{ type: "user" }],
+    }),
+
+    // ---------------------------------------------------------------------
+    // Pricing (optional; only publish verified numbers)
+    defineField({
+      name: "pricingSummary",
+      title: "Pricing summary",
+      description:
+        "Short explanation of the plan structure, free-tier limits, and billing caveats.",
+      type: "text",
+      rows: 3,
+      group: "pricing",
+    }),
+    defineField({
+      name: "pricingRows",
+      title: "Pricing rows",
+      description:
+        "Structured rows for the public pricing table. Use display strings such as '$12/mo'.",
+      type: "array",
+      group: "pricing",
+      of: [
+        {
+          type: "object",
+          name: "pricingRow",
+          title: "Pricing row",
+          fields: [
+            defineField({
+              name: "plan",
+              title: "Plan",
+              type: "string",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "price",
+              title: "Price",
+              type: "string",
+              description: "Display string, e.g. '$12/mo' or 'Free'.",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "billing",
+              title: "Billing",
+              description: "e.g. 'Billed annually' or 'Per seat / month'.",
+              type: "string",
+            }),
+            defineField({
+              name: "includes",
+              title: "What's included",
+              type: "text",
+              rows: 2,
+            }),
+            defineField({
+              name: "note",
+              title: "Note",
+              type: "string",
+            }),
+          ],
+          preview: {
+            select: { title: "plan", subtitle: "price" },
+          },
+        },
+      ],
+      validation: (rule) => rule.max(6),
+    }),
+    defineField({
+      name: "hasFreePlan",
+      title: "Has a free plan",
+      description:
+        "Only enable this after verifying the free tier on the official pricing page.",
+      type: "boolean",
+      group: "pricing",
+    }),
+    defineField({
+      name: "startingPrice",
+      title: "Starting price",
+      description:
+        "Lowest PAID monthly price, in the selected currency. Do not enter 0 for a free tier; leave empty instead.",
+      type: "number",
+      group: "pricing",
+      validation: (rule) =>
+        rule.min(0).warning("Pricing must be zero or positive."),
+    }),
+    defineField({
+      name: "priceCurrency",
+      title: "Currency",
+      type: "string",
+      group: "pricing",
+      initialValue: "USD",
+      options: {
+        list: ["USD", "EUR", "GBP", "CAD", "AUD"],
+        layout: "dropdown",
+      },
+    }),
+    defineField({
+      name: "pricingUrl",
+      title: "Official pricing URL",
+      type: "url",
+      group: "pricing",
+    }),
+
+    // ---------------------------------------------------------------------
+    // SEO overrides (optional)
+    defineField({
+      name: "seoTitle",
+      title: "SEO title",
+      description:
+        "Optional title WITHOUT the ' - DirHunt AI' suffix. Keep it under 47 characters so the full title stays near 60.",
+      type: "string",
+      group: "seo",
+      validation: (rule) =>
+        rule.max(47).warning("Long titles are truncated in search results."),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO description",
+      description:
+        "Optional meta description. Aim for 140-155 characters and include the search intent.",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      validation: (rule) =>
+        rule
+          .max(160)
+          .warning("Descriptions over 160 characters are truncated."),
+    }),
+
     // publish related fields
     defineField({
       name: "publishDate",
@@ -360,22 +742,30 @@ export default defineType({
   // within Sanity Studio's document lists.
   preview: {
     select: {
+      // Studio previews the draft and published snapshots separately and
+      // prefers the draft. A draft snapshot keeps the `drafts.` prefix on
+      // `_id`, so it is a reliable published/unpublished marker; `publishDate`
+      // is not, because a draft inherits it from the published document.
+      id: "_id",
       name: "name",
       icon: "icon",
       image: "image",
       featured: "featured",
       date: "publishDate",
+      forceHidden: "forceHidden",
       pricePlan: "pricePlan",
       freePlanStatus: "freePlanStatus",
       proPlanStatus: "proPlanStatus",
       sponsorPlanStatus: "sponsorPlanStatus",
     },
     prepare({
+      id,
       name,
       icon,
       image,
       featured,
       date,
+      forceHidden,
       pricePlan,
       freePlanStatus,
       proPlanStatus,
@@ -385,18 +775,33 @@ export default defineType({
         freePlanStatus === "rejected" ||
         proPlanStatus === "failed" ||
         sponsorPlanStatus === "failed";
-      const title = date ? `✅ ${name}` : error ? `❌ ${name}` : `⏳ ${name}`;
+      const isDraft = typeof id === "string" && id.startsWith("drafts.");
+      // ✅ published, 📝 draft / unpublished changes, ❌ rejected or failed
+      // and still unpublished.
+      const marker = isDraft ? (error ? "❌" : "📝") : "✅";
+      const title = `${marker} ${name || "Untitled"}`;
       const feature = featured ? "⭐" : "";
+      // Drafts can be half-filled while an editor is typing, so never assume
+      // `pricePlan` is present: a thrown preview would break the whole list.
+      const plan = typeof pricePlan === "string" ? pricePlan.toUpperCase() : "";
       const status =
-        pricePlan.toUpperCase() === PricePlans.FREE.toUpperCase()
+        plan === PricePlans.FREE.toUpperCase()
           ? freePlanStatus
-          : pricePlan.toUpperCase() === PricePlans.PRO.toUpperCase()
+          : plan === PricePlans.PRO.toUpperCase()
             ? proPlanStatus
             : sponsorPlanStatus;
-      const time = date
-        ? `date: ${format(parseISO(date), "yyyy/MM/dd")}`
-        : "not published";
-      const subtitle = `${feature}${pricePlan.toUpperCase()}: ${status}, ${time}`;
+      const state = isDraft
+        ? forceHidden === true
+          ? "draft, hidden"
+          : "draft"
+        : forceHidden === true
+          ? "published, hidden"
+          : "published";
+      const time =
+        isDraft || !date
+          ? state
+          : `${state}, date: ${format(parseISO(date), "yyyy/MM/dd")}`;
+      const subtitle = `${feature}${plan || "no plan"}: ${status || "unknown"}, ${time}`;
       const media = icon ?? image;
       return {
         title,

@@ -153,51 +153,235 @@
     }
   ],
   "tags": [
-    { "slug": "chatbot", "name": "Chatbot", "description": "Conversational AI assistants that answer questions and complete tasks." },
-    { "slug": "assistant", "name": "Assistant", "description": "General-purpose AI assistants for everyday knowledge work." },
-    { "slug": "writing", "name": "Writing", "description": "Tools that help plan, draft, and improve written content." },
-    { "slug": "marketing", "name": "Marketing", "description": "AI tools for campaigns, brand content, and growth workflows." },
-    { "slug": "copywriting", "name": "Copywriting", "description": "AI copywriting tools for ads, landing pages, and product copy." },
-    { "slug": "seo", "name": "SEO", "description": "Search engine optimization tools that use AI for research and content." },
-    { "slug": "content", "name": "Content", "description": "Platforms for producing and managing content at scale." },
-    { "slug": "translation", "name": "Translation", "description": "Machine translation tools for text, documents, and websites." },
-    { "slug": "language", "name": "Language", "description": "Tools for language learning, grammar, and multilingual writing." },
-    { "slug": "localization", "name": "Localization", "description": "Localization platforms for translating products and content." },
-    { "slug": "image-generation", "name": "Image Generation", "description": "Text-to-image models and platforms for creating visuals." },
-    { "slug": "art", "name": "Art", "description": "AI art tools for illustration, concept art, and creative exploration." },
-    { "slug": "design", "name": "Design", "description": "Design platforms with AI-assisted layout, assets, and editing." },
-    { "slug": "photo-editing", "name": "Photo Editing", "description": "AI photo editing for retouching, backgrounds, and enhancement." },
-    { "slug": "background-removal", "name": "Background Removal", "description": "Tools that remove or replace image backgrounds automatically." },
-    { "slug": "ecommerce", "name": "Ecommerce", "description": "AI tools for product photos, listings, and online selling." },
-    { "slug": "social-media", "name": "Social Media", "description": "Tools for creating and scheduling social media content." },
-    { "slug": "branding", "name": "Branding", "description": "AI tools for logos, brand kits, and visual identity." },
-    { "slug": "video-generation", "name": "Video Generation", "description": "Text-to-video and image-to-video generation platforms." },
-    { "slug": "video-editing", "name": "Video Editing", "description": "AI-assisted video editing, transcription, and post-production." },
-    { "slug": "avatar", "name": "Avatar", "description": "AI avatars and talking-head video generators." },
-    { "slug": "voice", "name": "Voice", "description": "Text-to-speech, voice cloning, and voiceover tools." },
-    { "slug": "dubbing", "name": "Dubbing", "description": "AI dubbing and translation for video and audio." },
-    { "slug": "music", "name": "Music", "description": "AI music generation for songs, loops, and soundtracks." },
-    { "slug": "audio", "name": "Audio", "description": "AI tools for recording, editing, and enhancing audio." },
-    { "slug": "coding", "name": "Coding", "description": "AI tools that write, review, and explain code." },
-    { "slug": "developer-tools", "name": "Developer Tools", "description": "Platforms and APIs for building with AI models." },
-    { "slug": "ide", "name": "IDE", "description": "Code editors and IDEs with built-in AI assistance." },
-    { "slug": "app-builder", "name": "App Builder", "description": "Prompt-to-app platforms for building web applications." },
-    { "slug": "no-code", "name": "No-Code", "description": "Visual builders that require little or no programming." },
-    { "slug": "prototyping", "name": "Prototyping", "description": "Tools for quickly turning ideas into interactive prototypes." },
-    { "slug": "api", "name": "API", "description": "APIs that give developers access to AI models and services." },
-    { "slug": "open-source", "name": "Open Source", "description": "Open-source models, tools, and platforms." },
-    { "slug": "llm", "name": "LLM", "description": "Large language models and the platforms that serve them." },
-    { "slug": "infrastructure", "name": "Infrastructure", "description": "Inference, hosting, and infrastructure for AI applications." },
-    { "slug": "meeting", "name": "Meeting", "description": "AI meeting recorders, notes, and summaries." },
-    { "slug": "transcription", "name": "Transcription", "description": "Speech-to-text and transcript editing tools." },
-    { "slug": "productivity", "name": "Productivity", "description": "AI tools that reduce repetitive work and save time." },
-    { "slug": "automation", "name": "Automation", "description": "Workflow automation platforms with AI capabilities." },
-    { "slug": "workflow", "name": "Workflow", "description": "Tools for connecting apps and automating multi-step processes." },
-    { "slug": "presentation", "name": "Presentation", "description": "AI slide generators and presentation design tools." },
-    { "slug": "research", "name": "Research", "description": "AI research assistants for search, reading, and synthesis." },
-    { "slug": "education", "name": "Education", "description": "AI tools for learning, studying, and teaching." },
-    { "slug": "papers", "name": "Papers", "description": "Literature search and academic paper analysis tools." },
-    { "slug": "free", "name": "Free", "description": "Tools with a usable free tier." },
-    { "slug": "freemium", "name": "Freemium", "description": "Tools that offer free features alongside paid plans." }
+    {
+      "slug": "chatbot",
+      "name": "Chatbot",
+      "description": "Conversational AI assistants that answer questions and complete tasks."
+    },
+    {
+      "slug": "assistant",
+      "name": "Assistant",
+      "description": "General-purpose AI assistants for everyday knowledge work."
+    },
+    {
+      "slug": "writing",
+      "name": "Writing",
+      "description": "Tools that help plan, draft, and improve written content."
+    },
+    {
+      "slug": "marketing",
+      "name": "Marketing",
+      "description": "AI tools for campaigns, brand content, and growth workflows."
+    },
+    {
+      "slug": "copywriting",
+      "name": "Copywriting",
+      "description": "AI copywriting tools for ads, landing pages, and product copy."
+    },
+    {
+      "slug": "seo",
+      "name": "SEO",
+      "description": "Search engine optimization tools that use AI for research and content."
+    },
+    {
+      "slug": "content",
+      "name": "Content",
+      "description": "Platforms for producing and managing content at scale."
+    },
+    {
+      "slug": "translation",
+      "name": "Translation",
+      "description": "Machine translation tools for text, documents, and websites."
+    },
+    {
+      "slug": "language",
+      "name": "Language",
+      "description": "Tools for language learning, grammar, and multilingual writing."
+    },
+    {
+      "slug": "localization",
+      "name": "Localization",
+      "description": "Localization platforms for translating products and content."
+    },
+    {
+      "slug": "image-generation",
+      "name": "Image Generation",
+      "description": "Text-to-image models and platforms for creating visuals."
+    },
+    {
+      "slug": "art",
+      "name": "Art",
+      "description": "AI art tools for illustration, concept art, and creative exploration."
+    },
+    {
+      "slug": "design",
+      "name": "Design",
+      "description": "Design platforms with AI-assisted layout, assets, and editing."
+    },
+    {
+      "slug": "photo-editing",
+      "name": "Photo Editing",
+      "description": "AI photo editing for retouching, backgrounds, and enhancement."
+    },
+    {
+      "slug": "background-removal",
+      "name": "Background Removal",
+      "description": "Tools that remove or replace image backgrounds automatically."
+    },
+    {
+      "slug": "ecommerce",
+      "name": "Ecommerce",
+      "description": "AI tools for product photos, listings, and online selling."
+    },
+    {
+      "slug": "social-media",
+      "name": "Social Media",
+      "description": "Tools for creating and scheduling social media content."
+    },
+    {
+      "slug": "branding",
+      "name": "Branding",
+      "description": "AI tools for logos, brand kits, and visual identity."
+    },
+    {
+      "slug": "video-generation",
+      "name": "Video Generation",
+      "description": "Text-to-video and image-to-video generation platforms."
+    },
+    {
+      "slug": "video-editing",
+      "name": "Video Editing",
+      "description": "AI-assisted video editing, transcription, and post-production."
+    },
+    {
+      "slug": "avatar",
+      "name": "Avatar",
+      "description": "AI avatars and talking-head video generators."
+    },
+    {
+      "slug": "voice",
+      "name": "Voice",
+      "description": "Text-to-speech, voice cloning, and voiceover tools."
+    },
+    {
+      "slug": "dubbing",
+      "name": "Dubbing",
+      "description": "AI dubbing and translation for video and audio."
+    },
+    {
+      "slug": "music",
+      "name": "Music",
+      "description": "AI music generation for songs, loops, and soundtracks."
+    },
+    {
+      "slug": "audio",
+      "name": "Audio",
+      "description": "AI tools for recording, editing, and enhancing audio."
+    },
+    {
+      "slug": "coding",
+      "name": "Coding",
+      "description": "AI tools that write, review, and explain code."
+    },
+    {
+      "slug": "developer-tools",
+      "name": "Developer Tools",
+      "description": "Platforms and APIs for building with AI models."
+    },
+    {
+      "slug": "ide",
+      "name": "IDE",
+      "description": "Code editors and IDEs with built-in AI assistance."
+    },
+    {
+      "slug": "app-builder",
+      "name": "App Builder",
+      "description": "Prompt-to-app platforms for building web applications."
+    },
+    {
+      "slug": "no-code",
+      "name": "No-Code",
+      "description": "Visual builders that require little or no programming."
+    },
+    {
+      "slug": "prototyping",
+      "name": "Prototyping",
+      "description": "Tools for quickly turning ideas into interactive prototypes."
+    },
+    {
+      "slug": "api",
+      "name": "API",
+      "description": "APIs that give developers access to AI models and services."
+    },
+    {
+      "slug": "open-source",
+      "name": "Open Source",
+      "description": "Open-source models, tools, and platforms."
+    },
+    {
+      "slug": "llm",
+      "name": "LLM",
+      "description": "Large language models and the platforms that serve them."
+    },
+    {
+      "slug": "infrastructure",
+      "name": "Infrastructure",
+      "description": "Inference, hosting, and infrastructure for AI applications."
+    },
+    {
+      "slug": "meeting",
+      "name": "Meeting",
+      "description": "AI meeting recorders, notes, and summaries."
+    },
+    {
+      "slug": "transcription",
+      "name": "Transcription",
+      "description": "Speech-to-text and transcript editing tools."
+    },
+    {
+      "slug": "productivity",
+      "name": "Productivity",
+      "description": "AI tools that reduce repetitive work and save time."
+    },
+    {
+      "slug": "automation",
+      "name": "Automation",
+      "description": "Workflow automation platforms with AI capabilities."
+    },
+    {
+      "slug": "workflow",
+      "name": "Workflow",
+      "description": "Tools for connecting apps and automating multi-step processes."
+    },
+    {
+      "slug": "presentation",
+      "name": "Presentation",
+      "description": "AI slide generators and presentation design tools."
+    },
+    {
+      "slug": "research",
+      "name": "Research",
+      "description": "AI research assistants for search, reading, and synthesis."
+    },
+    {
+      "slug": "education",
+      "name": "Education",
+      "description": "AI tools for learning, studying, and teaching."
+    },
+    {
+      "slug": "papers",
+      "name": "Papers",
+      "description": "Literature search and academic paper analysis tools."
+    },
+    {
+      "slug": "free",
+      "name": "Free",
+      "description": "Tools with a usable free tier."
+    },
+    {
+      "slug": "freemium",
+      "name": "Freemium",
+      "description": "Tools that offer free features alongside paid plans."
+    }
   ]
 }

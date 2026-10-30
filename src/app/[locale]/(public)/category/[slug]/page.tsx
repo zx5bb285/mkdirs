@@ -1,7 +1,9 @@
 import ItemGrid from "@/components/item/item-grid";
+import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import EmptyGrid from "@/components/shared/empty-grid";
 import { HeaderSection } from "@/components/shared/header-section";
 import CustomPagination from "@/components/shared/pagination";
+import { getCategoryDescription } from "@/config/categories";
 import { siteConfig } from "@/config/site";
 import { getItems } from "@/data/item";
 import type { Locale } from "@/i18n/routing";
@@ -22,8 +24,10 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: { locale: Locale; slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }): Promise<Metadata | undefined> {
   const category = await sanityFetch<CategoryQueryResult>({
     query: categoryQuery,
@@ -36,17 +40,22 @@ export async function generateMetadata({
     return;
   }
 
-  const ogImageUrl = new URL(`${siteConfig.url}/api/og`);
-  ogImageUrl.searchParams.append("title", category.name);
-  ogImageUrl.searchParams.append("description", category.description || "");
-  ogImageUrl.searchParams.append("type", "Category");
+  const page = Number(
+    (searchParams as { page?: string } | undefined)?.page ?? "1",
+  );
+  const currentPage = Number.isFinite(page) && page > 0 ? page : 1;
+  const base = `/category/${params.slug}`;
 
   return constructMetadata({
     title: `${category.name}`,
-    description: category.description,
-    canonicalUrl: `${siteConfig.url}/category/${params.slug}`,
+    description: getCategoryDescription(params.slug, category.description),
+    canonicalUrl:
+      currentPage > 1
+        ? `${siteConfig.url}${base}?page=${currentPage}`
+        : `${siteConfig.url}${base}`,
     locale: params.locale,
-    // image: ogImageUrl.toString(),
+    // Empty taxonomy pages stay reachable but out of the index.
+    noIndex: category.count === 0,
   });
 }
 
@@ -93,13 +102,38 @@ export default async function CategoryPage({
     totalPages,
   );
 
+  const categoryUrl = `${siteConfig.url}/category/${params.slug}`;
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", url: siteConfig.url },
+    { name: "Categories", url: `${siteConfig.url}/category` },
+    { name: category.name, url: categoryUrl },
+  ]);
+  const itemList =
+    items.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: `${category.name} tools`,
+          numberOfItems: totalCount,
+          itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${siteConfig.url}/item/${item.slug.current}`,
+            name: item.name,
+          })),
+        }
+      : null;
+
   return (
     <div>
+      <JsonLd data={itemList ? [breadcrumb, itemList] : breadcrumb} />
       <HeaderSection
         label="Category"
         titleAs="h1"
         title={category.name}
-        subtitle={category.description || undefined}
+        subtitle={
+          getCategoryDescription(params.slug, category.description) || undefined
+        }
         className="mb-8"
       />
 

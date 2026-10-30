@@ -2,6 +2,7 @@ import AllPostsButton from "@/components/blog/all-posts-button";
 import BlogCustomMdx from "@/components/blog/blog-custom-mdx";
 import BlogGrid from "@/components/blog/blog-grid";
 import { BlogToc } from "@/components/blog/blog-toc";
+import LatestArticles from "@/components/blog/latest-articles";
 import { JsonLd, breadcrumbJsonLd } from "@/components/seo/json-ld";
 import { UserAvatar } from "@/components/shared/user-avatar";
 import { siteConfig } from "@/config/site";
@@ -13,12 +14,14 @@ import { constructMetadata } from "@/lib/metadata";
 import { getTableOfContents } from "@/lib/toc";
 import { getLocaleDate } from "@/lib/utils";
 import type {
+  BlogLatestPostsQueryResult,
   BlogPostMetadataQueryResult,
   BlogPostQueryResult,
   BlogRelatedPostsQueryResult,
 } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  blogLatestPostsQuery,
   blogPostMetadataQuery,
   blogPostQuery,
   blogRelatedPostsQuery,
@@ -29,6 +32,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const RELATED_COUNT = 3;
+const LATEST_COUNT = 3;
 
 /** Per-article social image when the post has no uploaded cover. */
 function ogImageFor(title: string, description: string, type: string) {
@@ -125,6 +129,21 @@ export default async function PostPage({ params }: PostPageProps) {
         params: { slug, categoryIds, count: RELATED_COUNT, locale },
       })) ?? [];
   }
+
+  // Newest posts for the footer module, skipping the current article and
+  // everything the "More Posts" section already shows.
+  const latestPosts =
+    (await sanityFetch<BlogLatestPostsQueryResult>({
+      query: blogLatestPostsQuery,
+      params: {
+        locale,
+        count: LATEST_COUNT,
+        excludeIds: [
+          post._id,
+          ...related.map((relatedPost) => relatedPost._id),
+        ],
+      },
+    })) ?? [];
 
   const postUrl = `${siteConfig.url}${localePath(locale, `/blog/${slug}`)}`;
   const authorSlug = post.author?.slug?.current;
@@ -235,8 +254,26 @@ export default async function PostPage({ params }: PostPageProps) {
             {/* blog post title */}
             <h1 className="text-3xl font-bold">{post.title}</h1>
 
-            {/* dates */}
+            {/* byline and dates */}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+              {post.author?.name && (
+                <span>
+                  By{" "}
+                  {authorUrl ? (
+                    <Link
+                      href={authorUrl}
+                      rel="author"
+                      className="font-medium text-foreground link-underline"
+                    >
+                      {post.author.name}
+                    </Link>
+                  ) : (
+                    <span className="font-medium text-foreground">
+                      {post.author.name}
+                    </span>
+                  )}
+                </span>
+              )}
               <time dateTime={publishDate}>{date}</time>
               {showModified && (
                 <span>
@@ -387,6 +424,9 @@ export default async function PostPage({ params }: PostPageProps) {
           <BlogGrid posts={related} />
         </div>
       )}
+
+      {/* Footer section shows the newest posts across the blog */}
+      <LatestArticles posts={latestPosts} />
     </div>
   );
 }
