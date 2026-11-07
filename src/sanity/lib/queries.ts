@@ -145,7 +145,8 @@ const itemFields = /* groq */ `
   ${itemReviewFields}
 `;
 
-// auto generate related items
+// auto generate related items: newest items across all categories
+// (category-agnostic so newly published tools always appear here)
 const itemFieldsWithRelated = /* groq */ `
   "introduction": coalesce(introductionZh, introduction),
   ${itemReviewFields}
@@ -153,7 +154,7 @@ const itemFieldsWithRelated = /* groq */ `
     && defined(publishDate)
     && forceHidden != true
     && sponsor != true
-    && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && _id != ^._id]
+    && _id != ^._id]
     | order(publishDate desc, _createdAt desc) [0...3] {
       ${itemSimpleFields}
   },

@@ -456,7 +456,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
           <div className="flex items-center gap-2">
             <LayoutGridIcon className="w-4 h-4 text-indigo-500" />
             <h2 className="text-lg tracking-wider font-semibold text-gradient_indigo-purple">
-              More Products
+              Latest Products
             </h2>
           </div>
 
